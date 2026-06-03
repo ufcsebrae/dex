@@ -1,0 +1,10 @@
+{
+    "fatofechamento": "SPSVSQL39_HubDados",
+    "inadim": "SPSVSQL39_HubDados",
+    "plancc": "SPSVSQL39_HubDados",
+    "orcado": "OLAP_SME",
+    "orcado_receitas": "OLAP_SME",
+    "orcado_receitas_cenario": "OLAP_SME",
+    "fatoajustadonacional": "AZURE",
+    "metareceita": "AZURE"
+}

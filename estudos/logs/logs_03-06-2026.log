@@ -1,0 +1,380 @@
+03-06-2026 11:20:47 [INFO] [extracao.py:84] - Query carregada com sucesso: fatofechamento.sql -> chave 'fatofechamento'
+03-06-2026 11:20:47 [INFO] [extracao.py:84] - Query carregada com sucesso: inadim.sql -> chave 'inadim'
+03-06-2026 11:20:47 [INFO] [extracao.py:84] - Query carregada com sucesso: metareceita.sql -> chave 'metareceita'
+03-06-2026 11:20:47 [INFO] [extracao.py:84] - Query carregada com sucesso: plancc.sql -> chave 'plancc'
+03-06-2026 11:20:47 [INFO] [extracao.py:84] - Query carregada com sucesso: orcado.mdx -> chave 'orcado'
+03-06-2026 11:20:47 [INFO] [extracao.py:84] - Query carregada com sucesso: orcado_receitas.mdx -> chave 'orcado_receitas'
+03-06-2026 11:20:47 [INFO] [extracao.py:84] - Query carregada com sucesso: orcado_receitas_cenario.mdx -> chave 'orcado_receitas_cenario'
+03-06-2026 11:20:47 [INFO] [carga.py:203] - Buscando dados históricos da tabela de carga: dbo.[dex-fatofechamento]
+03-06-2026 11:20:47 [INFO] [carga.py:203] - Buscando dados históricos da tabela de carga: dbo.[dex-plancc]
+03-06-2026 11:20:47 [ERROR] [carga.py:208] - Tabela dbo.dex-plancc não encontrada no banco ou falha na leitura: Execution failed on sql 'SELECT * FROM dbo.[dex-plancc]': (pyodbc.ProgrammingError) ('42S02', "[42S02] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'dbo.dex-plancc'. (208) (SQLExecDirectW)")
+[SQL: SELECT * FROM dbo.[dex-plancc]]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+03-06-2026 11:21:11 [INFO] [main.py:199] - Tabela de Carga 'fatofechamento' lida do SQL Server com sucesso.
+03-06-2026 11:58:51 [INFO] [extracao.py:83] - Query loaded com sucesso: fatofechamento.sql -> chave 'fatofechamento'
+03-06-2026 11:58:51 [INFO] [extracao.py:83] - Query loaded com sucesso: inadim.sql -> chave 'inadim'
+03-06-2026 11:58:51 [INFO] [extracao.py:83] - Query loaded com sucesso: metareceita.sql -> chave 'metareceita'
+03-06-2026 11:58:51 [INFO] [extracao.py:83] - Query loaded com sucesso: plancc.sql -> chave 'plancc'
+03-06-2026 11:58:51 [INFO] [extracao.py:83] - Query loaded com sucesso: orcado.mdx -> chave 'orcado'
+03-06-2026 11:58:51 [INFO] [extracao.py:83] - Query loaded com sucesso: orcado_receitas.mdx -> chave 'orcado_receitas'
+03-06-2026 11:58:51 [INFO] [extracao.py:83] - Query loaded com sucesso: orcado_receitas_cenario.mdx -> chave 'orcado_receitas_cenario'
+03-06-2026 11:58:51 [INFO] [carga.py:203] - Buscando dados históricos da tabela de carga: dbo.[dex-plancc]
+03-06-2026 11:58:51 [INFO] [carga.py:203] - Buscando dados históricos da tabela de carga: dbo.[dex-fatofechamento]
+03-06-2026 11:58:54 [INFO] [main.py:199] - Tabela de Carga 'plancc' lida do SQL Server com sucesso.
+03-06-2026 12:00:22 [INFO] [extracao.py:83] - Query loaded com sucesso: fatofechamento.sql -> chave 'fatofechamento'
+03-06-2026 12:00:22 [INFO] [extracao.py:83] - Query loaded com sucesso: inadim.sql -> chave 'inadim'
+03-06-2026 12:00:22 [INFO] [extracao.py:83] - Query loaded com sucesso: metareceita.sql -> chave 'metareceita'
+03-06-2026 12:00:22 [INFO] [extracao.py:83] - Query loaded com sucesso: plancc.sql -> chave 'plancc'
+03-06-2026 12:00:22 [INFO] [extracao.py:83] - Query loaded com sucesso: orcado.mdx -> chave 'orcado'
+03-06-2026 12:00:22 [INFO] [extracao.py:83] - Query loaded com sucesso: orcado_receitas.mdx -> chave 'orcado_receitas'
+03-06-2026 12:00:22 [INFO] [extracao.py:83] - Query loaded com sucesso: orcado_receitas_cenario.mdx -> chave 'orcado_receitas_cenario'
+03-06-2026 12:00:22 [INFO] [carga.py:203] - Buscando dados históricos da tabela de carga: dbo.[dex-fatofechamento]
+03-06-2026 12:00:22 [INFO] [carga.py:203] - Buscando dados históricos da tabela de carga: dbo.[dex-plancc]
+03-06-2026 12:00:23 [INFO] [main.py:199] - Tabela de Carga 'plancc' lida do SQL Server com sucesso.
+03-06-2026 12:00:44 [INFO] [main.py:199] - Tabela de Carga 'fatofechamento' lida do SQL Server com sucesso.
+03-06-2026 12:01:00 [INFO] [extracao.py:83] - Query loaded com sucesso: fatofechamento.sql -> chave 'fatofechamento'
+03-06-2026 12:01:00 [INFO] [extracao.py:83] - Query loaded com sucesso: inadim.sql -> chave 'inadim'
+03-06-2026 12:01:00 [INFO] [extracao.py:83] - Query loaded com sucesso: metareceita.sql -> chave 'metareceita'
+03-06-2026 12:01:00 [INFO] [extracao.py:83] - Query loaded com sucesso: plancc.sql -> chave 'plancc'
+03-06-2026 12:01:00 [INFO] [extracao.py:83] - Query loaded com sucesso: orcado.mdx -> chave 'orcado'
+03-06-2026 12:01:00 [INFO] [extracao.py:83] - Query loaded com sucesso: orcado_receitas.mdx -> chave 'orcado_receitas'
+03-06-2026 12:01:00 [INFO] [extracao.py:83] - Query loaded com sucesso: orcado_receitas_cenario.mdx -> chave 'orcado_receitas_cenario'
+03-06-2026 12:01:00 [INFO] [carga.py:203] - Buscando dados históricos da tabela de carga: dbo.[dex-fatofechamento]
+03-06-2026 12:01:00 [INFO] [carga.py:203] - Buscando dados históricos da tabela de carga: dbo.[dex-plancc]
+03-06-2026 12:01:02 [INFO] [main.py:199] - Tabela de Carga 'plancc' lida do SQL Server com sucesso.
+03-06-2026 13:14:20 [INFO] [extracao.py:83] - Query loaded com sucesso: fatofechamento.sql -> chave 'fatofechamento'
+03-06-2026 13:14:20 [INFO] [extracao.py:83] - Query loaded com sucesso: inadim.sql -> chave 'inadim'
+03-06-2026 13:14:20 [INFO] [extracao.py:83] - Query loaded com sucesso: metareceita.sql -> chave 'metareceita'
+03-06-2026 13:14:20 [INFO] [extracao.py:83] - Query loaded com sucesso: plancc.sql -> chave 'plancc'
+03-06-2026 13:14:20 [INFO] [extracao.py:83] - Query loaded com sucesso: orcado.mdx -> chave 'orcado'
+03-06-2026 13:14:20 [INFO] [extracao.py:83] - Query loaded com sucesso: orcado_receitas.mdx -> chave 'orcado_receitas'
+03-06-2026 13:14:20 [INFO] [extracao.py:83] - Query loaded com sucesso: orcado_receitas_cenario.mdx -> chave 'orcado_receitas_cenario'
+03-06-2026 13:14:20 [INFO] [carga.py:203] - Buscando dados históricos da tabela de carga: dbo.[dex-fatofechamento]
+03-06-2026 13:14:20 [INFO] [carga.py:203] - Buscando dados históricos da tabela de carga: dbo.[dex-plancc]
+03-06-2026 13:14:22 [INFO] [main.py:199] - Tabela de Carga 'plancc' lida do SQL Server com sucesso.
+03-06-2026 13:14:42 [INFO] [main.py:199] - Tabela de Carga 'fatofechamento' lida do SQL Server com sucesso.
+03-06-2026 15:31:56 [INFO] [extracao.py:83] - Query loaded com sucesso: fatofechamento.sql -> chave 'fatofechamento'
+03-06-2026 15:31:56 [INFO] [extracao.py:83] - Query loaded com sucesso: inadim.sql -> chave 'inadim'
+03-06-2026 15:31:56 [INFO] [extracao.py:83] - Query loaded com sucesso: metareceita.sql -> chave 'metareceita'
+03-06-2026 15:31:56 [INFO] [extracao.py:83] - Query loaded com sucesso: plancc.sql -> chave 'plancc'
+03-06-2026 15:31:56 [INFO] [extracao.py:83] - Query loaded com sucesso: orcado.mdx -> chave 'orcado'
+03-06-2026 15:31:56 [INFO] [extracao.py:83] - Query loaded com sucesso: orcado_receitas.mdx -> chave 'orcado_receitas'
+03-06-2026 15:31:56 [INFO] [extracao.py:83] - Query loaded com sucesso: orcado_receitas_cenario.mdx -> chave 'orcado_receitas_cenario'
+03-06-2026 15:31:56 [INFO] [carga.py:203] - Buscando dados históricos da tabela de carga: dbo.[dex-fatofechamento]
+03-06-2026 15:31:56 [INFO] [carga.py:203] - Buscando dados históricos da tabela de carga: dbo.[dex-plancc]
+03-06-2026 15:31:58 [INFO] [main.py:199] - Tabela de Carga 'plancc' lida do SQL Server com sucesso.
+03-06-2026 15:32:22 [INFO] [main.py:199] - Tabela de Carga 'fatofechamento' lida do SQL Server com sucesso.
+03-06-2026 15:44:09 [INFO] [extracao.py:83] - Query loaded com sucesso: fatofechamento.sql -> chave 'fatofechamento'
+03-06-2026 15:44:09 [INFO] [extracao.py:83] - Query loaded com sucesso: inadim.sql -> chave 'inadim'
+03-06-2026 15:44:09 [INFO] [extracao.py:83] - Query loaded com sucesso: metareceita.sql -> chave 'metareceita'
+03-06-2026 15:44:09 [INFO] [extracao.py:83] - Query loaded com sucesso: plancc.sql -> chave 'plancc'
+03-06-2026 15:44:09 [INFO] [extracao.py:83] - Query loaded com sucesso: orcado.mdx -> chave 'orcado'
+03-06-2026 15:44:09 [INFO] [extracao.py:83] - Query loaded com sucesso: orcado_receitas.mdx -> chave 'orcado_receitas'
+03-06-2026 15:44:09 [INFO] [extracao.py:83] - Query loaded com sucesso: orcado_receitas_cenario.mdx -> chave 'orcado_receitas_cenario'
+03-06-2026 15:44:09 [INFO] [carga.py:203] - Buscando dados históricos da tabela de carga: dbo.[dex-fatofechamento]
+03-06-2026 15:44:09 [INFO] [carga.py:203] - Buscando dados históricos da tabela de carga: dbo.[dex-plancc]
+03-06-2026 15:44:11 [INFO] [main.py:199] - Tabela de Carga 'plancc' lida do SQL Server com sucesso.
+03-06-2026 15:44:31 [INFO] [main.py:199] - Tabela de Carga 'fatofechamento' lida do SQL Server com sucesso.
+03-06-2026 15:45:10 [INFO] [extracao.py:83] - Query loaded com sucesso: fatofechamento.sql -> chave 'fatofechamento'
+03-06-2026 15:45:10 [INFO] [extracao.py:83] - Query loaded com sucesso: inadim.sql -> chave 'inadim'
+03-06-2026 15:45:10 [INFO] [extracao.py:83] - Query loaded com sucesso: metareceita.sql -> chave 'metareceita'
+03-06-2026 15:45:10 [INFO] [extracao.py:83] - Query loaded com sucesso: plancc.sql -> chave 'plancc'
+03-06-2026 15:45:10 [INFO] [extracao.py:83] - Query loaded com sucesso: orcado.mdx -> chave 'orcado'
+03-06-2026 15:45:10 [INFO] [extracao.py:83] - Query loaded com sucesso: orcado_receitas.mdx -> chave 'orcado_receitas'
+03-06-2026 15:45:10 [INFO] [extracao.py:83] - Query loaded com sucesso: orcado_receitas_cenario.mdx -> chave 'orcado_receitas_cenario'
+03-06-2026 15:45:10 [INFO] [carga.py:203] - Buscando dados históricos da tabela de carga: dbo.[dex-fatofechamento]
+03-06-2026 15:45:10 [INFO] [carga.py:203] - Buscando dados históricos da tabela de carga: dbo.[dex-plancc]
+03-06-2026 15:45:12 [INFO] [main.py:199] - Tabela de Carga 'plancc' lida do SQL Server com sucesso.
+03-06-2026 15:45:37 [INFO] [main.py:199] - Tabela de Carga 'fatofechamento' lida do SQL Server com sucesso.
+03-06-2026 15:46:24 [INFO] [extracao.py:83] - Query loaded com sucesso: fatofechamento.sql -> chave 'fatofechamento'
+03-06-2026 15:46:24 [INFO] [extracao.py:83] - Query loaded com sucesso: inadim.sql -> chave 'inadim'
+03-06-2026 15:46:24 [INFO] [extracao.py:83] - Query loaded com sucesso: metareceita.sql -> chave 'metareceita'
+03-06-2026 15:46:24 [INFO] [extracao.py:83] - Query loaded com sucesso: plancc.sql -> chave 'plancc'
+03-06-2026 15:46:24 [INFO] [extracao.py:83] - Query loaded com sucesso: orcado.mdx -> chave 'orcado'
+03-06-2026 15:46:24 [INFO] [extracao.py:83] - Query loaded com sucesso: orcado_receitas.mdx -> chave 'orcado_receitas'
+03-06-2026 15:46:24 [INFO] [extracao.py:83] - Query loaded com sucesso: orcado_receitas_cenario.mdx -> chave 'orcado_receitas_cenario'
+03-06-2026 15:46:24 [INFO] [carga.py:203] - Buscando dados históricos da tabela de carga: dbo.[dex-fatofechamento]
+03-06-2026 15:46:24 [INFO] [carga.py:203] - Buscando dados históricos da tabela de carga: dbo.[dex-plancc]
+03-06-2026 15:46:25 [INFO] [main.py:199] - Tabela de Carga 'plancc' lida do SQL Server com sucesso.
+03-06-2026 15:46:49 [INFO] [main.py:199] - Tabela de Carga 'fatofechamento' lida do SQL Server com sucesso.
+03-06-2026 15:46:51 [ERROR] [zmqstream.py:567] - Uncaught exception in ZMQStream callback
+Traceback (most recent call last):
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\zmq\eventloop\zmqstream.py", line 565, in _log_error
+    f.result()
+    ~~~~~~~~^^
+  File "C:\Users\cesargl\AppData\Local\anaconda3\Lib\asyncio\futures.py", line 199, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "C:\Users\cesargl\AppData\Local\anaconda3\Lib\asyncio\tasks.py", line 304, in __step_run_and_handle_result
+    result = coro.send(None)
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\ipykernel\kernelbase.py", line 348, in dispatch_control
+    await self.process_control(msg)
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\ipykernel\kernelbase.py", line 354, in process_control
+    idents, msg = self.session.feed_identities(msg, copy=False)
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\jupyter_client\session.py", line 998, in feed_identities
+    raise ValueError(msg)
+ValueError: DELIM not in msg_list
+03-06-2026 15:47:08 [ERROR] [zmqstream.py:567] - Uncaught exception in ZMQStream callback
+Traceback (most recent call last):
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\zmq\eventloop\zmqstream.py", line 565, in _log_error
+    f.result()
+    ~~~~~~~~^^
+  File "C:\Users\cesargl\AppData\Local\anaconda3\Lib\asyncio\futures.py", line 199, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "C:\Users\cesargl\AppData\Local\anaconda3\Lib\asyncio\tasks.py", line 304, in __step_run_and_handle_result
+    result = coro.send(None)
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\ipykernel\kernelbase.py", line 348, in dispatch_control
+    await self.process_control(msg)
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\ipykernel\kernelbase.py", line 354, in process_control
+    idents, msg = self.session.feed_identities(msg, copy=False)
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\jupyter_client\session.py", line 998, in feed_identities
+    raise ValueError(msg)
+ValueError: DELIM not in msg_list
+03-06-2026 15:47:08 [ERROR] [zmqstream.py:567] - Uncaught exception in ZMQStream callback
+Traceback (most recent call last):
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\zmq\eventloop\zmqstream.py", line 565, in _log_error
+    f.result()
+    ~~~~~~~~^^
+  File "C:\Users\cesargl\AppData\Local\anaconda3\Lib\asyncio\futures.py", line 199, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "C:\Users\cesargl\AppData\Local\anaconda3\Lib\asyncio\tasks.py", line 304, in __step_run_and_handle_result
+    result = coro.send(None)
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\ipykernel\kernelbase.py", line 348, in dispatch_control
+    await self.process_control(msg)
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\ipykernel\kernelbase.py", line 354, in process_control
+    idents, msg = self.session.feed_identities(msg, copy=False)
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\jupyter_client\session.py", line 998, in feed_identities
+    raise ValueError(msg)
+ValueError: DELIM not in msg_list
+03-06-2026 15:47:08 [ERROR] [zmqstream.py:567] - Uncaught exception in ZMQStream callback
+Traceback (most recent call last):
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\zmq\eventloop\zmqstream.py", line 565, in _log_error
+    f.result()
+    ~~~~~~~~^^
+  File "C:\Users\cesargl\AppData\Local\anaconda3\Lib\asyncio\futures.py", line 199, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "C:\Users\cesargl\AppData\Local\anaconda3\Lib\asyncio\tasks.py", line 304, in __step_run_and_handle_result
+    result = coro.send(None)
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\ipykernel\kernelbase.py", line 348, in dispatch_control
+    await self.process_control(msg)
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\ipykernel\kernelbase.py", line 354, in process_control
+    idents, msg = self.session.feed_identities(msg, copy=False)
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\jupyter_client\session.py", line 998, in feed_identities
+    raise ValueError(msg)
+ValueError: DELIM not in msg_list
+03-06-2026 15:47:08 [ERROR] [zmqstream.py:567] - Uncaught exception in ZMQStream callback
+Traceback (most recent call last):
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\zmq\eventloop\zmqstream.py", line 565, in _log_error
+    f.result()
+    ~~~~~~~~^^
+  File "C:\Users\cesargl\AppData\Local\anaconda3\Lib\asyncio\futures.py", line 199, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "C:\Users\cesargl\AppData\Local\anaconda3\Lib\asyncio\tasks.py", line 304, in __step_run_and_handle_result
+    result = coro.send(None)
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\ipykernel\kernelbase.py", line 348, in dispatch_control
+    await self.process_control(msg)
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\ipykernel\kernelbase.py", line 354, in process_control
+    idents, msg = self.session.feed_identities(msg, copy=False)
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\jupyter_client\session.py", line 998, in feed_identities
+    raise ValueError(msg)
+ValueError: DELIM not in msg_list
+03-06-2026 15:47:08 [ERROR] [zmqstream.py:567] - Uncaught exception in ZMQStream callback
+Traceback (most recent call last):
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\zmq\eventloop\zmqstream.py", line 565, in _log_error
+    f.result()
+    ~~~~~~~~^^
+  File "C:\Users\cesargl\AppData\Local\anaconda3\Lib\asyncio\futures.py", line 199, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "C:\Users\cesargl\AppData\Local\anaconda3\Lib\asyncio\tasks.py", line 304, in __step_run_and_handle_result
+    result = coro.send(None)
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\ipykernel\kernelbase.py", line 348, in dispatch_control
+    await self.process_control(msg)
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\ipykernel\kernelbase.py", line 354, in process_control
+    idents, msg = self.session.feed_identities(msg, copy=False)
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\jupyter_client\session.py", line 998, in feed_identities
+    raise ValueError(msg)
+ValueError: DELIM not in msg_list
+03-06-2026 15:47:08 [ERROR] [zmqstream.py:567] - Uncaught exception in ZMQStream callback
+Traceback (most recent call last):
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\zmq\eventloop\zmqstream.py", line 565, in _log_error
+    f.result()
+    ~~~~~~~~^^
+  File "C:\Users\cesargl\AppData\Local\anaconda3\Lib\asyncio\futures.py", line 199, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "C:\Users\cesargl\AppData\Local\anaconda3\Lib\asyncio\tasks.py", line 304, in __step_run_and_handle_result
+    result = coro.send(None)
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\ipykernel\kernelbase.py", line 348, in dispatch_control
+    await self.process_control(msg)
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\ipykernel\kernelbase.py", line 354, in process_control
+    idents, msg = self.session.feed_identities(msg, copy=False)
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\jupyter_client\session.py", line 998, in feed_identities
+    raise ValueError(msg)
+ValueError: DELIM not in msg_list
+03-06-2026 15:47:09 [ERROR] [zmqstream.py:567] - Uncaught exception in ZMQStream callback
+Traceback (most recent call last):
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\zmq\eventloop\zmqstream.py", line 565, in _log_error
+    f.result()
+    ~~~~~~~~^^
+  File "C:\Users\cesargl\AppData\Local\anaconda3\Lib\asyncio\futures.py", line 199, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "C:\Users\cesargl\AppData\Local\anaconda3\Lib\asyncio\tasks.py", line 304, in __step_run_and_handle_result
+    result = coro.send(None)
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\ipykernel\kernelbase.py", line 584, in shell_channel_thread_main
+    _, msg2 = self.session.feed_identities(msg, copy=False)
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\jupyter_client\session.py", line 998, in feed_identities
+    raise ValueError(msg)
+ValueError: DELIM not in msg_list
+03-06-2026 15:47:25 [ERROR] [zmqstream.py:567] - Uncaught exception in ZMQStream callback
+Traceback (most recent call last):
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\zmq\eventloop\zmqstream.py", line 565, in _log_error
+    f.result()
+    ~~~~~~~~^^
+  File "C:\Users\cesargl\AppData\Local\anaconda3\Lib\asyncio\futures.py", line 199, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "C:\Users\cesargl\AppData\Local\anaconda3\Lib\asyncio\tasks.py", line 304, in __step_run_and_handle_result
+    result = coro.send(None)
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\ipykernel\kernelbase.py", line 348, in dispatch_control
+    await self.process_control(msg)
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\ipykernel\kernelbase.py", line 354, in process_control
+    idents, msg = self.session.feed_identities(msg, copy=False)
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\jupyter_client\session.py", line 998, in feed_identities
+    raise ValueError(msg)
+ValueError: DELIM not in msg_list
+03-06-2026 15:47:25 [ERROR] [zmqstream.py:567] - Uncaught exception in ZMQStream callback
+Traceback (most recent call last):
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\zmq\eventloop\zmqstream.py", line 565, in _log_error
+    f.result()
+    ~~~~~~~~^^
+  File "C:\Users\cesargl\AppData\Local\anaconda3\Lib\asyncio\futures.py", line 199, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "C:\Users\cesargl\AppData\Local\anaconda3\Lib\asyncio\tasks.py", line 304, in __step_run_and_handle_result
+    result = coro.send(None)
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\ipykernel\kernelbase.py", line 584, in shell_channel_thread_main
+    _, msg2 = self.session.feed_identities(msg, copy=False)
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\jupyter_client\session.py", line 998, in feed_identities
+    raise ValueError(msg)
+ValueError: DELIM not in msg_list
+03-06-2026 15:47:40 [ERROR] [zmqstream.py:567] - Uncaught exception in ZMQStream callback
+Traceback (most recent call last):
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\zmq\eventloop\zmqstream.py", line 565, in _log_error
+    f.result()
+    ~~~~~~~~^^
+  File "C:\Users\cesargl\AppData\Local\anaconda3\Lib\asyncio\futures.py", line 199, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "C:\Users\cesargl\AppData\Local\anaconda3\Lib\asyncio\tasks.py", line 304, in __step_run_and_handle_result
+    result = coro.send(None)
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\ipykernel\kernelbase.py", line 348, in dispatch_control
+    await self.process_control(msg)
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\ipykernel\kernelbase.py", line 354, in process_control
+    idents, msg = self.session.feed_identities(msg, copy=False)
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\jupyter_client\session.py", line 998, in feed_identities
+    raise ValueError(msg)
+ValueError: DELIM not in msg_list
+03-06-2026 15:47:40 [ERROR] [zmqstream.py:567] - Uncaught exception in ZMQStream callback
+Traceback (most recent call last):
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\zmq\eventloop\zmqstream.py", line 565, in _log_error
+    f.result()
+    ~~~~~~~~^^
+  File "C:\Users\cesargl\AppData\Local\anaconda3\Lib\asyncio\futures.py", line 199, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "C:\Users\cesargl\AppData\Local\anaconda3\Lib\asyncio\tasks.py", line 304, in __step_run_and_handle_result
+    result = coro.send(None)
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\ipykernel\kernelbase.py", line 348, in dispatch_control
+    await self.process_control(msg)
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\ipykernel\kernelbase.py", line 354, in process_control
+    idents, msg = self.session.feed_identities(msg, copy=False)
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\jupyter_client\session.py", line 998, in feed_identities
+    raise ValueError(msg)
+ValueError: DELIM not in msg_list
+03-06-2026 15:47:40 [ERROR] [zmqstream.py:567] - Uncaught exception in ZMQStream callback
+Traceback (most recent call last):
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\zmq\eventloop\zmqstream.py", line 565, in _log_error
+    f.result()
+    ~~~~~~~~^^
+  File "C:\Users\cesargl\AppData\Local\anaconda3\Lib\asyncio\futures.py", line 199, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "C:\Users\cesargl\AppData\Local\anaconda3\Lib\asyncio\tasks.py", line 304, in __step_run_and_handle_result
+    result = coro.send(None)
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\ipykernel\kernelbase.py", line 348, in dispatch_control
+    await self.process_control(msg)
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\ipykernel\kernelbase.py", line 354, in process_control
+    idents, msg = self.session.feed_identities(msg, copy=False)
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\jupyter_client\session.py", line 998, in feed_identities
+    raise ValueError(msg)
+ValueError: DELIM not in msg_list
+03-06-2026 15:47:40 [ERROR] [zmqstream.py:567] - Uncaught exception in ZMQStream callback
+Traceback (most recent call last):
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\zmq\eventloop\zmqstream.py", line 565, in _log_error
+    f.result()
+    ~~~~~~~~^^
+  File "C:\Users\cesargl\AppData\Local\anaconda3\Lib\asyncio\futures.py", line 199, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "C:\Users\cesargl\AppData\Local\anaconda3\Lib\asyncio\tasks.py", line 304, in __step_run_and_handle_result
+    result = coro.send(None)
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\ipykernel\kernelbase.py", line 348, in dispatch_control
+    await self.process_control(msg)
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\ipykernel\kernelbase.py", line 354, in process_control
+    idents, msg = self.session.feed_identities(msg, copy=False)
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\jupyter_client\session.py", line 998, in feed_identities
+    raise ValueError(msg)
+ValueError: DELIM not in msg_list
+03-06-2026 15:47:41 [ERROR] [zmqstream.py:567] - Uncaught exception in ZMQStream callback
+Traceback (most recent call last):
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\zmq\eventloop\zmqstream.py", line 565, in _log_error
+    f.result()
+    ~~~~~~~~^^
+  File "C:\Users\cesargl\AppData\Local\anaconda3\Lib\asyncio\futures.py", line 199, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "C:\Users\cesargl\AppData\Local\anaconda3\Lib\asyncio\tasks.py", line 304, in __step_run_and_handle_result
+    result = coro.send(None)
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\ipykernel\kernelbase.py", line 584, in shell_channel_thread_main
+    _, msg2 = self.session.feed_identities(msg, copy=False)
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\jupyter_client\session.py", line 998, in feed_identities
+    raise ValueError(msg)
+ValueError: DELIM not in msg_list
+03-06-2026 15:47:42 [ERROR] [zmqstream.py:567] - Uncaught exception in ZMQStream callback
+Traceback (most recent call last):
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\zmq\eventloop\zmqstream.py", line 565, in _log_error
+    f.result()
+    ~~~~~~~~^^
+  File "C:\Users\cesargl\AppData\Local\anaconda3\Lib\asyncio\futures.py", line 199, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "C:\Users\cesargl\AppData\Local\anaconda3\Lib\asyncio\tasks.py", line 304, in __step_run_and_handle_result
+    result = coro.send(None)
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\ipykernel\kernelbase.py", line 348, in dispatch_control
+    await self.process_control(msg)
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\ipykernel\kernelbase.py", line 354, in process_control
+    idents, msg = self.session.feed_identities(msg, copy=False)
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\jupyter_client\session.py", line 998, in feed_identities
+    raise ValueError(msg)
+ValueError: DELIM not in msg_list
+03-06-2026 15:47:44 [ERROR] [zmqstream.py:567] - Uncaught exception in ZMQStream callback
+Traceback (most recent call last):
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\zmq\eventloop\zmqstream.py", line 565, in _log_error
+    f.result()
+    ~~~~~~~~^^
+  File "C:\Users\cesargl\AppData\Local\anaconda3\Lib\asyncio\futures.py", line 199, in result
+    raise self._exception.with_traceback(self._exception_tb)
+  File "C:\Users\cesargl\AppData\Local\anaconda3\Lib\asyncio\tasks.py", line 304, in __step_run_and_handle_result
+    result = coro.send(None)
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\ipykernel\kernelbase.py", line 584, in shell_channel_thread_main
+    _, msg2 = self.session.feed_identities(msg, copy=False)
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "c:\Users\cesargl\_projetos\dex\.venv\Lib\site-packages\jupyter_client\session.py", line 998, in feed_identities
+    raise ValueError(msg)
+ValueError: DELIM not in msg_list

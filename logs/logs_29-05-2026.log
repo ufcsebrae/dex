@@ -1,0 +1,131 @@
+29-05-2026 14:29:39 [INFO] [extracao.py:49] - Query carregada com sucesso: fatofechamento.sql -> chave 'fatofechamento'
+29-05-2026 14:29:39 [INFO] [extracao.py:49] - Query carregada com sucesso: orcado.mdx -> chave 'orcado'
+29-05-2026 14:29:39 [INFO] [extracao.py:49] - Query carregada com sucesso: orcado_receitas.mdx -> chave 'orcado_receitas'
+29-05-2026 14:29:39 [INFO] [extracao.py:49] - Query carregada com sucesso: orcado_receitas_cenario.mdx -> chave 'orcado_receitas_cenario'
+29-05-2026 14:29:39 [INFO] [extracao.py:218] - Conectando ao banco para extrair: fatofechamento
+29-05-2026 14:29:39 [INFO] [extracao.py:218] - Conectando ao banco para extrair: orcado
+29-05-2026 14:29:39 [INFO] [extracao.py:176] - Executando a inicialização do ambiente OLAP pela primeira vez...
+29-05-2026 14:29:39 [INFO] [extracao.py:218] - Conectando ao banco para extrair: orcado_receitas
+29-05-2026 14:29:39 [INFO] [extracao.py:218] - Conectando ao banco para extrair: orcado_receitas_cenario
+29-05-2026 14:29:39 [INFO] [extracao.py:191] - Referência 'Microsoft.AnalysisServices.AdomdClient' carregada com sucesso.
+29-05-2026 14:29:39 [INFO] [extracao.py:203] - Conectando ao cubo OLAP com a string: 'Provider=MSOLAP;Data Source=NASRVUGESQLPW02.sp.sebrae.corp;Catalog=SMEDW_V3_SSAS;'
+29-05-2026 14:29:39 [INFO] [extracao.py:203] - Conectando ao cubo OLAP com a string: 'Provider=MSOLAP;Data Source=NASRVUGESQLPW02.sp.sebrae.corp;Catalog=SMEDW_V3_SSAS;'
+29-05-2026 14:29:39 [INFO] [extracao.py:203] - Conectando ao cubo OLAP com a string: 'Provider=MSOLAP;Data Source=NASRVUGESQLPW02.sp.sebrae.corp;Catalog=SMEDW_V3_SSAS;'
+29-05-2026 14:29:46 [INFO] [extracao.py:210] - Consulta ao cubo OLAP concluída, 1755 registros retornados.
+29-05-2026 14:29:46 [INFO] [transformacao.py:61] - Colunas brutas identificadas: ['[PPA].[PPA com Fotografia].[Descrição de PPA com Fotografia].[MEMBER_CAPTION]', '[Natureza Orçamentária].[Código Estruturado 4 nível].[Código Estruturado 4 nível].[MEMBER_CAPTION]', '[Natureza Orçamentária].[Descrição de Natureza 4 nível].[Descrição de Natureza 4 nível].[MEMBER_CAPTION]', '[Tempo].[Ano].[Número Ano].[MEMBER_CAPTION]', '[Tempo].[Mês].[Número Mês].[MEMBER_CAPTION]', '[Measures].[ValorAjustado]']
+29-05-2026 14:29:46 [INFO] [transformacao.py:129] - Métricas de Data Analytics compiladas com sucesso para consumo do Node.js.
+29-05-2026 14:29:46 [ERROR] [main.py:111] - Falha no pipeline 'orcado_receitas_cenario': too many values to unpack (expected 2)
+29-05-2026 14:29:46 [INFO] [extracao.py:210] - Consulta ao cubo OLAP concluída, 2970 registros retornados.
+29-05-2026 14:29:46 [INFO] [transformacao.py:61] - Colunas brutas identificadas: ['[PPA].[PPA com Fotografia].[Descrição de PPA com Fotografia].[MEMBER_CAPTION]', '[Unidade Organizacional de Iniciativa].[Unidade Organizacional de Iniciativa].[Nome de Unidade Organizacional de Iniciativa].[MEMBER_CAPTION]', '[Iniciativa].[Iniciativas].[Iniciativa].[MEMBER_CAPTION]', '[Natureza Orçamentária].[Código Estruturado 4 nível].[Código Estruturado 4 nível].[MEMBER_CAPTION]', '[Natureza Orçamentária].[Descrição de Natureza 4 nível].[Descrição de Natureza 4 nível].[MEMBER_CAPTION]', '[Tempo].[Ano].[Número Ano].[MEMBER_CAPTION]', '[Tempo].[Mês].[Número Mês].[MEMBER_CAPTION]', '[Measures].[ValorAjustado]']
+29-05-2026 14:29:46 [INFO] [transformacao.py:129] - Métricas de Data Analytics compiladas com sucesso para consumo do Node.js.
+29-05-2026 14:29:46 [ERROR] [main.py:111] - Falha no pipeline 'orcado_receitas': too many values to unpack (expected 2)
+29-05-2026 14:29:54 [INFO] [transformacao.py:61] - Colunas brutas identificadas: ['CC', 'CONTA', 'VALOR', 'IDRATEIO', 'LCTREF', 'IDPARTIDA', 'IDMOV', 'CODTMV', 'CONTRATO', 'FORNECEDOR', 'CODUSUARIO', 'DATAEMISSAO', 'COMPLEMENTO', 'DATA', 'TipoLancamento', 'ACAO', 'PROJETO', 'UNIDADE', 'DESCNVL6', 'DESCNVL5', 'DESCNVL4', 'DESCNVL3', 'DESCNVL2', 'DESCNVL1', 'CATEGORIA', 'cdgContaNvl4', 'NACIONAL']
+29-05-2026 14:29:54 [INFO] [transformacao.py:129] - Métricas de Data Analytics compiladas com sucesso para consumo do Node.js.
+29-05-2026 14:29:54 [ERROR] [main.py:111] - Falha no pipeline 'fatofechamento': too many values to unpack (expected 2)
+29-05-2026 14:33:15 [INFO] [extracao.py:49] - Query carregada com sucesso: fatofechamento.sql -> chave 'fatofechamento'
+29-05-2026 14:33:15 [INFO] [extracao.py:49] - Query carregada com sucesso: orcado.mdx -> chave 'orcado'
+29-05-2026 14:33:15 [INFO] [extracao.py:49] - Query carregada com sucesso: orcado_receitas.mdx -> chave 'orcado_receitas'
+29-05-2026 14:33:15 [INFO] [extracao.py:49] - Query carregada com sucesso: orcado_receitas_cenario.mdx -> chave 'orcado_receitas_cenario'
+29-05-2026 14:33:15 [INFO] [extracao.py:218] - Conectando ao banco para extrair: fatofechamento
+29-05-2026 14:33:15 [INFO] [extracao.py:218] - Conectando ao banco para extrair: orcado
+29-05-2026 14:33:15 [INFO] [extracao.py:176] - Executando a inicialização do ambiente OLAP pela primeira vez...
+29-05-2026 14:33:15 [INFO] [extracao.py:218] - Conectando ao banco para extrair: orcado_receitas
+29-05-2026 14:33:15 [INFO] [extracao.py:218] - Conectando ao banco para extrair: orcado_receitas_cenario
+29-05-2026 14:33:16 [INFO] [extracao.py:191] - Referência 'Microsoft.AnalysisServices.AdomdClient' carregada com sucesso.
+29-05-2026 14:33:16 [INFO] [extracao.py:203] - Conectando ao cubo OLAP com a string: 'Provider=MSOLAP;Data Source=NASRVUGESQLPW02.sp.sebrae.corp;Catalog=SMEDW_V3_SSAS;'
+29-05-2026 14:33:16 [INFO] [extracao.py:203] - Conectando ao cubo OLAP com a string: 'Provider=MSOLAP;Data Source=NASRVUGESQLPW02.sp.sebrae.corp;Catalog=SMEDW_V3_SSAS;'
+29-05-2026 14:33:16 [INFO] [extracao.py:203] - Conectando ao cubo OLAP com a string: 'Provider=MSOLAP;Data Source=NASRVUGESQLPW02.sp.sebrae.corp;Catalog=SMEDW_V3_SSAS;'
+29-05-2026 14:33:26 [INFO] [extracao.py:210] - Consulta ao cubo OLAP concluída, 1755 registros retornados.
+29-05-2026 14:33:26 [INFO] [transformacao.py:60] - Colunas brutas identificadas: ['[PPA].[PPA com Fotografia].[Descrição de PPA com Fotografia].[MEMBER_CAPTION]', '[Natureza Orçamentária].[Código Estruturado 4 nível].[Código Estruturado 4 nível].[MEMBER_CAPTION]', '[Natureza Orçamentária].[Descrição de Natureza 4 nível].[Descrição de Natureza 4 nível].[MEMBER_CAPTION]', '[Tempo].[Ano].[Número Ano].[MEMBER_CAPTION]', '[Tempo].[Mês].[Número Mês].[MEMBER_CAPTION]', '[Measures].[ValorAjustado]']
+29-05-2026 14:33:26 [INFO] [transformacao.py:128] - Métricas de Data Analytics compiladas com sucesso para consumo do Node.js.
+29-05-2026 14:33:26 [INFO] [main.py:93] - Pipeline 'orcado_receitas_cenario' concluído após transformação (modo sem carga).
+29-05-2026 14:33:27 [INFO] [extracao.py:210] - Consulta ao cubo OLAP concluída, 2970 registros retornados.
+29-05-2026 14:33:27 [INFO] [transformacao.py:60] - Colunas brutas identificadas: ['[PPA].[PPA com Fotografia].[Descrição de PPA com Fotografia].[MEMBER_CAPTION]', '[Unidade Organizacional de Iniciativa].[Unidade Organizacional de Iniciativa].[Nome de Unidade Organizacional de Iniciativa].[MEMBER_CAPTION]', '[Iniciativa].[Iniciativas].[Iniciativa].[MEMBER_CAPTION]', '[Natureza Orçamentária].[Código Estruturado 4 nível].[Código Estruturado 4 nível].[MEMBER_CAPTION]', '[Natureza Orçamentária].[Descrição de Natureza 4 nível].[Descrição de Natureza 4 nível].[MEMBER_CAPTION]', '[Tempo].[Ano].[Número Ano].[MEMBER_CAPTION]', '[Tempo].[Mês].[Número Mês].[MEMBER_CAPTION]', '[Measures].[ValorAjustado]']
+29-05-2026 14:33:27 [INFO] [transformacao.py:128] - Métricas de Data Analytics compiladas com sucesso para consumo do Node.js.
+29-05-2026 14:33:27 [INFO] [main.py:93] - Pipeline 'orcado_receitas' concluído após transformação (modo sem carga).
+29-05-2026 14:33:44 [INFO] [transformacao.py:60] - Colunas brutas identificadas: ['CC', 'CONTA', 'VALOR', 'IDRATEIO', 'LCTREF', 'IDPARTIDA', 'IDMOV', 'CODTMV', 'CONTRATO', 'FORNECEDOR', 'CODUSUARIO', 'DATAEMISSAO', 'COMPLEMENTO', 'DATA', 'TipoLancamento', 'ACAO', 'PROJETO', 'UNIDADE', 'DESCNVL6', 'DESCNVL5', 'DESCNVL4', 'DESCNVL3', 'DESCNVL2', 'DESCNVL1', 'CATEGORIA', 'cdgContaNvl4', 'NACIONAL']
+29-05-2026 14:33:44 [INFO] [transformacao.py:128] - Métricas de Data Analytics compiladas com sucesso para consumo do Node.js.
+29-05-2026 14:33:44 [INFO] [main.py:93] - Pipeline 'fatofechamento' concluído após transformação (modo sem carga).
+29-05-2026 14:38:14 [ERROR] [extracao.py:231] - Falha na extração para orcado: A operação não é válida devido ao estado atual do objeto.
+   em System.Xml.XmlTextReaderImpl.set_WhitespaceHandling(WhitespaceHandling value)
+   em Microsoft.AnalysisServices.AdomdClient.XmlaReader.XmlTextReaderWhitespaceHandlingManager.set_WhitespaceHandling(WhitespaceHandling value)
+   em Microsoft.AnalysisServices.AdomdClient.XmlaReader.XmlReaderWhitespaceHandlingManager.WhitespaceHandlingScope.Dispose(Boolean disposing)
+   em Microsoft.AnalysisServices.AdomdClient.Utilities.Disposable.Dispose()
+   em Microsoft.AnalysisServices.AdomdClient.FormattersHelpers.ReadRowsetProperty(XmlReader reader, String elementName, String elementNamespace, Type type, Boolean throwOnInlineError, Boolean isArray, Boolean convertToLocalTime)
+   em Microsoft.AnalysisServices.AdomdClient.XmlaDataReader.ReadColumnValue(Int32 ordinal)
+   em Microsoft.AnalysisServices.AdomdClient.XmlaDataReader.SequentialReadXmlValue(Int32 ordinal)
+   em Microsoft.AnalysisServices.AdomdClient.XmlaDataReader.GetRowXmlValues(Object[] xmlValues)
+   em Microsoft.AnalysisServices.AdomdClient.XmlaDataReader.InternalRead()
+29-05-2026 14:38:14 [WARNING] [main.py:77] - Sem dados para 'orcado'.
+29-05-2026 14:38:14 [INFO] [main.py:172] - Processamento concorrente de pipelines finalizado.
+29-05-2026 14:45:11 [INFO] [extracao.py:49] - Query carregada com sucesso: fatofechamento.sql -> chave 'fatofechamento'
+29-05-2026 14:45:11 [INFO] [extracao.py:49] - Query carregada com sucesso: orcado.mdx -> chave 'orcado'
+29-05-2026 14:45:11 [INFO] [extracao.py:49] - Query carregada com sucesso: orcado_receitas.mdx -> chave 'orcado_receitas'
+29-05-2026 14:45:11 [INFO] [extracao.py:49] - Query carregada com sucesso: orcado_receitas_cenario.mdx -> chave 'orcado_receitas_cenario'
+29-05-2026 14:45:11 [INFO] [extracao.py:218] - Conectando ao banco para extrair: fatofechamento
+29-05-2026 14:45:11 [INFO] [extracao.py:218] - Conectando ao banco para extrair: orcado_receitas
+29-05-2026 14:45:11 [INFO] [extracao.py:176] - Executando a inicialização do ambiente OLAP pela primeira vez...
+29-05-2026 14:45:11 [INFO] [extracao.py:191] - Referência 'Microsoft.AnalysisServices.AdomdClient' carregada com sucesso.
+29-05-2026 14:45:11 [INFO] [extracao.py:203] - Conectando ao cubo OLAP com a string: 'Provider=MSOLAP;Data Source=NASRVUGESQLPW02.sp.sebrae.corp;Catalog=SMEDW_V3_SSAS;'
+29-05-2026 14:45:14 [INFO] [extracao.py:210] - Consulta ao cubo OLAP concluída, 2970 registros retornados.
+29-05-2026 14:45:14 [INFO] [transformacao.py:60] - Colunas brutas identificadas: ['[PPA].[PPA com Fotografia].[Descrição de PPA com Fotografia].[MEMBER_CAPTION]', '[Unidade Organizacional de Iniciativa].[Unidade Organizacional de Iniciativa].[Nome de Unidade Organizacional de Iniciativa].[MEMBER_CAPTION]', '[Iniciativa].[Iniciativas].[Iniciativa].[MEMBER_CAPTION]', '[Natureza Orçamentária].[Código Estruturado 4 nível].[Código Estruturado 4 nível].[MEMBER_CAPTION]', '[Natureza Orçamentária].[Descrição de Natureza 4 nível].[Descrição de Natureza 4 nível].[MEMBER_CAPTION]', '[Tempo].[Ano].[Número Ano].[MEMBER_CAPTION]', '[Tempo].[Mês].[Número Mês].[MEMBER_CAPTION]', '[Measures].[ValorAjustado]']
+29-05-2026 14:45:14 [INFO] [transformacao.py:128] - Métricas de Data Analytics compiladas com sucesso para consumo do Node.js.
+29-05-2026 14:45:14 [INFO] [main.py:143] - Tabela 'orcado_receitas' carregada em memória com sucesso.
+29-05-2026 14:45:24 [INFO] [transformacao.py:60] - Colunas brutas identificadas: ['CC', 'CONTA', 'VALOR', 'IDRATEIO', 'LCTREF', 'IDPARTIDA', 'IDMOV', 'CODTMV', 'CONTRATO', 'FORNECEDOR', 'CODUSUARIO', 'DATAEMISSAO', 'COMPLEMENTO', 'DATA', 'TipoLancamento', 'ACAO', 'PROJETO', 'UNIDADE', 'DESCNVL6', 'DESCNVL5', 'DESCNVL4', 'DESCNVL3', 'DESCNVL2', 'DESCNVL1', 'CATEGORIA', 'cdgContaNvl4', 'NACIONAL']
+29-05-2026 14:45:24 [INFO] [transformacao.py:128] - Métricas de Data Analytics compiladas com sucesso para consumo do Node.js.
+29-05-2026 14:45:24 [INFO] [main.py:143] - Tabela 'fatofechamento' carregada em memória com sucesso.
+29-05-2026 14:46:18 [INFO] [extracao.py:49] - Query carregada com sucesso: fatofechamento.sql -> chave 'fatofechamento'
+29-05-2026 14:46:18 [INFO] [extracao.py:49] - Query carregada com sucesso: orcado.mdx -> chave 'orcado'
+29-05-2026 14:46:18 [INFO] [extracao.py:49] - Query carregada com sucesso: orcado_receitas.mdx -> chave 'orcado_receitas'
+29-05-2026 14:46:18 [INFO] [extracao.py:49] - Query carregada com sucesso: orcado_receitas_cenario.mdx -> chave 'orcado_receitas_cenario'
+29-05-2026 14:46:18 [INFO] [extracao.py:218] - Conectando ao banco para extrair: fatofechamento
+29-05-2026 14:46:18 [INFO] [extracao.py:218] - Conectando ao banco para extrair: orcado_receitas
+29-05-2026 14:46:18 [INFO] [extracao.py:176] - Executando a inicialização do ambiente OLAP pela primeira vez...
+29-05-2026 14:46:19 [INFO] [extracao.py:191] - Referência 'Microsoft.AnalysisServices.AdomdClient' carregada com sucesso.
+29-05-2026 14:46:19 [INFO] [extracao.py:203] - Conectando ao cubo OLAP com a string: 'Provider=MSOLAP;Data Source=NASRVUGESQLPW02.sp.sebrae.corp;Catalog=SMEDW_V3_SSAS;'
+29-05-2026 14:46:22 [INFO] [extracao.py:210] - Consulta ao cubo OLAP concluída, 2970 registros retornados.
+29-05-2026 14:46:22 [INFO] [transformacao.py:60] - Colunas brutas identificadas: ['[PPA].[PPA com Fotografia].[Descrição de PPA com Fotografia].[MEMBER_CAPTION]', '[Unidade Organizacional de Iniciativa].[Unidade Organizacional de Iniciativa].[Nome de Unidade Organizacional de Iniciativa].[MEMBER_CAPTION]', '[Iniciativa].[Iniciativas].[Iniciativa].[MEMBER_CAPTION]', '[Natureza Orçamentária].[Código Estruturado 4 nível].[Código Estruturado 4 nível].[MEMBER_CAPTION]', '[Natureza Orçamentária].[Descrição de Natureza 4 nível].[Descrição de Natureza 4 nível].[MEMBER_CAPTION]', '[Tempo].[Ano].[Número Ano].[MEMBER_CAPTION]', '[Tempo].[Mês].[Número Mês].[MEMBER_CAPTION]', '[Measures].[ValorAjustado]']
+29-05-2026 14:46:22 [INFO] [transformacao.py:128] - Métricas de Data Analytics compiladas com sucesso para consumo do Node.js.
+29-05-2026 14:46:22 [INFO] [main.py:143] - Tabela 'orcado_receitas' carregada em memória com sucesso.
+29-05-2026 14:46:31 [INFO] [transformacao.py:60] - Colunas brutas identificadas: ['CC', 'CONTA', 'VALOR', 'IDRATEIO', 'LCTREF', 'IDPARTIDA', 'IDMOV', 'CODTMV', 'CONTRATO', 'FORNECEDOR', 'CODUSUARIO', 'DATAEMISSAO', 'COMPLEMENTO', 'DATA', 'TipoLancamento', 'ACAO', 'PROJETO', 'UNIDADE', 'DESCNVL6', 'DESCNVL5', 'DESCNVL4', 'DESCNVL3', 'DESCNVL2', 'DESCNVL1', 'CATEGORIA', 'cdgContaNvl4', 'NACIONAL']
+29-05-2026 14:46:31 [INFO] [transformacao.py:128] - Métricas de Data Analytics compiladas com sucesso para consumo do Node.js.
+29-05-2026 14:46:31 [INFO] [main.py:143] - Tabela 'fatofechamento' carregada em memória com sucesso.
+29-05-2026 14:51:44 [INFO] [extracao.py:49] - Query carregada com sucesso: fatofechamento.sql -> chave 'fatofechamento'
+29-05-2026 14:51:44 [INFO] [extracao.py:49] - Query carregada com sucesso: orcado.mdx -> chave 'orcado'
+29-05-2026 14:51:44 [INFO] [extracao.py:49] - Query carregada com sucesso: orcado_receitas.mdx -> chave 'orcado_receitas'
+29-05-2026 14:51:44 [INFO] [extracao.py:49] - Query carregada com sucesso: orcado_receitas_cenario.mdx -> chave 'orcado_receitas_cenario'
+29-05-2026 14:51:44 [INFO] [extracao.py:218] - Conectando ao banco para extrair: fatofechamento
+29-05-2026 14:51:44 [INFO] [extracao.py:218] - Conectando ao banco para extrair: orcado
+29-05-2026 14:51:44 [INFO] [extracao.py:203] - Conectando ao cubo OLAP com a string: 'Provider=MSOLAP;Data Source=NASRVUGESQLPW02.sp.sebrae.corp;Catalog=SMEDW_V3_SSAS;'
+29-05-2026 14:51:57 [INFO] [transformacao.py:60] - Colunas brutas identificadas: ['CC', 'CONTA', 'VALOR', 'IDRATEIO', 'LCTREF', 'IDPARTIDA', 'IDMOV', 'CODTMV', 'CONTRATO', 'FORNECEDOR', 'CODUSUARIO', 'DATAEMISSAO', 'COMPLEMENTO', 'DATA', 'TipoLancamento', 'ACAO', 'PROJETO', 'UNIDADE', 'DESCNVL6', 'DESCNVL5', 'DESCNVL4', 'DESCNVL3', 'DESCNVL2', 'DESCNVL1', 'CATEGORIA', 'cdgContaNvl4', 'NACIONAL']
+29-05-2026 14:51:57 [INFO] [transformacao.py:128] - Métricas de Data Analytics compiladas com sucesso para consumo do Node.js.
+29-05-2026 14:51:57 [INFO] [main.py:143] - Tabela 'fatofechamento' carregada em memória com sucesso.
+29-05-2026 14:56:45 [INFO] [extracao.py:210] - Consulta ao cubo OLAP concluída, 360478 registros retornados.
+29-05-2026 14:56:45 [INFO] [transformacao.py:60] - Colunas brutas identificadas: ['[PPA].[PPA com Fotografia].[Descrição de PPA com Fotografia].[MEMBER_CAPTION]', '[Unidade Organizacional de Ação].[Unidade Organizacional de Ação].[Nome de Unidade Organizacional de Ação].[MEMBER_CAPTION]', '[Iniciativa].[Iniciativas].[Iniciativa].[MEMBER_CAPTION]', '[Ação].[Ação].[Nome de Ação].[MEMBER_CAPTION]', '[Natureza Orçamentária].[Código Estruturado 4 nível].[Código Estruturado 4 nível].[MEMBER_CAPTION]', '[Natureza Orçamentária].[Descrição de Natureza 4 nível].[Descrição de Natureza 4 nível].[MEMBER_CAPTION]', '[Tempo].[Ano].[Número Ano].[MEMBER_CAPTION]', '[Tempo].[Mês].[Número Mês].[MEMBER_CAPTION]', '[Measures].[ValorAjustado]']
+29-05-2026 14:56:45 [WARNING] [transformacao.py:92] - Colunas não mapeadas no dicionário: ['[ação].[ação].[nome de ação].[member_caption]']
+29-05-2026 14:56:45 [INFO] [transformacao.py:128] - Métricas de Data Analytics compiladas com sucesso para consumo do Node.js.
+29-05-2026 14:56:45 [INFO] [main.py:143] - Tabela 'orcado' carregada em memória com sucesso.
+29-05-2026 15:03:20 [INFO] [extracao.py:49] - Query carregada com sucesso: fatofechamento.sql -> chave 'fatofechamento'
+29-05-2026 15:03:20 [INFO] [extracao.py:49] - Query carregada com sucesso: orcado.mdx -> chave 'orcado'
+29-05-2026 15:03:20 [INFO] [extracao.py:49] - Query carregada com sucesso: orcado_receitas.mdx -> chave 'orcado_receitas'
+29-05-2026 15:03:20 [INFO] [extracao.py:49] - Query carregada com sucesso: orcado_receitas_cenario.mdx -> chave 'orcado_receitas_cenario'
+29-05-2026 15:03:20 [INFO] [extracao.py:218] - Conectando ao banco para extrair: fatofechamento
+29-05-2026 15:03:20 [INFO] [extracao.py:218] - Conectando ao banco para extrair: orcado_receitas
+29-05-2026 15:03:20 [INFO] [extracao.py:176] - Executando a inicialização do ambiente OLAP pela primeira vez...
+29-05-2026 15:03:20 [INFO] [extracao.py:191] - Referência 'Microsoft.AnalysisServices.AdomdClient' carregada com sucesso.
+29-05-2026 15:03:20 [INFO] [extracao.py:203] - Conectando ao cubo OLAP com a string: 'Provider=MSOLAP;Data Source=NASRVUGESQLPW02.sp.sebrae.corp;Catalog=SMEDW_V3_SSAS;'
+29-05-2026 15:03:25 [INFO] [extracao.py:210] - Consulta ao cubo OLAP concluída, 2970 registros retornados.
+29-05-2026 15:03:25 [INFO] [transformacao.py:60] - Colunas brutas identificadas: ['[PPA].[PPA com Fotografia].[Descrição de PPA com Fotografia].[MEMBER_CAPTION]', '[Unidade Organizacional de Iniciativa].[Unidade Organizacional de Iniciativa].[Nome de Unidade Organizacional de Iniciativa].[MEMBER_CAPTION]', '[Iniciativa].[Iniciativas].[Iniciativa].[MEMBER_CAPTION]', '[Natureza Orçamentária].[Código Estruturado 4 nível].[Código Estruturado 4 nível].[MEMBER_CAPTION]', '[Natureza Orçamentária].[Descrição de Natureza 4 nível].[Descrição de Natureza 4 nível].[MEMBER_CAPTION]', '[Tempo].[Ano].[Número Ano].[MEMBER_CAPTION]', '[Tempo].[Mês].[Número Mês].[MEMBER_CAPTION]', '[Measures].[ValorAjustado]']
+29-05-2026 15:03:25 [INFO] [transformacao.py:128] - Métricas de Data Analytics compiladas com sucesso para consumo do Node.js.
+29-05-2026 15:03:25 [INFO] [main.py:143] - Tabela 'orcado_receitas' carregada em memória com sucesso.
+29-05-2026 15:04:57 [INFO] [transformacao.py:60] - Colunas brutas identificadas: ['CC', 'CONTA', 'VALOR', 'IDRATEIO', 'LCTREF', 'IDPARTIDA', 'IDMOV', 'CODTMV', 'CONTRATO', 'FORNECEDOR', 'CODUSUARIO', 'DATAEMISSAO', 'COMPLEMENTO', 'DATA', 'TipoLancamento', 'ACAO', 'PROJETO', 'UNIDADE', 'DESCNVL6', 'DESCNVL5', 'DESCNVL4', 'DESCNVL3', 'DESCNVL2', 'DESCNVL1', 'CATEGORIA', 'cdgContaNvl4', 'NACIONAL']
+29-05-2026 15:04:57 [INFO] [transformacao.py:128] - Métricas de Data Analytics compiladas com sucesso para consumo do Node.js.
+29-05-2026 15:04:57 [INFO] [main.py:143] - Tabela 'fatofechamento' carregada em memória com sucesso.
+29-05-2026 15:04:57 [INFO] [extracao.py:49] - Query carregada com sucesso: fatofechamento.sql -> chave 'fatofechamento'
+29-05-2026 15:04:57 [INFO] [extracao.py:49] - Query carregada com sucesso: orcado.mdx -> chave 'orcado'
+29-05-2026 15:04:57 [INFO] [extracao.py:49] - Query carregada com sucesso: orcado_receitas.mdx -> chave 'orcado_receitas'
+29-05-2026 15:04:57 [INFO] [extracao.py:49] - Query carregada com sucesso: orcado_receitas_cenario.mdx -> chave 'orcado_receitas_cenario'
+29-05-2026 15:04:57 [INFO] [carga.py:182] - Buscando dados históricos da tabela de carga: dbo.[dex-orcado_receitas]
+29-05-2026 15:04:57 [INFO] [carga.py:182] - Buscando dados históricos da tabela de carga: dbo.[dex-fatofechamento]
+29-05-2026 15:04:58 [INFO] [main.py:174] - Tabela de Carga 'orcado_receitas' lida do SQL Server com sucesso.
+29-05-2026 15:04:58 [INFO] [main.py:174] - Tabela de Carga 'fatofechamento' lida do SQL Server com sucesso.

@@ -1,0 +1,107 @@
+01-06-2026 16:58:21 [INFO] [extracao.py:41] - Arquivo de mapeamento declarative criado automaticamente em: C:\Users\cesargl\_projetos\dex\extract\mapa_queries.json
+01-06-2026 16:58:21 [INFO] [extracao.py:82] - Query carregada com sucesso: fatofechamento.sql -> chave 'fatofechamento'
+01-06-2026 16:58:21 [INFO] [extracao.py:82] - Query carregada com sucesso: metareceita.sql -> chave 'metareceita'
+01-06-2026 16:58:21 [INFO] [extracao.py:82] - Query carregada com sucesso: orcado.mdx -> chave 'orcado'
+01-06-2026 16:58:21 [INFO] [extracao.py:82] - Query carregada com sucesso: orcado_receitas.mdx -> chave 'orcado_receitas'
+01-06-2026 16:58:21 [INFO] [extracao.py:82] - Query carregada com sucesso: orcado_receitas_cenario.mdx -> chave 'orcado_receitas_cenario'
+01-06-2026 16:58:21 [INFO] [extracao.py:239] - Conectando ao banco para extrair: metareceita
+01-06-2026 16:58:55 [INFO] [transformacao.py:60] - Colunas brutas identificadas: ['id_meta', 'dt_contabil', 'cd_referencia', 'cd_partida', 'nm_unidade', 'nm_local_estoque_faturamento', 'nm_local_estoque', 'nm_unidade_tratada', 'vl_receita_bruta', 'vl_inadimplencia_gerada', 'vl_inadimplencia_recuperada', 'vl_receita_futura', 'vl_bolsa', 'cd_cfo', 'cd_cpf_cnpj', 'cd_produto', 'nm_produto', 'cd_centro_custo', 'cd_plano', 'nm_plano', 'cd_acao', 'nm_acao', 'cd_unidade_rm', 'nm_unidaderm', 'grandes_contratos', 'cd_cfoaluno', 'linha', 'ano']
+01-06-2026 16:58:55 [WARNING] [transformacao.py:92] - Colunas não mapeadas no dicionário: ['id_meta', 'dt_contabil', 'cd_referencia', 'cd_partida', 'nm_unidade', 'nm_local_estoque_faturamento', 'nm_local_estoque', 'nm_unidade_tratada', 'vl_receita_bruta', 'vl_inadimplencia_gerada', 'vl_inadimplencia_recuperada', 'vl_receita_futura', 'vl_bolsa', 'cd_cfo', 'cd_cpf_cnpj', 'cd_produto', 'nm_produto', 'cd_centro_custo', 'cd_plano', 'nm_plano', 'cd_acao', 'nm_acao', 'cd_unidade_rm', 'nm_unidaderm', 'grandes_contratos', 'cd_cfoaluno', 'linha', 'ano']
+01-06-2026 16:58:56 [INFO] [transformacao.py:128] - Métricas de Data Analytics compiladas com sucesso para consumo do Node.js.
+01-06-2026 16:58:56 [INFO] [main.py:93] - Pipeline 'metareceita' concluído após transformação (modo sem carga).
+01-06-2026 16:58:56 [INFO] [main.py:229] - Processamento concorrente de pipelines finalizado.
+01-06-2026 17:27:19 [INFO] [extracao.py:82] - Query carregada com sucesso: fatofechamento.sql -> chave 'fatofechamento'
+01-06-2026 17:27:19 [INFO] [extracao.py:82] - Query carregada com sucesso: metareceita.sql -> chave 'metareceita'
+01-06-2026 17:27:19 [INFO] [extracao.py:82] - Query carregada com sucesso: orcado.mdx -> chave 'orcado'
+01-06-2026 17:27:19 [INFO] [extracao.py:82] - Query carregada com sucesso: orcado_receitas.mdx -> chave 'orcado_receitas'
+01-06-2026 17:27:19 [INFO] [extracao.py:82] - Query carregada com sucesso: orcado_receitas_cenario.mdx -> chave 'orcado_receitas_cenario'
+01-06-2026 17:27:19 [INFO] [extracao.py:248] - Conectando ao banco para extrair: fatofechamento
+01-06-2026 17:27:19 [INFO] [extracao.py:248] - Conectando ao banco para extrair: metareceita
+01-06-2026 17:27:19 [INFO] [extracao.py:248] - Conectando ao banco para extrair: orcado
+01-06-2026 17:27:19 [INFO] [extracao.py:213] - Executando a inicialização do ambiente OLAP pela primeira vez...
+01-06-2026 17:27:19 [INFO] [extracao.py:248] - Conectando ao banco para extrair: orcado_receitas
+01-06-2026 17:27:19 [INFO] [extracao.py:248] - Conectando ao banco para extrair: orcado_receitas_cenario
+01-06-2026 17:27:20 [INFO] [extracao.py:225] - Referência 'Microsoft.AnalysisServices.AdomdClient' carregada com sucesso.
+01-06-2026 17:27:20 [INFO] [extracao.py:235] - Conectando ao cubo OLAP com a string: 'Provider=MSOLAP;Data Source=NASRVUGESQLPW02.sp.sebrae.corp;Catalog=SMEDW_V3_SSAS;'
+01-06-2026 17:27:20 [INFO] [extracao.py:235] - Conectando ao cubo OLAP com a string: 'Provider=MSOLAP;Data Source=NASRVUGESQLPW02.sp.sebrae.corp;Catalog=SMEDW_V3_SSAS;'
+01-06-2026 17:27:20 [INFO] [extracao.py:235] - Conectando ao cubo OLAP com a string: 'Provider=MSOLAP;Data Source=NASRVUGESQLPW02.sp.sebrae.corp;Catalog=SMEDW_V3_SSAS;'
+01-06-2026 17:27:22 [INFO] [extracao.py:242] - Consulta ao cubo OLAP concluída, 1755 registros retornados.
+01-06-2026 17:27:22 [INFO] [transformacao.py:60] - Colunas brutas identificadas: ['[PPA].[PPA com Fotografia].[Descrição de PPA com Fotografia].[MEMBER_CAPTION]', '[Natureza Orçamentária].[Código Estruturado 4 nível].[Código Estruturado 4 nível].[MEMBER_CAPTION]', '[Natureza Orçamentária].[Descrição de Natureza 4 nível].[Descrição de Natureza 4 nível].[MEMBER_CAPTION]', '[Tempo].[Ano].[Número Ano].[MEMBER_CAPTION]', '[Tempo].[Mês].[Número Mês].[MEMBER_CAPTION]', '[Measures].[ValorAjustado]']
+01-06-2026 17:27:22 [INFO] [transformacao.py:128] - Métricas de Data Analytics compiladas com sucesso para consumo do Node.js.
+01-06-2026 17:27:22 [INFO] [carga.py:94] - Iniciando carga para: dbo.dex-orcado_receitas_cenario
+01-06-2026 17:27:23 [INFO] [extracao.py:242] - Consulta ao cubo OLAP concluída, 2970 registros retornados.
+01-06-2026 17:27:23 [INFO] [transformacao.py:60] - Colunas brutas identificadas: ['[PPA].[PPA com Fotografia].[Descrição de PPA com Fotografia].[MEMBER_CAPTION]', '[Unidade Organizacional de Iniciativa].[Unidade Organizacional de Iniciativa].[Nome de Unidade Organizacional de Iniciativa].[MEMBER_CAPTION]', '[Iniciativa].[Iniciativas].[Iniciativa].[MEMBER_CAPTION]', '[Natureza Orçamentária].[Código Estruturado 4 nível].[Código Estruturado 4 nível].[MEMBER_CAPTION]', '[Natureza Orçamentária].[Descrição de Natureza 4 nível].[Descrição de Natureza 4 nível].[MEMBER_CAPTION]', '[Tempo].[Ano].[Número Ano].[MEMBER_CAPTION]', '[Tempo].[Mês].[Número Mês].[MEMBER_CAPTION]', '[Measures].[ValorAjustado]']
+01-06-2026 17:27:23 [INFO] [transformacao.py:128] - Métricas de Data Analytics compiladas com sucesso para consumo do Node.js.
+01-06-2026 17:27:23 [INFO] [carga.py:94] - Iniciando carga para: dbo.dex-orcado_receitas
+01-06-2026 17:27:26 [INFO] [carga.py:112] - Carga de dados concluída com sucesso na tabela dbo.dex-orcado_receitas_cenario.
+01-06-2026 17:27:26 [INFO] [carga.py:112] - Carga de dados concluída com sucesso na tabela dbo.dex-orcado_receitas.
+01-06-2026 17:27:26 [INFO] [carga.py:161] - Métricas gravadas no painel histórico: dbo.dex-controle-metricas.
+01-06-2026 17:27:26 [INFO] [carga.py:161] - Métricas gravadas no painel histórico: dbo.dex-controle-metricas.
+01-06-2026 17:28:20 [INFO] [transformacao.py:60] - Colunas brutas identificadas: ['id_meta', 'dt_contabil', 'cd_referencia', 'cd_partida', 'nm_unidade', 'nm_local_estoque_faturamento', 'nm_local_estoque', 'nm_unidade_tratada', 'vl_receita_bruta', 'vl_inadimplencia_gerada', 'vl_inadimplencia_recuperada', 'vl_receita_futura', 'vl_bolsa', 'cd_cfo', 'cd_cpf_cnpj', 'cd_produto', 'nm_produto', 'cd_centro_custo', 'cd_plano', 'nm_plano', 'cd_acao', 'nm_acao', 'cd_unidade_rm', 'nm_unidaderm', 'grandes_contratos', 'cd_cfoaluno', 'linha', 'ano']
+01-06-2026 17:28:20 [WARNING] [transformacao.py:92] - Colunas não mapeadas no dicionário: ['id_meta', 'dt_contabil', 'cd_referencia', 'cd_partida', 'nm_unidade', 'nm_local_estoque_faturamento', 'nm_local_estoque', 'nm_unidade_tratada', 'vl_receita_bruta', 'vl_inadimplencia_gerada', 'vl_inadimplencia_recuperada', 'vl_receita_futura', 'vl_bolsa', 'cd_cfo', 'cd_cpf_cnpj', 'cd_produto', 'nm_produto', 'cd_centro_custo', 'cd_plano', 'nm_plano', 'cd_acao', 'nm_acao', 'cd_unidade_rm', 'nm_unidaderm', 'grandes_contratos', 'cd_cfoaluno', 'linha', 'ano']
+01-06-2026 17:28:20 [INFO] [transformacao.py:128] - Métricas de Data Analytics compiladas com sucesso para consumo do Node.js.
+01-06-2026 17:28:20 [INFO] [carga.py:94] - Iniciando carga para: dbo.dex-metareceita
+01-06-2026 17:30:58 [INFO] [carga.py:112] - Carga de dados concluída com sucesso na tabela dbo.dex-metareceita.
+01-06-2026 17:30:58 [INFO] [carga.py:161] - Métricas gravadas no painel histórico: dbo.dex-controle-metricas.
+01-06-2026 17:31:31 [INFO] [extracao.py:242] - Consulta ao cubo OLAP concluída, 360481 registros retornados.
+01-06-2026 17:31:31 [INFO] [transformacao.py:60] - Colunas brutas identificadas: ['[PPA].[PPA com Fotografia].[Descrição de PPA com Fotografia].[MEMBER_CAPTION]', '[Unidade Organizacional de Ação].[Unidade Organizacional de Ação].[Nome de Unidade Organizacional de Ação].[MEMBER_CAPTION]', '[Iniciativa].[Iniciativas].[Iniciativa].[MEMBER_CAPTION]', '[Ação].[Ação].[Nome de Ação].[MEMBER_CAPTION]', '[Natureza Orçamentária].[Código Estruturado 4 nível].[Código Estruturado 4 nível].[MEMBER_CAPTION]', '[Natureza Orçamentária].[Descrição de Natureza 4 nível].[Descrição de Natureza 4 nível].[MEMBER_CAPTION]', '[Tempo].[Ano].[Número Ano].[MEMBER_CAPTION]', '[Tempo].[Mês].[Número Mês].[MEMBER_CAPTION]', '[Measures].[ValorAjustado]']
+01-06-2026 17:31:31 [WARNING] [transformacao.py:92] - Colunas não mapeadas no dicionário: ['[ação].[ação].[nome de ação].[member_caption]']
+01-06-2026 17:31:32 [INFO] [transformacao.py:128] - Métricas de Data Analytics compiladas com sucesso para consumo do Node.js.
+01-06-2026 17:31:32 [INFO] [carga.py:94] - Iniciando carga para: dbo.dex-orcado
+01-06-2026 17:31:41 [INFO] [transformacao.py:60] - Colunas brutas identificadas: ['CC', 'CONTA', 'VALOR', 'IDRATEIO', 'LCTREF', 'IDPARTIDA', 'IDMOV', 'CODTMV', 'CONTRATO', 'FORNECEDOR', 'CODUSUARIO', 'DATAEMISSAO', 'COMPLEMENTO', 'DATA', 'TipoLancamento', 'ACAO', 'PROJETO', 'UNIDADE', 'DESCNVL6', 'DESCNVL5', 'DESCNVL4', 'DESCNVL3', 'DESCNVL2', 'DESCNVL1', 'CATEGORIA', 'cdgContaNvl4', 'NACIONAL']
+01-06-2026 17:31:42 [INFO] [transformacao.py:128] - Métricas de Data Analytics compiladas com sucesso para consumo do Node.js.
+01-06-2026 17:31:42 [INFO] [carga.py:94] - Iniciando carga para: dbo.dex-fatofechamento
+01-06-2026 17:32:12 [INFO] [carga.py:112] - Carga de dados concluída com sucesso na tabela dbo.dex-orcado.
+01-06-2026 17:32:12 [INFO] [carga.py:161] - Métricas gravadas no painel histórico: dbo.dex-controle-metricas.
+01-06-2026 17:52:42 [INFO] [extracao.py:82] - Query carregada com sucesso: fatofechamento.sql -> chave 'fatofechamento'
+01-06-2026 17:52:42 [INFO] [extracao.py:82] - Query carregada com sucesso: metareceita.sql -> chave 'metareceita'
+01-06-2026 17:52:42 [INFO] [extracao.py:82] - Query carregada com sucesso: orcado.mdx -> chave 'orcado'
+01-06-2026 17:52:42 [INFO] [extracao.py:82] - Query carregada com sucesso: orcado_receitas.mdx -> chave 'orcado_receitas'
+01-06-2026 17:52:42 [INFO] [extracao.py:82] - Query carregada com sucesso: orcado_receitas_cenario.mdx -> chave 'orcado_receitas_cenario'
+01-06-2026 17:52:42 [INFO] [extracao.py:248] - Conectando ao banco para extrair: fatofechamento
+01-06-2026 17:53:17 [INFO] [transformacao.py:60] - Colunas brutas identificadas: ['CC', 'CONTA', 'VALOR', 'IDRATEIO', 'LCTREF', 'IDPARTIDA', 'IDMOV', 'CODTMV', 'CONTRATO', 'FORNECEDOR', 'CODUSUARIO', 'DATAEMISSAO', 'COMPLEMENTO', 'DATA', 'TipoLancamento', 'ACAO', 'PROJETO', 'UNIDADE', 'DESCNVL6', 'DESCNVL5', 'DESCNVL4', 'DESCNVL3', 'DESCNVL2', 'DESCNVL1', 'CATEGORIA', 'cdgContaNvl4', 'NACIONAL']
+01-06-2026 17:53:17 [INFO] [transformacao.py:128] - Métricas de Data Analytics compiladas com sucesso para consumo do Node.js.
+01-06-2026 17:53:17 [INFO] [carga.py:94] - Iniciando carga para: dbo.dex-fatofechamento
+01-06-2026 17:56:21 [INFO] [extracao.py:82] - Query carregada com sucesso: fatofechamento.sql -> chave 'fatofechamento'
+01-06-2026 17:56:21 [INFO] [extracao.py:82] - Query carregada com sucesso: metareceita.sql -> chave 'metareceita'
+01-06-2026 17:56:21 [INFO] [extracao.py:82] - Query carregada com sucesso: orcado.mdx -> chave 'orcado'
+01-06-2026 17:56:21 [INFO] [extracao.py:82] - Query carregada com sucesso: orcado_receitas.mdx -> chave 'orcado_receitas'
+01-06-2026 17:56:21 [INFO] [extracao.py:82] - Query carregada com sucesso: orcado_receitas_cenario.mdx -> chave 'orcado_receitas_cenario'
+01-06-2026 17:56:21 [INFO] [extracao.py:248] - Conectando ao banco para extrair: fatofechamento
+01-06-2026 17:56:21 [INFO] [extracao.py:248] - Conectando ao banco para extrair: metareceita
+01-06-2026 17:56:21 [INFO] [extracao.py:248] - Conectando ao banco para extrair: orcado
+01-06-2026 17:56:21 [INFO] [extracao.py:213] - Executando a inicialização do ambiente OLAP pela primeira vez...
+01-06-2026 17:56:21 [INFO] [extracao.py:248] - Conectando ao banco para extrair: orcado_receitas
+01-06-2026 17:56:21 [INFO] [extracao.py:248] - Conectando ao banco para extrair: orcado_receitas_cenario
+01-06-2026 17:56:22 [INFO] [extracao.py:225] - Referência 'Microsoft.AnalysisServices.AdomdClient' carregada com sucesso.
+01-06-2026 17:56:22 [INFO] [extracao.py:235] - Conectando ao cubo OLAP com a string: 'Provider=MSOLAP;Data Source=NASRVUGESQLPW02.sp.sebrae.corp;Catalog=SMEDW_V3_SSAS;'
+01-06-2026 17:56:22 [INFO] [extracao.py:235] - Conectando ao cubo OLAP com a string: 'Provider=MSOLAP;Data Source=NASRVUGESQLPW02.sp.sebrae.corp;Catalog=SMEDW_V3_SSAS;'
+01-06-2026 17:56:22 [INFO] [extracao.py:235] - Conectando ao cubo OLAP com a string: 'Provider=MSOLAP;Data Source=NASRVUGESQLPW02.sp.sebrae.corp;Catalog=SMEDW_V3_SSAS;'
+01-06-2026 17:56:24 [INFO] [extracao.py:242] - Consulta ao cubo OLAP concluída, 1755 registros retornados.
+01-06-2026 17:56:24 [INFO] [transformacao.py:60] - Colunas brutas identificadas: ['[PPA].[PPA com Fotografia].[Descrição de PPA com Fotografia].[MEMBER_CAPTION]', '[Natureza Orçamentária].[Código Estruturado 4 nível].[Código Estruturado 4 nível].[MEMBER_CAPTION]', '[Natureza Orçamentária].[Descrição de Natureza 4 nível].[Descrição de Natureza 4 nível].[MEMBER_CAPTION]', '[Tempo].[Ano].[Número Ano].[MEMBER_CAPTION]', '[Tempo].[Mês].[Número Mês].[MEMBER_CAPTION]', '[Measures].[ValorAjustado]']
+01-06-2026 17:56:24 [INFO] [transformacao.py:128] - Métricas de Data Analytics compiladas com sucesso para consumo do Node.js.
+01-06-2026 17:56:24 [INFO] [carga.py:101] - Carga fragmentada para dbo.dex-orcado_receitas_cenario: 1755 linhas em 1 blocos (tamanho do bloco: 10000)
+01-06-2026 17:56:25 [INFO] [extracao.py:242] - Consulta ao cubo OLAP concluída, 2970 registros retornados.
+01-06-2026 17:56:25 [INFO] [transformacao.py:60] - Colunas brutas identificadas: ['[PPA].[PPA com Fotografia].[Descrição de PPA com Fotografia].[MEMBER_CAPTION]', '[Unidade Organizacional de Iniciativa].[Unidade Organizacional de Iniciativa].[Nome de Unidade Organizacional de Iniciativa].[MEMBER_CAPTION]', '[Iniciativa].[Iniciativas].[Iniciativa].[MEMBER_CAPTION]', '[Natureza Orçamentária].[Código Estruturado 4 nível].[Código Estruturado 4 nível].[MEMBER_CAPTION]', '[Natureza Orçamentária].[Descrição de Natureza 4 nível].[Descrição de Natureza 4 nível].[MEMBER_CAPTION]', '[Tempo].[Ano].[Número Ano].[MEMBER_CAPTION]', '[Tempo].[Mês].[Número Mês].[MEMBER_CAPTION]', '[Measures].[ValorAjustado]']
+01-06-2026 17:56:25 [INFO] [transformacao.py:128] - Métricas de Data Analytics compiladas com sucesso para consumo do Node.js.
+01-06-2026 17:56:25 [INFO] [carga.py:101] - Carga fragmentada para dbo.dex-orcado_receitas: 2970 linhas em 1 blocos (tamanho do bloco: 10000)
+01-06-2026 17:56:25 [INFO] [carga.py:139] - Carga fragmentada concluída com sucesso na tabela dbo.dex-orcado_receitas_cenario.
+01-06-2026 17:56:25 [INFO] [carga.py:182] - Métricas gravadas no painel histórico: dbo.dex-controle-metricas.
+01-06-2026 17:56:26 [INFO] [carga.py:139] - Carga fragmentada concluída com sucesso na tabela dbo.dex-orcado_receitas.
+01-06-2026 17:56:26 [INFO] [carga.py:182] - Métricas gravadas no painel histórico: dbo.dex-controle-metricas.
+01-06-2026 17:57:40 [INFO] [transformacao.py:60] - Colunas brutas identificadas: ['id_meta', 'dt_contabil', 'cd_referencia', 'cd_partida', 'nm_unidade', 'nm_local_estoque_faturamento', 'nm_local_estoque', 'nm_unidade_tratada', 'vl_receita_bruta', 'vl_inadimplencia_gerada', 'vl_inadimplencia_recuperada', 'vl_receita_futura', 'vl_bolsa', 'cd_cfo', 'cd_cpf_cnpj', 'cd_produto', 'nm_produto', 'cd_centro_custo', 'cd_plano', 'nm_plano', 'cd_acao', 'nm_acao', 'cd_unidade_rm', 'nm_unidaderm', 'grandes_contratos', 'cd_cfoaluno', 'linha', 'ano']
+01-06-2026 17:57:40 [WARNING] [transformacao.py:92] - Colunas não mapeadas no dicionário: ['id_meta', 'dt_contabil', 'cd_referencia', 'cd_partida', 'nm_unidade', 'nm_local_estoque_faturamento', 'nm_local_estoque', 'nm_unidade_tratada', 'vl_receita_bruta', 'vl_inadimplencia_gerada', 'vl_inadimplencia_recuperada', 'vl_receita_futura', 'vl_bolsa', 'cd_cfo', 'cd_cpf_cnpj', 'cd_produto', 'nm_produto', 'cd_centro_custo', 'cd_plano', 'nm_plano', 'cd_acao', 'nm_acao', 'cd_unidade_rm', 'nm_unidaderm', 'grandes_contratos', 'cd_cfoaluno', 'linha', 'ano']
+01-06-2026 17:57:40 [INFO] [transformacao.py:128] - Métricas de Data Analytics compiladas com sucesso para consumo do Node.js.
+01-06-2026 17:57:40 [INFO] [carga.py:101] - Carga fragmentada para dbo.dex-metareceita: 50985 linhas em 15 blocos (tamanho do bloco: 3571)
+01-06-2026 17:58:02 [INFO] [transformacao.py:60] - Colunas brutas identificadas: ['CC', 'CONTA', 'VALOR', 'IDRATEIO', 'LCTREF', 'IDPARTIDA', 'IDMOV', 'CODTMV', 'CONTRATO', 'FORNECEDOR', 'CODUSUARIO', 'DATAEMISSAO', 'COMPLEMENTO', 'DATA', 'TipoLancamento', 'ACAO', 'PROJETO', 'UNIDADE', 'DESCNVL6', 'DESCNVL5', 'DESCNVL4', 'DESCNVL3', 'DESCNVL2', 'DESCNVL1', 'CATEGORIA', 'cdgContaNvl4', 'NACIONAL']
+01-06-2026 17:58:03 [INFO] [transformacao.py:128] - Métricas de Data Analytics compiladas com sucesso para consumo do Node.js.
+01-06-2026 17:58:03 [INFO] [carga.py:101] - Carga fragmentada para dbo.dex-fatofechamento: 693124 linhas em 188 blocos (tamanho do bloco: 3703)
+01-06-2026 17:59:30 [INFO] [carga.py:139] - Carga fragmentada concluída com sucesso na tabela dbo.dex-metareceita.
+01-06-2026 17:59:31 [INFO] [carga.py:182] - Métricas gravadas no painel histórico: dbo.dex-controle-metricas.
+01-06-2026 18:00:36 [INFO] [extracao.py:242] - Consulta ao cubo OLAP concluída, 360481 registros retornados.
+01-06-2026 18:00:37 [INFO] [transformacao.py:60] - Colunas brutas identificadas: ['[PPA].[PPA com Fotografia].[Descrição de PPA com Fotografia].[MEMBER_CAPTION]', '[Unidade Organizacional de Ação].[Unidade Organizacional de Ação].[Nome de Unidade Organizacional de Ação].[MEMBER_CAPTION]', '[Iniciativa].[Iniciativas].[Iniciativa].[MEMBER_CAPTION]', '[Ação].[Ação].[Nome de Ação].[MEMBER_CAPTION]', '[Natureza Orçamentária].[Código Estruturado 4 nível].[Código Estruturado 4 nível].[MEMBER_CAPTION]', '[Natureza Orçamentária].[Descrição de Natureza 4 nível].[Descrição de Natureza 4 nível].[MEMBER_CAPTION]', '[Tempo].[Ano].[Número Ano].[MEMBER_CAPTION]', '[Tempo].[Mês].[Número Mês].[MEMBER_CAPTION]', '[Measures].[ValorAjustado]']
+01-06-2026 18:00:37 [WARNING] [transformacao.py:92] - Colunas não mapeadas no dicionário: ['[ação].[ação].[nome de ação].[member_caption]']
+01-06-2026 18:00:37 [INFO] [transformacao.py:128] - Métricas de Data Analytics compiladas com sucesso para consumo do Node.js.
+01-06-2026 18:00:37 [INFO] [carga.py:101] - Carga fragmentada para dbo.dex-orcado: 360481 linhas em 37 blocos (tamanho do bloco: 10000)
+01-06-2026 18:01:15 [INFO] [carga.py:139] - Carga fragmentada concluída com sucesso na tabela dbo.dex-orcado.
+01-06-2026 18:01:15 [INFO] [carga.py:182] - Métricas gravadas no painel histórico: dbo.dex-controle-metricas.
