@@ -158,6 +158,8 @@ resumo_grafico = (
     .reset_index()
     .sort_values(by="vl_valor", ascending=False))
 
+
+resumo
 # 2. Configura e desenha o gráfico de barras horizontais usando Seaborn
 plt.figure(figsize=(10, 5))
 sns.barplot(

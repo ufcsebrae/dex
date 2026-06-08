@@ -55,12 +55,14 @@ def _obter_string_conexao_financa() -> str:
     banco: str = config_alvo["banco"]
     driver: str = config_alvo["driver"]
 
-    # Monta os parâmetros ODBC adicionando TrustServerCertificate=yes para evitar falhas de SSL locais
+    # Monta os parâmetros ODBC adicionando 'Encrypt=no' e 'TrustServerCertificate=yes'
+    # 'Encrypt=no' desativa a criptografia forçada do ODBC Driver 18, solucionando o erro 10054 (PEP 20)
     parametros_odbc: str = (
         f"Driver={{{driver}}};"
         f"Server={servidor};"
         f"Database={banco};"
         f"Trusted_Connection=yes;"
+        f"Encrypt=no;"  # CORREÇÃO: Evita falha de handshake TLS/SSL no ODBC Driver 18
         f"TrustServerCertificate=yes;"
     )
     
@@ -69,6 +71,7 @@ def _obter_string_conexao_financa() -> str:
     string_conexao_sqlalchemy: str = f"mssql+pyodbc:///?odbc_connect={parametros_codificados}"
     
     return string_conexao_sqlalchemy
+
 
 
 async def salva_df(

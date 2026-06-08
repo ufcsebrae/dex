@@ -25,9 +25,9 @@ from extract.config.config import SetaDF
 nest_asyncio.apply()
 log = configura_logger(__name__)
 
-# MAPA DECLARATIVO DE DEPENDÊNCIAS (PEP 8)
 MAPA_DEPENDENCIAS: Dict[str, List[str]] = {
-    "metareceita": ["orcado"]  # 'metareceita' exige que 'orcado' seja atualizada primeiro
+    "metareceita": ["orcado"],
+    "plancc": ["orcado", "fatoajustadonacional"]  # 'plancc' garantirá que o orçado E a fato nacional estejam atualizados!
 }
 
 

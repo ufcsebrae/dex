@@ -5,8 +5,12 @@ import os
 import asyncio
 import copy
 import threading
+import base64
+import re
+import requests
 from pathlib import Path
 from itertools import chain
+from bs4 import BeautifulSoup
 import pandas as pd
 from dotenv import load_dotenv
 
@@ -34,7 +38,8 @@ def carregar_mapa_queries(caminho_arquivo: Path) -> dict[str, str]:
         "orcado_receitas": "OLAP_SME",
         "orcado_receitas_cenario": "OLAP_SME",
         "fatoajustadonacional": "AZURE",
-        "metareceita": "AZURE"
+        "metareceita": "AZURE",
+        "fidc": "FIDC"  # Roteamento automático para a conexão virtual FIDC
     }
 
     if not caminho_arquivo.exists():
@@ -56,7 +61,10 @@ def carregar_mapa_queries(caminho_arquivo: Path) -> dict[str, str]:
 
 
 def carregar_queries_locais(caminho_pasta: Path) -> dict[str, str]:
-    """Varre um diretório buscando arquivos .sql e .mdx e retorna o seu conteúdo mapeado."""
+    """
+    Varre um diretório buscando arquivos de scripts .sql, .mdx e .json (parâmetros),
+    e retorna o seu conteúdo mapeado.
+    """
     if not isinstance(caminho_pasta, Path):
         caminho_pasta = Path(caminho_pasta)
 
@@ -65,7 +73,13 @@ def carregar_queries_locais(caminho_pasta: Path) -> dict[str, str]:
         return {}
 
     dicionario_queries: dict[str, str] = {}
-    arquivos_suportados = chain(caminho_pasta.glob("*.sql"), caminho_pasta.glob("*.mdx"))
+    
+    # Adicionado suporte para escanear .json na pasta queries (PEP 20)
+    arquivos_suportados = chain(
+        caminho_pasta.glob("*.sql"), 
+        caminho_pasta.glob("*.mdx"),
+        caminho_pasta.glob("*.json")
+    )
 
     for arquivo in arquivos_suportados:
         if arquivo.name.startswith("."):
@@ -80,7 +94,7 @@ def carregar_queries_locais(caminho_pasta: Path) -> dict[str, str]:
 
             nome_query = arquivo.stem.lower()
             dicionario_queries[nome_query] = conteudo
-            log.info(f"Query loaded com sucesso: {arquivo.name} -> chave '{nome_query}'")
+            log.info(f"Query carregada com sucesso: {arquivo.name} -> chave '{nome_query}'")
         except Exception as erro_leitura:
             log.error(f"Falha crítica ao ler o arquivo {arquivo.name}: {erro_leitura}", exc_info=True)
 
@@ -88,22 +102,31 @@ def carregar_queries_locais(caminho_pasta: Path) -> dict[str, str]:
 
 
 def cria_mapa_origens_config() -> dict[str, OrigemConfig]:
-    """Lê o .env e retorna um dicionário de Value Objects de infraestrutura."""
+    """Lê o .env e retorna um dicionário de Value Objects de infraestrutura (PEP 8)."""
     configs_env = os.getenv("CONEXOES", "[]")
+    
+    mapa_origens = {}
+    
+    # 1. Injeta a Conexão Virtual para o Web Scraping do FIDC (Garante integridade com o .env)
+    mapa_origens["FIDC"] = OrigemConfig(
+        nome_processo="FIDC",
+        tipo="web_scraping",
+        string_connection="https://fnet.bmfbovespa.com.br"
+    )
+
     if not configs_env:
-        return {}
+        return mapa_origens
 
     configs_env = configs_env.strip().strip("'").strip('"')
     if not configs_env or configs_env == "[]":
-        return {}
+        return mapa_origens
 
     try:
         catalogo = json.loads(configs_env)[0]
     except Exception as e:
         log.error(f"Erro ao decodificar JSON do .env: {e}")
-        return {}
+        return mapa_origens
         
-    mapa_origens = {}
     for nome, detalhes in catalogo.items():
         tipo_db = detalhes.get("tipo", "")
         str_conn = ""
@@ -179,10 +202,6 @@ async def buscar_dados() -> list[SetaDF]:
 def consulta_sql(query: str, string_connection: str) -> pd.DataFrame:
     """
     Extrai dados de bancos relacionais de forma extremamente robusta.
-    
-    Suporta scripts complexos com múltiplos blocos (Stored Procedures, tabelas temporárias, 
-    declarações de variáveis) percorrendo sequencialmente todos os result sets usando 
-    `cursor.nextset()` até localizar o SELECT real de dados (PEP 20, PEP 257).
     """
     import pyodbc
     
@@ -195,7 +214,6 @@ def consulta_sql(query: str, string_connection: str) -> pd.DataFrame:
         cursor = conexao.cursor()
         cursor.execute(query_limpa)
         
-        # Pula conjuntos vazios/afetados gerados pelos múltiplos INSERT INTO #temp
         while cursor.description is None:
             if not cursor.nextset():
                 break
@@ -260,14 +278,106 @@ def consulta_olap(query: str, string_connection: str) -> pd.DataFrame:
     return pd.DataFrame.from_records(dados, columns=colunas)
 
 
+def extrair_tabela_v(cnpj_fundo: str, data_referencia: str) -> pd.DataFrame:
+    """
+    Motor de Web Scraping: Extrai a 'Tabela V - Comportamento da Carteira' do site FNET da B3.
+    """
+    log.info("Iniciando varredura web na plataforma FNET...")
+    headers = {'User-Agent': 'Mozilla/5.0'}
+    
+    try:
+        requests.packages.urllib3.disable_warnings(requests.packages.urllib3.exceptions.InsecureRequestWarning)
+        
+        url_pesquisa = 'https://fnet.bmfbovespa.com.br/fnet/publico/pesquisarGerenciadorDocumentosDados'
+        params = {
+            'q': cnpj_fundo, 'd': '2', 's': '0', 'l': '100', 'o[0][dataReferencia]': 'desc',
+            'idCategoriaDocumento': '0', 'idTipoDocumento': '0', 'idEspecieDocumento': '0', 'isSession': 'true',
+        }
+        
+        r_pesquisa = requests.get(url_pesquisa, verify=False, params=params, headers=headers)
+        r_pesquisa.raise_for_status()
+        
+        df_docs = pd.DataFrame(r_pesquisa.json()['data'])
+        df_filtro = df_docs.loc[
+            (df_docs['tipoDocumento'].str.strip() == 'Informe Mensal Estruturado') & 
+            (df_docs['dataReferencia'] == data_referencia)
+        ]
+
+        if df_filtro.empty:
+            raise ValueError(f"Nenhum 'Informe Mensal Estruturado' localizado para a data {data_referencia}.")
+
+        documento_id = df_filtro.iloc[0]['id']
+        log.info(f"FNET ID localizado para processamento: {documento_id}")
+
+        url_doc_main = f"https://fnet.bmfbovespa.com.br/fnet/publico/visualizarDocumento?id={documento_id}&cvm=true"
+        r_main = requests.get(url_doc_main, verify=False, headers=headers)
+        r_main.raise_for_status()
+
+        soup_main = BeautifulSoup(r_main.content, 'html.parser')
+        iframe_tag = soup_main.find('iframe')
+
+        if not (iframe_tag and 'src' in iframe_tag.attrs):
+            raise ValueError("Iframe principal ausente no documento FNET.")
+
+        iframe_src = iframe_tag['src']
+        url_iframe = f"https://fnet.bmfbovespa.com.br{iframe_src}" if iframe_src.startswith('/') else f"https://fnet.bmfbovespa.com.br/fnet/publico/{iframe_src}"
+        
+        r_iframe = requests.get(url_iframe, verify=False, headers=headers)
+        r_iframe.raise_for_status()
+
+        decoded_bytes = base64.b64decode(r_iframe.content)
+        html_content = decoded_bytes.decode('utf-8', errors='replace')
+        soup_iframe = BeautifulSoup(html_content, 'html.parser')
+
+        header_tag = soup_iframe.find('b', string=re.compile(r'V - Comportamento da Carteira'))
+        if not header_tag:
+            raise ValueError("Título 'Tabela V - Comportamento da Carteira' ausente no HTML.")
+            
+        target_table = header_tag.find_parent('table')
+        if not target_table:
+            raise ValueError("Tag <table> da Tabela V ausente.")
+
+        dados_carteira = []
+        rows = target_table.find_all('tr')
+        for row in rows[1:]:
+            cols = row.find_all('td')
+            if len(cols) < 2: 
+                continue
+            
+            descricao = cols[0].get_text(strip=True)
+            value_span = cols[1].find('span', class_='dado-valores')
+            valor_texto = value_span.get_text(strip=True) if value_span else ''
+            valor_limpo = valor_texto.replace('R$', '').strip()
+            dados_carteira.append([descricao, valor_limpo])
+
+        if not dados_carteira:
+            raise ValueError("Tabela V localizada, mas sem linhas de registros.")
+
+        df_final = pd.DataFrame(dados_carteira, columns=['Descricao', 'Valor_Str'])
+        log.info(f"Web Scraping concluído. {len(df_final)} registros extraídos da carteira FIDC.")
+        return df_final
+
+    except Exception as e:
+        log.error(f"Erro crítico durante execução do motor de Web Scraping do FIDC: {e}")
+        raise e
+
+
 async def extrair_dataframe_da_origem(entidade: SetaDF) -> SetaDF:
-    """Executa a extração em banco de dados e mutaciona o estado da entidade."""
+    """Executa a extração em banco de dados ou via Web Scraping de forma transparente (PEP 20)."""
     log.info(f"Conectando ao banco para extrair: {entidade.origem.nome_processo}")
     try:
         if entidade.origem.tipo in ["sql", "azure_sql"]:
             df = await asyncio.to_thread(consulta_sql, entidade.query, entidade.origem.string_connection)
         elif entidade.origem.tipo == "olap":
             df = await asyncio.to_thread(consulta_olap, entidade.query, entidade.origem.string_connection)
+        elif entidade.origem.tipo == "web_scraping":
+            # 1. Decodifica os parâmetros declarados no arquivo JSON da pasta queries
+            parametros = json.loads(entidade.query)
+            cnpj_fundo = parametros.get("cnpj_fundo")
+            data_referencia = parametros.get("data_referencia")
+            
+            # 2. Executa o Web Scraping envelopado em thread pool assíncrono para não travar o loop
+            df = await asyncio.to_thread(extrair_tabela_v, cnpj_fundo, data_referencia)
         else:
             log.error(f"Engine não suportada: {entidade.origem.tipo}")
             return entidade

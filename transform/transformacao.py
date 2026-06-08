@@ -46,8 +46,22 @@ DICIONARIO_RENOMEACAO: Dict[str, str] = {
     "descnvl4": "nm_descnvl4",
     "descnvl3": "nm_descnvl3",
     "descnvl2": "nm_descnvl2",
-    "descnvl1": "nm_descnvl1"
+    "descnvl1": "nm_descnvl1",
+    # Mapeamento do novo DataFrame de FIDC
+    "descricao": "nm_descricao",
+    "valor_str": "vl_valor_str",
+    #ajuste plancc
+    "nm_ppa": "nm_ppa",
+    "nm_unidade": "nm_unidade",
+    "nm_iniciativa": "nm_iniciativa",
+    "nm_acao": "nm_acao",
+    "cdg_natorcamentonvl4": "cdg_natorcamentonvl4",
+    "nm_natorcamentonvl4": "nm_natorcamentonvl4",
+    "vl_ano": "vl_ano",
+    "vl_mes": "vl_mes",
+    "vl_ajustado": "vl_ajustado"
 }
+
 
 async def padroniza_nomes_colunas(df: pd.DataFrame) -> pd.DataFrame:
     """
@@ -64,25 +78,21 @@ async def padroniza_nomes_colunas(df: pd.DataFrame) -> pd.DataFrame:
     mapa_novas_colunas: Dict[str, str] = {}
 
     for col_original in colunas_iniciais:
-        # Aplica o lower e remove espaços externos para garantir correspondência exata
         col_tratada = str(col_original).lower().strip()
         
         if col_tratada in DICIONARIO_RENOMEACAO:
             mapa_novas_colunas[col_original] = DICIONARIO_RENOMEACAO[col_tratada]
             colunas_renomeadas += 1
         else:
-            # Fallback seguro: aplica formatação snake_case para colunas não mapeadas
             col_fallback = re.sub(r'\W+', '_', col_tratada).strip('_')
             mapa_novas_colunas[col_original] = col_fallback
             colunas_sem_correspondencia.append(col_tratada)
             
-    # Executa a renomeação vetorizada do Pandas
     df_padronizado = df.rename(columns=mapa_novas_colunas)
     
     total_colunas: int = len(colunas_iniciais)
     total_faltantes: int = total_colunas - colunas_renomeadas
 
-    # Relatório de execução
     print(f"Total de colunas extraídas: {total_colunas}")
     print(f"Colunas renomeadas via dicionário: {colunas_renomeadas}")
     print(f"Colunas sem correspondência (aplicado fallback snake_case): {total_faltantes}")
@@ -132,20 +142,68 @@ async def extrai_metricas_node_js(df: pd.DataFrame) -> Dict[str, Any]:
 async def transforma_df(df: pd.DataFrame) -> Tuple[pd.DataFrame, Dict[str, Any]]:
     """
     Orquestra as etapas da camada Transform.
-    
-    Retorna uma tupla contendo o DataFrame transformado e o dicionário de métricas (PEP 484).
     """
     if df is None or df.empty:
         log.warning("DataFrame vazio recebido na camada de transformação. Abortando Transform.")
         return df, {}
 
-    # 1. Padronização e Validação do Dicionário
-    df_transformado = await padroniza_nomes_colunas(df)
+    # --- ROTEAMENTO FIDC: Identificação dinâmica pelo cabeçalho bruto ---
+    colunas_originais = [c.lower().strip() for c in df.columns]
+    if "valor_str" in colunas_originais:
+        log.info("Identificado DataFrame FIDC. Iniciando limpeza e cálculos de Carteiras.")
+        
+        # 1. Padroniza as colunas (Ex: 'Descricao' -> 'nm_descricao')
+        df_padronizado = await padroniza_nomes_colunas(df)
+        
+        # 2. Converte 'vl_valor_str' de formato brasileiro textual para numérico float64 (PEP 8)
+        df_padronizado['vl_valor'] = (
+            df_padronizado['vl_valor_str']
+            .str.replace('.', '', regex=False)
+            .str.replace(',', '.', regex=False)
+        )
+        df_padronizado['vl_valor'] = pd.to_numeric(df_padronizado['vl_valor'], errors='coerce').fillna(0.0)
+        
+        # Remove a coluna temporária em texto para não duplicar no banco de dados
+        df_transformado = df_padronizado.drop(columns=['vl_valor_str'])
+        
+        # 3. Executa o cálculo das carteiras até 360 dias
+        prefixos_a = [f'a.{i})' for i in range(1, 8)]  # a.1) a a.7) (Inadimplentes)
+        prefixos_b = [f'b.{i})' for i in range(1, 8)]  # b.1) a b.7) (Antecipados)
 
-    # 2. Geração de Métricas Analíticas
+        filtro_a = df_transformado['nm_descricao'].str.strip().str.startswith(tuple(prefixos_a))
+        soma_a = float(df_transformado.loc[filtro_a, 'vl_valor'].sum())
+        
+        filtro_b = df_transformado['nm_descricao'].str.strip().str.startswith(tuple(prefixos_b))
+        soma_b = float(df_transformado.loc[filtro_b, 'vl_valor'].sum())
+        
+        # 4. Formata o payload de métricas consolidado do FIDC
+        metricas_pre_carga = {
+            "kpis_gerais": {
+                "total_linhas": int(len(df_transformado)),
+                "total_colunas": int(len(df_transformado.columns)),
+                "soma_inadimplentes_ate_360_dias": soma_a,
+                "soma_pagos_antecipadamente_ate_360_dias": soma_b,
+                "soma_total": soma_a + soma_b
+            },
+            "qualidade_dados": {
+                "total_nulos": int(df_transformado.isnull().sum().sum())
+            },
+            "tipos_inferidos": {
+                col: str(dtype) for col, dtype in df_transformado.dtypes.items()
+            }
+        }
+        
+        print("\n--- RESULTADO DOS CÁLCULOS DA CARTEIRA FIDC ---")
+        print(f"Soma Inadimplentes (até 360 dias): R$ {soma_a:,.2f}".replace(',', 'X').replace('.', ',').replace('X', '.'))
+        print(f"Soma Pagos Antecipados (até 360 dias): R$ {soma_b:,.2f}".replace(',', 'X').replace('.', ',').replace('X', '.'))
+        print(f"Soma Total da Carteira (a + b): R$ {(soma_a + soma_b):,.2f}".replace(',', 'X').replace('.', ',').replace('X', '.'))
+        print("----------------------------------------------\n")
+        
+        return df_transformado, metricas_pre_carga
+
+    # --- FLUXO PADRÃO: SQL e MDX relacionais ---
+    df_transformado = await padroniza_nomes_colunas(df)
     metricas_pre_carga = await extrai_metricas_node_js(df_transformado)
-    
-    # Exibe métricas em tela para facilitar debug e auditoria durante o desenvolvimento
     print(f"\n[METRICAS PRE-CARGA NODE.JS] -> {metricas_pre_carga}\n")
 
     return df_transformado, metricas_pre_carga

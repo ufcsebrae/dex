@@ -6,5 +6,6 @@
     "orcado_receitas": "OLAP_SME",
     "orcado_receitas_cenario": "OLAP_SME",
     "fatoajustadonacional": "AZURE",
-    "metareceita": "AZURE"
+    "metareceita": "AZURE",
+    "fidc": "FIDC"
 }
