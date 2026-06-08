@@ -31,7 +31,8 @@ if "inadim" in dados_estudo:
     df_inadim['dt_datacriacao'] = pd.to_datetime(df_inadim['dt_datacriacao'])
     df_inadim['vl_valororiginal'] = pd.to_numeric(df_inadim['vl_valororiginal'], errors='coerce')
     df_inadim['cdg_idmov'] = df_inadim['cdg_idmov'].astype('Int64').astype(str)
-    
+
+    #define variavel de data atual e data do ano passado para comparação
     hoje = pd.Timestamp.now()
     hoje_ano_passado = hoje - pd.DateOffset(years=1)
     
@@ -44,18 +45,28 @@ if "inadim" in dados_estudo:
     # Cria as máscaras lógicas comparativas
     mascara_2025 = (df_inadim['dt_datacriacao'].between('2025-01-01', hoje_ano_passado) & df_inadim['is_inadimplente'])
     mascara_2026 = (df_inadim['dt_datacriacao'].between('2026-01-01', hoje) & df_inadim['is_inadimplente'])
+
+    # Define filtros de tabela por ano
+    mascara_2025_tot = (df_inadim['dt_datacriacao'].between('2025-01-01', hoje_ano_passado))
+    mascara_2026_tot = (df_inadim['dt_datacriacao'].between('2026-01-01', hoje))
     
-    # Aplica a máscara
+    # Aplica a máscara inadimplencia
     df_filtrado_2025 = df_inadim[mascara_2025]
     df_filtrado_2026 = df_inadim[mascara_2026]
 
+    # Aplica a mascara de ano
+    df_filtrado_2025_tot = df_inadim[mascara_2025_tot]
+    df_filtrado_2026_tot = df_inadim[mascara_2026_tot]
+
+
+
     # Contagem total de idmovs únicos no período acumulado
-    df_count_idmov_2025 = df_filtrado_2025['cdg_idmov'].nunique()
-    df_count_idmov_2026 = df_filtrado_2026['cdg_idmov'].nunique()
+    df_count_idmov_2025 = df_filtrado_2025_tot['cdg_idmov'].nunique()
+    df_count_idmov_2026 = df_filtrado_2026_tot['cdg_idmov'].nunique()
 
     # Agrupamentos mensais
-    df_2025_group = df_filtrado_2025.groupby(df_filtrado_2025['dt_datacriacao'].dt.month)['cdg_idmov'].nunique().reset_index(name='2025')
-    df_2026_group = df_filtrado_2026.groupby(df_filtrado_2026['dt_datacriacao'].dt.month)['cdg_idmov'].nunique().reset_index(name='2026')
+    df_2025_group = df_filtrado_2025_tot.groupby(df_filtrado_2025_tot['dt_datacriacao'].dt.month)['cdg_idmov'].nunique().reset_index(name='2025')
+    df_2026_group = df_filtrado_2026_tot.groupby(df_filtrado_2026_tot['dt_datacriacao'].dt.month)['cdg_idmov'].nunique().reset_index(name='2026')
     
     # Junção das tabelas
     df_25x26 = pd.merge(df_2025_group, df_2026_group, on='dt_datacriacao', how='outer')
