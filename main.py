@@ -26,8 +26,8 @@ nest_asyncio.apply()
 log = configura_logger(__name__)
 
 MAPA_DEPENDENCIAS: Dict[str, List[str]] = {
-    "metareceita": ["orcado"],
-    "plancc": ["orcado", "fatoajustadonacional"]  # 'plancc' garantirá que o orçado E a fato nacional estejam atualizados!
+    # "metareceita": ["orcado"],
+    "plancc": ["orcado"]  # 'plancc' garantirá que o orçado E a fato nacional estejam atualizados!
 }
 
 
