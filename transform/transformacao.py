@@ -109,7 +109,11 @@ DICIONARIO_RENOMEACAO: Dict[str, str] = {
     "cd_acao":" cd_acao",
     "cd_unidade_rm":" cd_unidade_rm",
     "nm_unidaderm":" nm_unidaderm",
-    "grandes_contratos":" grandes_contratos"
+    "grandes_contratos":" grandes_contratos",
+    "cd_cfoaluno":" cd_cfoaluno",
+    "linha":"linha",
+    "ano":"ano",
+    "valorbrutoorig": "vl_bruto"
 
 }
 

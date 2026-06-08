@@ -82,10 +82,3 @@ O DEX foi projetado para ser estendido de forma 100% declarativa, sem necessidad
 1. **Para Queries SQL/MDX**: Salve o seu arquivo de instrução (ex: `meu_relatorio.sql` ou `meu_relatorio.mdx`) na pasta `extract/queries/`.
 2. **Para Parâmetros de Web Scraping**: Salve o seu arquivo de parâmetros em formato JSON (ex: `meu_fundo.json`) na pasta `extract/queries/`.
 3. **Atualize o Mapeamento**: No arquivo `extract/mapa_queries.json`, registre a chave criada associando-a à sua respectiva conexão de origem do `.env` (ex: `"meu_relatorio": "AZURE"`).
-"""
-
-with open("README.md", "w", encoding="utf-8") as f:
-    f.write(readme_content)
-
-print("README.md successfully written to current directory.")
-
