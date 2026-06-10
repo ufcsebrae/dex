@@ -39,7 +39,8 @@ def carregar_mapa_queries(caminho_arquivo: Path) -> dict[str, str]:
         "orcado_receitas_cenario": "OLAP_SME",
         "fatoajustadonacional": "AZURE",
         "metareceita": "AZURE",
-        "fidc": "FIDC"  # Roteamento automático para a conexão virtual FIDC
+        "fidc": "FIDC",
+        "lemecontabil": "DWLeme"  # Roteamento automático para a conexão virtual FIDC
     }
 
     if not caminho_arquivo.exists():

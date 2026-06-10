@@ -1,0 +1,26 @@
+WITH
+    MEMBER [Measures].[ValorExecutado] AS 
+        ([Measures].[Valor Saldo Contábil Executado])
+
+    -- Declaramos o membro calculado na hierarquia física correta de [Fotografia]
+    MEMBER [Fotografia].[Fotografia por Chave].[Intervalo] AS
+        Aggregate(
+            {
+                [Fotografia].[Fotografia por Chave].[Fotografia].&[202512] : [Fotografia].[Fotografia por Chave].[Fotografia].&[202606]
+            }
+        )
+
+SELECT
+    NON EMPTY {[Measures].[ValorExecutado]} ON COLUMNS,
+    
+    NON EMPTY (
+        [Natureza Contábil].[Código Natureza Contábil Grupo 6].[Código Natureza Contábil].Members,
+        [Natureza Contábil].[Descrição Natureza Contábil Grupo 6].[Natureza Contábil].Members
+    ) ON ROWS
+FROM 
+    [DWLeme]
+WHERE
+    (
+        [Sebrae].[Sigla Sebrae].[Sebrae].&[SP],
+        [Fotografia].[Fotografia por Chave].[Intervalo]
+    )

@@ -1,12 +1,15 @@
 """Módulo responsável pela etapa de Carga (Load) do pipeline ETL (PEP 257)."""
 
+from __future__ import annotations
+
 import os
 import json
 import asyncio
 import urllib.parse
+import re
 import pandas as pd
 from datetime import datetime
-from typing import Optional, Dict, Any, List, Callable
+from typing import Callable
 from sqlalchemy import create_engine
 from sqlalchemy.engine import Engine
 
@@ -15,12 +18,31 @@ from logger import configura_logger
 log = configura_logger(__name__)
 
 
+def _sanitizar_json_env(json_str: str) -> str:
+    """
+    Sanitiza strings JSON contendo contra-barras inválidas para o padrão JSON.
+
+    Localiza barras invertidas que não façam parte de sequências de escape
+    legítimas do JSON (como em caminhos Windows ou nomes de instâncias SQL Server)
+    e as duplica preventivamente antes da decodificação.
+
+    :param json_str: String JSON original bruta obtida do ambiente.
+    :type json_str: str
+    :return: String JSON com as sequências de escape tratadas.
+    :rtype: str
+    """
+    padrao_escape_invalido = re.compile(
+        r"\\(?![\"\\/bfnrt]|u[0-9a-fA-F]{4})"
+    )
+    return padrao_escape_invalido.sub(r"\\\\", json_str)
+
+
 def _obter_string_conexao_financa() -> str:
     """
     Analisa a variável de ambiente 'CONEXOES' em JSON e monta a string 
     de conexão SQLAlchemy para o banco FINANCA.
     """
-    conexoes_env: Optional[str] = os.getenv("CONEXOES")
+    conexoes_env: str | None = os.getenv("CONEXOES")
     
     if not conexoes_env:
         erro_msg: str = "Variável de ambiente 'CONEXOES' ausente. Carga abortada."
@@ -28,7 +50,9 @@ def _obter_string_conexao_financa() -> str:
         raise ValueError(erro_msg)
 
     try:
-        conexoes_lista: List[Dict[str, Dict[str, Any]]] = json.loads(conexoes_env)
+        # Sanitização robusta contra barras invertidas do driver
+        conexoes_env_sanitizado = _sanitizar_json_env(conexoes_env)
+        conexoes_lista: list[dict[str, dict[str, Any]]] = json.loads(conexoes_env_sanitizado)
     except json.JSONDecodeError as erro_json:
         log.error(f"Falha ao decodificar a variável 'CONEXOES': {erro_json}")
         raise ValueError(f"Formato JSON inválido na variável 'CONEXOES': {erro_json}")
@@ -37,8 +61,8 @@ def _obter_string_conexao_financa() -> str:
         raise ValueError("A lista de conexões na variável 'CONEXOES' está vazia.")
 
     # O JSON possui uma lista com um único dicionário contendo as chaves dos servidores
-    dic_conexoes: Dict[str, Dict[str, Any]] = conexoes_lista[0]
-    config_alvo: Optional[Dict[str, Any]] = None
+    dic_conexoes: dict[str, dict[str, Any]] = conexoes_lista[0]
+    config_alvo: dict[str, Any] | None = None
     
     # Itera para encontrar a configuração que aponta para o banco FINANCA
     for nome_conexao, config in dic_conexoes.items():
@@ -56,7 +80,6 @@ def _obter_string_conexao_financa() -> str:
     driver: str = config_alvo["driver"]
 
     # Monta os parâmetros ODBC adicionando 'Encrypt=no' e 'TrustServerCertificate=yes'
-    # 'Encrypt=no' desativa a criptografia forçada do ODBC Driver 18, solucionando o erro 10054 (PEP 20)
     parametros_odbc: str = (
         f"Driver={{{driver}}};"
         f"Server={servidor};"
@@ -73,11 +96,10 @@ def _obter_string_conexao_financa() -> str:
     return string_conexao_sqlalchemy
 
 
-
 async def salva_df(
     df: pd.DataFrame, 
     nome_processo: str, 
-    on_progress: Optional[Callable[[int], None]] = None
+    on_progress: Callable[[int], None] | None = None
 ) -> None:
     """
     Carrega o DataFrame processado no banco de dados de destino de forma fragmentada.
@@ -107,10 +129,10 @@ async def salva_df(
 
     def _executa_carga_sync() -> None:
         """Operação síncrona de I/O em chunks executada no thread-pool (PEP 20)."""
+        # CORREÇÃO: Criação da engine aplicando 'fast_executemany' diretamente de forma efetiva
+        engine: Engine = create_engine(string_conexao, fast_executemany=True)
+        
         try:
-            engine: Engine = create_engine(string_conexao)
-            engine.execution_options(fast_executemany=True)
-            
             # Passo 1: Cria apenas a estrutura física da tabela vazia de forma segura (DDS)
             df.head(0).to_sql(
                 name=nome_tabela_final,
@@ -120,34 +142,37 @@ async def salva_df(
                 index=False
             )
             
-            # Passo 2: Grava cada lote de dados de forma incremental
-            for i in range(num_chunks):
-                lote_df = df.iloc[i * chunk_size : (i + 1) * chunk_size]
-                
-                lote_df.to_sql(
-                    name=nome_tabela_final,
-                    con=engine,
-                    schema=schema_banco,
-                    if_exists="append",
-                    index=False
-                )
-                
-                # Calcula a porcentagem do lote processado
-                porcentagem_concluida = int(((i + 1) / num_chunks) * 100)
-                
-                # Executa o callback de progresso na thread principal de forma thread-safe
-                if on_progress:
-                    loop.call_soon_threadsafe(on_progress, porcentagem_concluida)
+            # Passo 2: Abre uma transação única explícita na mesma conexão
+            # Se algum lote falhar, o bloco realiza o rollback completo automaticamente
+            with engine.begin() as conexao:
+                for i in range(num_chunks):
+                    lote_df = df.iloc[i * chunk_size : (i + 1) * chunk_size]
                     
+                    lote_df.to_sql(
+                        name=nome_tabela_final,
+                        con=conexao,  # CORREÇÃO: Utiliza a conexão transacionada ativa
+                        schema=schema_banco,
+                        if_exists="append",
+                        index=False
+                    )
+                    
+                    # Calcula a porcentagem do lote processado
+                    porcentagem_concluida = int(((i + 1) / num_chunks) * 100)
+                    
+                    # Executa o callback de progresso na thread principal de forma thread-safe
+                    if on_progress:
+                        loop.call_soon_threadsafe(on_progress, porcentagem_concluida)
+                        
             log.info(f"Carga fragmentada concluída com sucesso na tabela {schema_banco}.{nome_tabela_final}.")
         except Exception as e:
-            log.error(f"Falha de banco de dados durante a carga fracionada: {e}")
+            # CORREÇÃO: Exibe o rastreamento completo e a causa raiz real do erro de banco
+            log.error(f"Falha de banco de dados durante a carga fracionada de {nome_tabela_final}: {e}", exc_info=True)
             raise
 
     await loop.run_in_executor(None, _executa_carga_sync)
 
 
-async def salva_metricas(metricas: Dict[str, Any], nome_processo: str) -> None:
+async def salva_metricas(metricas: dict[str, Any], nome_processo: str) -> None:
     """
     Salva as métricas geradas pela transformação na tabela centralizada de auditoria.
     """
@@ -174,7 +199,8 @@ async def salva_metricas(metricas: Dict[str, Any], nome_processo: str) -> None:
 
     def _executa_carga_metricas_sync() -> None:
         try:
-            engine: Engine = create_engine(string_conexao)
+            # CORREÇÃO: Habilitação explícita do fast_executemany
+            engine: Engine = create_engine(string_conexao, fast_executemany=True)
             df_metrica_linha.to_sql(
                 name=nome_tabela_metricas,
                 con=engine,
