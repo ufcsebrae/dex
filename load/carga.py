@@ -20,21 +20,26 @@ log = configura_logger(__name__)
 
 def _sanitizar_json_env(json_str: str) -> str:
     """
-    Sanitiza strings JSON contendo contra-barras inválidas para o padrão JSON.
+    Sanitiza strings JSON contendo contra-barras inválidas de forma inteligente.
 
-    Localiza barras invertidas que não façam parte de sequências de escape
-    legítimas do JSON (como em caminhos Windows ou nomes de instâncias SQL Server)
-    e as duplica preventivamente antes da decodificação.
+    Esta função identifica escapes JSON válidos (como \\, \", \n) e os preserva.
+    Qualquer contra-barra simples solta (comum em caminhos de rede e instâncias SQL)
+    é convertida de forma segura para barra dupla (\\) (PEP 257).
 
     :param json_str: String JSON original bruta obtida do ambiente.
     :type json_str: str
     :return: String JSON com as sequências de escape tratadas.
     :rtype: str
     """
-    padrao_escape_invalido = re.compile(
-        r"\\(?![\"\\/bfnrt]|u[0-9a-fA-F]{4})"
+    # Expressão que casa com escapes válidos em um grupo de captura ou encontra barras órfãs
+    padrao_escape_inteligente = re.compile(
+        r'(\\["\\/bfnrt]|\\u[0-9a-fA-F]{4})|\\'
     )
-    return padrao_escape_invalido.sub(r"\\\\", json_str)
+    # Se capturar um escape legítimo, mantém. Caso contrário, duplica a barra simples
+    return padrao_escape_inteligente.sub(
+        lambda m: m.group(1) if m.group(1) else r"\\", 
+        json_str
+    )
 
 
 def _obter_string_conexao_financa() -> str:
@@ -50,7 +55,7 @@ def _obter_string_conexao_financa() -> str:
         raise ValueError(erro_msg)
 
     try:
-        # Sanitização robusta contra barras invertidas do driver
+        # Sanitização robusta contra barras invertidas do driver no arquivo .env
         conexoes_env_sanitizado = _sanitizar_json_env(conexoes_env)
         conexoes_lista: list[dict[str, dict[str, Any]]] = json.loads(conexoes_env_sanitizado)
     except json.JSONDecodeError as erro_json:
