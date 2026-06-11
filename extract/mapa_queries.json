@@ -8,6 +8,8 @@
     "fatoajustadonacional": "AZURE",
     "metareceita": "AZURE",
     "fidc": "FIDC",
-    "lemecontabil": "DWLeme"
+    "lemecontabil": "DWLeme",
+    "lemedespexec": "DWLeme",
+    "lemerecexec": "DWLeme"
 
 }

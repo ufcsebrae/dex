@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import re
+from typing import Any
 import pandas as pd
 
 from logger import configura_logger
@@ -115,13 +116,29 @@ DICIONARIO_RENOMEACAO: dict[str, str] = {
     "linha": "linha",
     "ano": "ano",
     "valorbrutoorig": "vl_bruto",
+    "[natureza contábil].[código natureza contábil grupo 6].[código natureza contábil].[member_caption]": "cdg_cdgnvl6",
+    "[natureza contábil].[descrição natureza contábil grupo 6].[natureza contábil].[member_caption]": "nm_descnvl6",
+    "[measures].[valorexecutado]":"vl_contabilExecutado",
+    "[fotografia].[fotografia].[fotografia].[member_caption]":"nm_ppafoto",
+    "[measures].[vl_receita_executado]": "vl_receitaExecutado",
+    "[ação].[ação].[ação].[member_caption]": "nm_acao",
+    "[natureza orçamentária].[código natureza orçamentária grupo 4].[código natureza orçamentária].[member_caption]":"nm_cdgNatureza",
+    "[projetos processos].[nome projeto e processo].[projeto e processo].[member_caption]": "nm_iniciativa",
+    "[unidade organizacional de ação].[unidade organizacional de ação].[unidade organizacional de ação].[member_caption]": "nm_UnidadeAcao",
+    "[ação].[códgio rm].[código rm].[member_caption]": "cdg_RM",
+    "[natureza orçamentária].[descrição natureza orçamentária grupo 4].[natureza orçamentária].[member_caption]":"nm_descnvl4",
+    "[measures].[vl_despesa_executado]": "vl_despesaExecutado",
+    "[unidade organizacional de projeto e processo].[unidade organizacional de projeto e processo].[unidade organizacional de projeto e processo].[member_caption]": "nm_unidadeIniciativa",
+    "[tempo].[mês].[mês].[member_caption]": "nm_mes",
+    "[tempo].[ano].[ano].[member_caption]": "nm_ano"
+
 }
 
 
 async def padroniza_nomes_colunas(df: pd.DataFrame) -> pd.DataFrame:
     """
     Aplica lowercase nas colunas originais e utiliza um dicionário mapeado 
-    para renomear (De -> Para). Gera auditoria das que não possuem correspondência.
+    para renomear (De -> Para). Gera fallback defensivo e inteligente para MDX (PEP 257).
     """
     colunas_iniciais: list[str] = list(df.columns)
     
@@ -139,7 +156,28 @@ async def padroniza_nomes_colunas(df: pd.DataFrame) -> pd.DataFrame:
             mapa_novas_colunas[col_original] = DICIONARIO_RENOMEACAO[col_tratada]
             colunas_renomeadas += 1
         else:
-            col_fallback = re.sub(r"\W+", "_", col_tratada).strip("_")
+            # Fallback inteligente para tratar caminhos MDX longos e redundantes
+            partes_mdx = re.findall(r"\[([^\]]+)\]", col_tratada)
+            if partes_mdx:
+                # Remove metadados técnicos redundantes se houver mais de uma dimensão
+                if len(partes_mdx) > 1 and partes_mdx[-1] in ["member_caption", "member_key", "caption", "key"]:
+                    partes_mdx.pop()
+                
+                # Saneia os nomes e elimina termos consecutivos duplicados (ex: [foto].[foto] -> foto)
+                partes_saneadas: list[str] = []
+                for parte in partes_mdx:
+                    parte_limpa = re.sub(r"\W+", "_", parte).strip("_")
+                    if not partes_saneadas or partes_saneadas[-1] != parte_limpa:
+                        partes_saneadas.append(parte_limpa)
+                
+                col_fallback = "_".join(partes_saneadas)
+            else:
+                col_fallback = re.sub(r"\W+", "_", col_tratada).strip("_")
+            
+            # Limita a 120 caracteres para garantir conformidade estrita com o SQL Server (máx 128)
+            if len(col_fallback) > 120:
+                col_fallback = col_fallback[:120].strip("_")
+                
             mapa_novas_colunas[col_original] = col_fallback
             colunas_sem_correspondencia.append(col_tratada)
             

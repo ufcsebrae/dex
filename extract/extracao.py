@@ -40,7 +40,9 @@ def carregar_mapa_queries(caminho_arquivo: Path) -> dict[str, str]:
         "fatoajustadonacional": "AZURE",
         "metareceita": "AZURE",
         "fidc": "FIDC",
-        "lemecontabil": "DWLeme"  # Roteamento automático para a conexão virtual FIDC
+        "lemecontabil": "DWLeme",
+        "lemedespexec": "DWLeme",
+        "lemerecexec": "DWLeme"
     }
 
     if not caminho_arquivo.exists():
@@ -75,7 +77,6 @@ def carregar_queries_locais(caminho_pasta: Path) -> dict[str, str]:
 
     dicionario_queries: dict[str, str] = {}
     
-    # Adicionado suporte para escanear .json na pasta queries (PEP 20)
     arquivos_suportados = chain(
         caminho_pasta.glob("*.sql"), 
         caminho_pasta.glob("*.mdx"),
@@ -102,13 +103,26 @@ def carregar_queries_locais(caminho_pasta: Path) -> dict[str, str]:
     return dicionario_queries
 
 
+def sanitizar_json_env(json_str: str) -> str:
+    """
+    Sanitiza strings JSON contendo contra-barras inválidas de forma inteligente (PEP 257).
+    """
+    padrao_escape_inteligente = re.compile(
+        r'(\\["\\/bfnrt]|\\u[0-9a-fA-F]{4})|\\'
+    )
+    return padrao_escape_inteligente.sub(
+        lambda m: m.group(1) if m.group(1) else r"\\", 
+        json_str
+    )
+
+
 def cria_mapa_origens_config() -> dict[str, OrigemConfig]:
-    """Lê o .env e retorna um dicionário de Value Objects de infraestrutura (PEP 8)."""
+    """Lê o .env, normaliza as chaves escapadas e instancia os Value Objects das conexões (PEP 8)."""
     configs_env = os.getenv("CONEXOES", "[]")
     
-    mapa_origens = {}
+    mapa_origens: dict[str, OrigemConfig] = {}
     
-    # 1. Injeta a Conexão Virtual para o Web Scraping do FIDC (Garante integridade com o .env)
+    # Injeta a Conexão Virtual para o Web Scraping do FIDC
     mapa_origens["FIDC"] = OrigemConfig(
         nome_processo="FIDC",
         tipo="web_scraping",
@@ -123,47 +137,69 @@ def cria_mapa_origens_config() -> dict[str, OrigemConfig]:
         return mapa_origens
 
     try:
-        catalogo = json.loads(configs_env)[0]
+        # Tratamento de colchetes escapados: remove a barra de escape de '\[...\]'
+        if configs_env.startswith(r'\[') and configs_env.endswith(r'\]'):
+            configs_env = configs_env[2:-2]
+            configs_env = '[' + configs_env + ']'
+
+        configs_env_sanitizada = sanitizar_json_env(configs_env)
+        catalogo = json.loads(configs_env_sanitizada)[0]
     except Exception as e:
         log.error(f"Erro ao decodificar JSON do .env: {e}")
         return mapa_origens
-        
-    for nome, detalhes in catalogo.items():
-        tipo_db = detalhes.get("tipo", "")
-        str_conn = ""
-        if tipo_db == "olap":
-            str_conn = detalhes.get("str_conexao", "")
-        elif tipo_db == "azure_sql":
-            str_conn = (
-                f"Driver={{{detalhes.get('driver')}}};"
-                f"Server={detalhes.get('servidor')};"
-                f"Database={detalhes.get('banco')};"
-                f"Authentication={detalhes.get('authentication')};"
-                f"TrustServerCertificate=yes;"
-            )
-        elif tipo_db == "sql":
-            trusted = "yes" if detalhes.get("trusted_connection") else "no"
-            str_conn = (
-                f"Driver={{{detalhes.get('driver')}}};"
-                f"Server={detalhes.get('servidor')};"
-                f"Database={detalhes.get('banco')};"
-                f"Trusted_Connection={trusted};"
-                f"TrustServerCertificate=yes;"
-            )
-        
+    
+    for nome_conexao, dados in catalogo.items():
         try:
-            config_objeto = OrigemConfig(
-                nome_processo=nome,
-                tipo=tipo_db,
-                database=detalhes.get("banco"),
-                servidor=detalhes.get("servidor"),
-                driver=detalhes.get("driver"),
-                string_connection=str_conn
-            )
-            mapa_origens[nome] = config_objeto
-        except Exception as e:
-            log.error(f"Falha de validação OrigemConfig para {nome}: {e}")
+            tipo = dados.get("tipo", "").lower()
             
+            if tipo in ["sql", "azure_sql"]:
+                servidor = dados.get("servidor")
+                banco = dados.get("banco")
+                driver = dados.get("driver", "ODBC Driver 18 for SQL Server")
+                
+                # Montagem dinâmica e limpa da connection string do pyodbc
+                partes = [
+                    f"DRIVER={{{driver}}}",
+                    f"SERVER={servidor}",
+                    f"DATABASE={banco}"
+                ]
+                
+                if dados.get("trusted_connection"):
+                    partes.append("Trusted_Connection=yes")
+                    
+                if dados.get("authentication"):
+                    partes.append(f"Authentication={dados.get('authentication')}")
+                
+                # Adiciona suporte à flag TrustServerCertificate para o driver v18
+                if "18" in driver:
+                    partes.append("TrustServerCertificate=yes")
+                    
+                string_connection = ";".join(partes)
+                
+                mapa_origens[nome_conexao] = OrigemConfig(
+                    nome_processo=nome_conexao,
+                    tipo=tipo,
+                    database=banco,
+                    servidor=servidor,
+                    driver=driver,
+                    string_connection=string_connection
+                )
+                
+            elif tipo == "olap":
+                string_connection = dados.get("str_conexao", "")
+                
+                mapa_origens[nome_conexao] = OrigemConfig(
+                    nome_processo=nome_conexao,
+                    tipo=tipo,
+                    string_connection=string_connection
+                )
+                
+            else:
+                log.warning(f"Tipo de conexão '{tipo}' não mapeado para '{nome_conexao}'.")
+                
+        except Exception as e_item:
+            log.error(f"Falha ao carregar a conexão parametrizada '{nome_conexao}': {e_item}")
+
     return mapa_origens
 
 
@@ -368,16 +404,14 @@ async def extrair_dataframe_da_origem(entidade: SetaDF) -> SetaDF:
     log.info(f"Conectando ao banco para extrair: {entidade.origem.nome_processo}")
     try:
         if entidade.origem.tipo in ["sql", "azure_sql"]:
-            df = await asyncio.to_thread(consulta_sql, entidade.query, entidade.origem.string_connection)
+            df = await asyncio.to_thread(consulta_sql, entidade.query, warmth := entidade.origem.string_connection)
         elif entidade.origem.tipo == "olap":
             df = await asyncio.to_thread(consulta_olap, entidade.query, entidade.origem.string_connection)
         elif entidade.origem.tipo == "web_scraping":
-            # 1. Decodifica os parâmetros declarados no arquivo JSON da pasta queries
             parametros = json.loads(entidade.query)
             cnpj_fundo = parametros.get("cnpj_fundo")
             data_referencia = parametros.get("data_referencia")
             
-            # 2. Executa o Web Scraping envelopado em thread pool assíncrono para não travar o loop
             df = await asyncio.to_thread(extrair_tabela_v, cnpj_fundo, data_referencia)
         else:
             log.error(f"Engine não suportada: {entidade.origem.tipo}")

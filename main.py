@@ -5,6 +5,10 @@ import argparse
 from typing import Callable, Dict, List, Optional
 import nest_asyncio
 import pandas as pd
+from dotenv import load_dotenv
+
+# Carrega as variáveis de ambiente antes de qualquer importação de submódulos (PEP 20)
+load_dotenv()
 
 # Importações do Rich para múltiplas barras de progresso
 from rich.progress import (
@@ -198,7 +202,7 @@ async def obter_dados_carregados_em_memoria(entidades_alvo: Optional[List[str]] 
                 dicionario_dataframes[nome_processo] = df
                 log.info(f"Tabela de Carga '{nome_processo}' lida do SQL Server com sucesso.")
         except Exception as err:
-            log.error(f"Erro ao ler tabela carregada '{nome_processo}': {err}")
+            log.error(f"Erro ao ver tabela carregada '{nome_processo}': {err}")
 
     await asyncio.gather(*[_busca_paralelo(e.origem.nome_processo) for e in lista_entidades])
     return dicionario_dataframes

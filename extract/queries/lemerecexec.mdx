@@ -1,0 +1,28 @@
+WITH
+    MEMBER [Measures].[vl_Receita_executado] AS 
+        ([Measures].[Valor Receita Projetos Processos Executada])
+
+    MEMBER [Fotografia].[Fotografia por Chave].[Intervalo] AS
+        Aggregate(
+            {
+                [Fotografia].[Fotografia por Chave].[Fotografia].&[202401] : [Fotografia].[Fotografia por Chave].[Fotografia].&[202606]
+            }
+        )
+
+SELECT
+    NON EMPTY {[Measures].[vl_Receita_executado]} ON COLUMNS,
+    
+    NON EMPTY (
+        [Fotografia].[Fotografia].[Fotografia].Members,
+        [Projetos Processos].[Nome Projeto e Processo].[Projeto e Processo].Members,
+        [Unidade Organizacional de Projeto e Processo].[Unidade Organizacional de Projeto e Processo].[Unidade Organizacional de Projeto e Processo].Members,
+        [Natureza Orçamentária].[Código Natureza Orçamentária Grupo 4].[Código Natureza Orçamentária].Members,
+        [Natureza Orçamentária].[Descrição Natureza Orçamentária Grupo 4].[Natureza Orçamentária].Members
+    ) ON ROWS
+FROM 
+    [DWLeme]
+WHERE
+    (
+        [Sebrae].[Sigla Sebrae].[Sebrae].&[SP],
+        [Fotografia].[Fotografia por Chave].[Intervalo]
+    )

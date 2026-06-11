@@ -1737,7 +1737,7 @@ WITH CC AS (
 		LEN(NivelAcao.CODCCUSTO) = 16
 	)
 
-, NACIONAL AS (SELECT a.* FROM financa.dbo.[dex-orcado] A WHERE nm_ppa IN ('PPA 2025 - 2025/JUN','PPA 2026 - 2026/JUN'))
+, NACIONAL AS (SELECT a.* FROM financa.dbo.[dex-orcado] A WHERE nm_ppa IN ('PPA 2025 - 2025/Mar','PPA 2026 - 2026/Mar'))
 
 
 ,MAPA AS (
