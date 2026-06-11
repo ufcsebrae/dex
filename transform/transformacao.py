@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import re
+import decimal
 from typing import Any
 import pandas as pd
 
@@ -131,8 +132,21 @@ DICIONARIO_RENOMEACAO: dict[str, str] = {
     "[unidade organizacional de projeto e processo].[unidade organizacional de projeto e processo].[unidade organizacional de projeto e processo].[member_caption]": "nm_unidadeIniciativa",
     "[tempo].[mês].[mês].[member_caption]": "nm_mes",
     "[tempo].[ano].[ano].[member_caption]": "nm_ano"
-
 }
+
+
+def converte_decimais_para_float(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Detecta de forma eficiente colunas contendo objetos decimal.Decimal do Python
+    e as converte para float64, evitando erros de conversão do driver pyodbc (PEP 257).
+    """
+    for col in df.select_dtypes(include=["object"]).columns:
+        # Analisa de forma otimizada se a coluna possui elementos decimais
+        non_nulls = df[col].dropna()
+        if not non_nulls.empty and isinstance(non_nulls.iloc[0], decimal.Decimal):
+            df[col] = pd.to_numeric(df[col], errors="coerce").fillna(0.0)
+            log.info(f"Conversão de precisão: Coluna de decimais '{col}' convertida para float64.")
+    return df
 
 
 async def padroniza_nomes_colunas(df: pd.DataFrame) -> pd.DataFrame:
@@ -295,23 +309,26 @@ async def transforma_df(df: pd.DataFrame) -> tuple[pd.DataFrame, dict[str, Any]]
         return df_transformado, metricas_pre_carga
 
     # --- FLUXO PADRÃO: SQL e MDX relacionais ---
-    df_transformado = await padroniza_nomes_colunas(df)
+    df_padronizado = await padroniza_nomes_colunas(df)
     
     # TRATAMENTO ADICIONADO: Se 'vl_valor' estiver no formato de texto (object), realiza a conversão segura
-    if "vl_valor" in df_transformado.columns and df_transformado["vl_valor"].dtype == "object":
+    if "vl_valor" in df_padronizado.columns and df_padronizado["vl_valor"].dtype == "object":
         log.info("Coluna 'vl_valor' identificada como tipo 'object' (texto). Iniciando conversão para float64...")
         
         # Verifica se contém o formato monetário brasileiro com vírgula decimal
-        if df_transformado["vl_valor"].astype(str).str.contains(",").any():
-            df_transformado["vl_valor"] = (
-                df_transformado["vl_valor"]
+        if df_padronizado["vl_valor"].astype(str).str.contains(",").any():
+            df_padronizado["vl_valor"] = (
+                df_padronizado["vl_valor"]
                 .astype(str)
                 .str.replace(".", "", regex=False)
                 .str.replace(",", ".", regex=False)
             )
         
-        df_transformado["vl_valor"] = pd.to_numeric(df_transformado["vl_valor"], errors="coerce").fillna(0.0)
+        df_padronizado["vl_valor"] = pd.to_numeric(df_padronizado["vl_valor"], errors="coerce").fillna(0.0)
         log.info("Conversão de 'vl_valor' concluída com sucesso.")
+
+    # Converte de forma preventiva colunas 'object' do tipo decimal.Decimal para float64
+    df_transformado = converte_decimais_para_float(df_padronizado)
 
     metricas_pre_carga = await extrai_metricas_node_js(df_transformado)
     print(f"\n[METRICAS PRE-CARGA NODE.JS] -> {metricas_pre_carga}\n")
