@@ -3,7 +3,7 @@ WITH
         '([Measures].[Valor de Despesa Orçado - Ajustado])'
     MEMBER [Tempo].[Ano e Mês].[Intervalo Completo] AS
         Aggregate(
-            {[Tempo].[Ano e Mês].[Número Ano e Mês].&[202501]:[Tempo].[Ano e Mês].[Número Ano e Mês].&[202612]}
+            {[Tempo].[Ano e Mês].[Número Ano e Mês].&[202201]:[Tempo].[Ano e Mês].[Número Ano e Mês].&[202612]}
         )
 SELECT
     NON EMPTY {Measures.ValorAjustado} ON COLUMNS,
