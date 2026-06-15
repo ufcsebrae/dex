@@ -9,11 +9,6 @@ IF OBJECT_ID('tempdb..#mapa_orcamento26') IS NOT NULL
     DROP TABLE #mapa_orcamento26;
 
 
-IF OBJECT_ID('dbo.ORCADO_ENRIQUECIDO_COM_CC') IS NOT NULL
-	DROP TABLE dbo.ORCADO_ENRIQUECIDO_COM_CC
-
-
-
 CREATE TABLE #mapa_orcamento25 (CC VARCHAR(16), ANO INT);
 CREATE TABLE #mapa_orcamento26 (CC VARCHAR(16), ANO INT);
 
@@ -1737,7 +1732,7 @@ WITH CC AS (
 		LEN(NivelAcao.CODCCUSTO) = 16
 	)
 
-, NACIONAL AS (SELECT a.* FROM financa.dbo.[dex-orcado] A WHERE nm_ppa IN ('PPA 2025 - 2025/Mar','PPA 2026 - 2026/Mar'))
+, NACIONAL AS (SELECT a.* FROM financa.dbo.[dex-orcado] A WHERE nm_ppa IN ('PPA 2025 - 2025/Jun','PPA 2026 - 2026/Jun'))
 
 
 ,MAPA AS (
