@@ -1,12 +1,12 @@
 WITH
-    MEMBER Measures.ValorAjustado AS 
-        '([Measures].[Valor de Despesa Orçado - Ajustado])'
+    MEMBER Measures.ValorExecutado AS 
+        '([Measures].[Valor de Despesa Executado])'
     MEMBER [Tempo].[Ano e Mês].[Intervalo Completo] AS
         Aggregate(
             {[Tempo].[Ano e Mês].[Número Ano e Mês].&[200801]:[Tempo].[Ano e Mês].[Número Ano e Mês].&[202612]}
         )
 SELECT
-    NON EMPTY {Measures.ValorAjustado} ON COLUMNS,
+    NON EMPTY {Measures.ValorExecutado} ON COLUMNS,
     NON EMPTY (
         [PPA].[PPA com Fotografia].[Descrição de PPA com Fotografia],
         [Unidade Organizacional de Ação].[Unidade Organizacional de Ação].[Nome de Unidade Organizacional de Ação],
