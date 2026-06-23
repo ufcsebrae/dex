@@ -54,9 +54,16 @@ export default function App() {
   const [paginaAtiva, setPaginaAtiva] = useState<number>(1); // 1, 2 ou 3
   const [unidadeSelecionada, setUnidadeSelecionada] = useState<string>('');
 
-  useEffect(() => {
-    const fetchDados = fetch('http://127.0.0.1:8081/api/planejado-executado').then(res => res.json());
-    const fetchCobertura = fetch('http://127.0.0.1:8081/api/cobertura').then(res => res.json());
+    useEffect(() => {
+    // Caminhos relativos funcionam em qualquer servidor (local ou nuvem)
+    const fetchDados = fetch('./planejado-executado.json').then(res => {
+      if (!res.ok) throw new Error(`Erro ${res.status} ao carregar dados`);
+      return res.json();
+    });
+    const fetchCobertura = fetch('./cobertura.json').then(res => {
+      if (!res.ok) throw new Error(`Erro ${res.status} ao carregar dados de cobertura`);
+      return res.json();
+    });
 
     Promise.all([fetchDados, fetchCobertura])
       .then(([data, cobertura]) => {
@@ -73,10 +80,11 @@ export default function App() {
         setLoading(false);
       })
       .catch((err) => {
-        console.error("Erro ao carregar dados locais:", err);
+        console.error("Erro ao carregar dados estáticos:", err);
         setLoading(false);
       });
   }, []);
+
 
   if (loading) {
     return (
