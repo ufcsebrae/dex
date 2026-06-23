@@ -392,7 +392,7 @@ export default function App() {
                       <YAxis stroke="#64748b" fontSize={11} tickLine={false} tickFormatter={formatarEixoY} />
                       <Tooltip
                         contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', borderRadius: '8px' }}
-                        labelFormatter={(label: any, items: any[]) => `Natureza: ${items[0]?.payload?.fullName || label}`}
+                        labelFormatter={(label: any, items: readonly any[]) => `Natureza: ${items[0]?.payload?.fullName || label}`}
                         formatter={(v: any) => [formatadorMoeda.format(v)]}
                       />
                       <Legend verticalAlign="top" height={36} />
