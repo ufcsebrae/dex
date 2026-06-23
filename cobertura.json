@@ -1,18 +1,949 @@
-﻿[
-    {
-        "resultado_liquido":  50000,
-        "ano":  2025,
-        "unidade":  "UNIDADE SÃO PAULO",
-        "indice_cobertura":  120,
-        "despesa":  250000,
-        "receita":  300000
-    },
-    {
-        "resultado_liquido":  80000,
-        "ano":  2026,
-        "unidade":  "UNIDADE SÃO PAULO",
-        "indice_cobertura":  129.63,
-        "despesa":  270000,
-        "receita":  350000
-    }
-]
+﻿{
+    "value":  [
+                  {
+                      "unidade":  "SP - AdministraÃ§Ã£o",
+                      "ano":  2025,
+                      "despesa":  3858844.25,
+                      "receita":  0.0,
+                      "resultado_liquido":  -3858844.25,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - AdministraÃ§Ã£o",
+                      "ano":  2026,
+                      "despesa":  3395956.69,
+                      "receita":  0.0,
+                      "resultado_liquido":  -3395956.69,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - Atendimento ao Cliente",
+                      "ano":  2025,
+                      "despesa":  16160501.59,
+                      "receita":  7942.0,
+                      "resultado_liquido":  -16152559.59,
+                      "indice_cobertura":  0.0491
+                  },
+                  {
+                      "unidade":  "SP - Atendimento ao Cliente",
+                      "ano":  2026,
+                      "despesa":  9908229.36,
+                      "receita":  12245.0,
+                      "resultado_liquido":  -9895984.36,
+                      "indice_cobertura":  0.1235
+                  },
+                  {
+                      "unidade":  "SP - Auditoria",
+                      "ano":  2025,
+                      "despesa":  772001.65,
+                      "receita":  0.0,
+                      "resultado_liquido":  -772001.65,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - Auditoria",
+                      "ano":  2026,
+                      "despesa":  1419492.26,
+                      "receita":  0.0,
+                      "resultado_liquido":  -1419492.26,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - Cultura Empreendedora",
+                      "ano":  2025,
+                      "despesa":  1578051.58,
+                      "receita":  0.0,
+                      "resultado_liquido":  -1578051.58,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - Cultura Empreendedora",
+                      "ano":  2026,
+                      "despesa":  2927233.43,
+                      "receita":  0.0,
+                      "resultado_liquido":  -2927233.43,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - Desenvolvimento Setorial e Territorial",
+                      "ano":  2025,
+                      "despesa":  11899836.22,
+                      "receita":  1904869.15,
+                      "resultado_liquido":  -9994967.07,
+                      "indice_cobertura":  16.0075
+                  },
+                  {
+                      "unidade":  "SP - Desenvolvimento Setorial e Territorial",
+                      "ano":  2026,
+                      "despesa":  13170690.48,
+                      "receita":  202133.7,
+                      "resultado_liquido":  -12968556.78,
+                      "indice_cobertura":  1.5347
+                  },
+                  {
+                      "unidade":  "SP - Diretoria de AdministraÃ§Ã£o e FinanÃ§as (Unidade)",
+                      "ano":  2025,
+                      "despesa":  597623.23,
+                      "receita":  0.0,
+                      "resultado_liquido":  -597623.23,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - Diretoria de AdministraÃ§Ã£o e FinanÃ§as (Unidade)",
+                      "ano":  2026,
+                      "despesa":  651974.43,
+                      "receita":  0.0,
+                      "resultado_liquido":  -651974.43,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - Diretoria TÃ©cnica (Unidade)",
+                      "ano":  2025,
+                      "despesa":  1208449.0,
+                      "receita":  0.0,
+                      "resultado_liquido":  -1208449.0,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - Diretoria TÃ©cnica (Unidade)",
+                      "ano":  2026,
+                      "despesa":  1189752.27,
+                      "receita":  0.0,
+                      "resultado_liquido":  -1189752.27,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - ER ALTO TIETÃ",
+                      "ano":  2025,
+                      "despesa":  1306702.09,
+                      "receita":  85529.13,
+                      "resultado_liquido":  -1221172.96,
+                      "indice_cobertura":  6.5454
+                  },
+                  {
+                      "unidade":  "SP - ER ALTO TIETÃ",
+                      "ano":  2026,
+                      "despesa":  1536507.79,
+                      "receita":  85182.74,
+                      "resultado_liquido":  -1451325.05,
+                      "indice_cobertura":  5.5439
+                  },
+                  {
+                      "unidade":  "SP - ER ARAÃATUBA",
+                      "ano":  2025,
+                      "despesa":  1565257.15,
+                      "receita":  32682.87,
+                      "resultado_liquido":  -1532574.28,
+                      "indice_cobertura":  2.088
+                  },
+                  {
+                      "unidade":  "SP - ER ARAÃATUBA",
+                      "ano":  2026,
+                      "despesa":  1582363.36,
+                      "receita":  54681.5,
+                      "resultado_liquido":  -1527681.86,
+                      "indice_cobertura":  3.4556
+                  },
+                  {
+                      "unidade":  "SP - ER ARARAQUARA",
+                      "ano":  2025,
+                      "despesa":  1297863.37,
+                      "receita":  4185.0,
+                      "resultado_liquido":  -1293678.37,
+                      "indice_cobertura":  0.3224
+                  },
+                  {
+                      "unidade":  "SP - ER ARARAQUARA",
+                      "ano":  2026,
+                      "despesa":  1392699.88,
+                      "receita":  56368.01,
+                      "resultado_liquido":  -1336331.87,
+                      "indice_cobertura":  4.0473
+                  },
+                  {
+                      "unidade":  "SP - ER BAIXADA SANTISTA",
+                      "ano":  2025,
+                      "despesa":  1535282.39,
+                      "receita":  46722.0,
+                      "resultado_liquido":  -1488560.39,
+                      "indice_cobertura":  3.0432
+                  },
+                  {
+                      "unidade":  "SP - ER BAIXADA SANTISTA",
+                      "ano":  2026,
+                      "despesa":  1757394.24,
+                      "receita":  136527.23,
+                      "resultado_liquido":  -1620867.01,
+                      "indice_cobertura":  7.7687
+                  },
+                  {
+                      "unidade":  "SP - ER BARRETOS",
+                      "ano":  2025,
+                      "despesa":  1402094.57,
+                      "receita":  92774.0,
+                      "resultado_liquido":  -1309320.57,
+                      "indice_cobertura":  6.6168
+                  },
+                  {
+                      "unidade":  "SP - ER BARRETOS",
+                      "ano":  2026,
+                      "despesa":  1703694.02,
+                      "receita":  121986.19,
+                      "resultado_liquido":  -1581707.83,
+                      "indice_cobertura":  7.16
+                  },
+                  {
+                      "unidade":  "SP - ER BAURU",
+                      "ano":  2025,
+                      "despesa":  1721349.59,
+                      "receita":  10623.02,
+                      "resultado_liquido":  -1710726.57,
+                      "indice_cobertura":  0.6171
+                  },
+                  {
+                      "unidade":  "SP - ER BAURU",
+                      "ano":  2026,
+                      "despesa":  1862371.65,
+                      "receita":  136418.37,
+                      "resultado_liquido":  -1725953.28,
+                      "indice_cobertura":  7.3249
+                  },
+                  {
+                      "unidade":  "SP - ER BOTUCATU",
+                      "ano":  2025,
+                      "despesa":  1040875.11,
+                      "receita":  47417.13,
+                      "resultado_liquido":  -993457.98,
+                      "indice_cobertura":  4.5555
+                  },
+                  {
+                      "unidade":  "SP - ER BOTUCATU",
+                      "ano":  2026,
+                      "despesa":  1212151.04,
+                      "receita":  78586.01,
+                      "resultado_liquido":  -1133565.03,
+                      "indice_cobertura":  6.4831
+                  },
+                  {
+                      "unidade":  "SP - ER CAMPINAS",
+                      "ano":  2025,
+                      "despesa":  2126740.42,
+                      "receita":  90207.0,
+                      "resultado_liquido":  -2036533.42,
+                      "indice_cobertura":  4.2415
+                  },
+                  {
+                      "unidade":  "SP - ER CAMPINAS",
+                      "ano":  2026,
+                      "despesa":  2357805.19,
+                      "receita":  294964.49,
+                      "resultado_liquido":  -2062840.7,
+                      "indice_cobertura":  12.5101
+                  },
+                  {
+                      "unidade":  "SP - ER CAPITAL CENTRO",
+                      "ano":  2025,
+                      "despesa":  1837225.64,
+                      "receita":  97273.0,
+                      "resultado_liquido":  -1739952.64,
+                      "indice_cobertura":  5.2945
+                  },
+                  {
+                      "unidade":  "SP - ER CAPITAL CENTRO",
+                      "ano":  2026,
+                      "despesa":  2326342.53,
+                      "receita":  179985.27,
+                      "resultado_liquido":  -2146357.26,
+                      "indice_cobertura":  7.7368
+                  },
+                  {
+                      "unidade":  "SP - ER CAPITAL LESTE",
+                      "ano":  2025,
+                      "despesa":  1921668.41,
+                      "receita":  133121.0,
+                      "resultado_liquido":  -1788547.41,
+                      "indice_cobertura":  6.9273
+                  },
+                  {
+                      "unidade":  "SP - ER CAPITAL LESTE",
+                      "ano":  2026,
+                      "despesa":  2253328.05,
+                      "receita":  165586.77,
+                      "resultado_liquido":  -2087741.28,
+                      "indice_cobertura":  7.3485
+                  },
+                  {
+                      "unidade":  "SP - ER CAPITAL LESTE II",
+                      "ano":  2025,
+                      "despesa":  1843777.6,
+                      "receita":  0.0,
+                      "resultado_liquido":  -1843777.6,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - ER CAPITAL LESTE II",
+                      "ano":  2026,
+                      "despesa":  1922699.07,
+                      "receita":  88260.99,
+                      "resultado_liquido":  -1834438.08,
+                      "indice_cobertura":  4.5904
+                  },
+                  {
+                      "unidade":  "SP - ER CAPITAL NORTE",
+                      "ano":  2025,
+                      "despesa":  1692522.78,
+                      "receita":  10036.0,
+                      "resultado_liquido":  -1682486.78,
+                      "indice_cobertura":  0.5929
+                  },
+                  {
+                      "unidade":  "SP - ER CAPITAL NORTE",
+                      "ano":  2026,
+                      "despesa":  1944553.74,
+                      "receita":  151930.47,
+                      "resultado_liquido":  -1792623.27,
+                      "indice_cobertura":  7.8131
+                  },
+                  {
+                      "unidade":  "SP - ER CAPITAL OESTE",
+                      "ano":  2025,
+                      "despesa":  1616526.54,
+                      "receita":  85469.0,
+                      "resultado_liquido":  -1531057.54,
+                      "indice_cobertura":  5.2872
+                  },
+                  {
+                      "unidade":  "SP - ER CAPITAL OESTE",
+                      "ano":  2026,
+                      "despesa":  1931029.17,
+                      "receita":  226643.63,
+                      "resultado_liquido":  -1704385.54,
+                      "indice_cobertura":  11.7369
+                  },
+                  {
+                      "unidade":  "SP - ER CAPITAL SUL",
+                      "ano":  2025,
+                      "despesa":  1702056.55,
+                      "receita":  93214.0,
+                      "resultado_liquido":  -1608842.55,
+                      "indice_cobertura":  5.4765
+                  },
+                  {
+                      "unidade":  "SP - ER CAPITAL SUL",
+                      "ano":  2026,
+                      "despesa":  1986344.34,
+                      "receita":  240056.77,
+                      "resultado_liquido":  -1746287.57,
+                      "indice_cobertura":  12.0853
+                  },
+                  {
+                      "unidade":  "SP - ER FRANCA",
+                      "ano":  2025,
+                      "despesa":  1559770.7,
+                      "receita":  16591.5,
+                      "resultado_liquido":  -1543179.2,
+                      "indice_cobertura":  1.0637
+                  },
+                  {
+                      "unidade":  "SP - ER FRANCA",
+                      "ano":  2026,
+                      "despesa":  1549484.1,
+                      "receita":  52268.19,
+                      "resultado_liquido":  -1497215.91,
+                      "indice_cobertura":  3.3732
+                  },
+                  {
+                      "unidade":  "SP - ER GRANDE ABC",
+                      "ano":  2025,
+                      "despesa":  2059240.47,
+                      "receita":  120391.0,
+                      "resultado_liquido":  -1938849.47,
+                      "indice_cobertura":  5.8463
+                  },
+                  {
+                      "unidade":  "SP - ER GRANDE ABC",
+                      "ano":  2026,
+                      "despesa":  2281803.96,
+                      "receita":  469003.14,
+                      "resultado_liquido":  -1812800.82,
+                      "indice_cobertura":  20.554
+                  },
+                  {
+                      "unidade":  "SP - ER GUARATINGUETÃ",
+                      "ano":  2025,
+                      "despesa":  1120995.49,
+                      "receita":  45281.24,
+                      "resultado_liquido":  -1075714.25,
+                      "indice_cobertura":  4.0393
+                  },
+                  {
+                      "unidade":  "SP - ER GUARATINGUETÃ",
+                      "ano":  2026,
+                      "despesa":  1351370.54,
+                      "receita":  120754.68,
+                      "resultado_liquido":  -1230615.86,
+                      "indice_cobertura":  8.9357
+                  },
+                  {
+                      "unidade":  "SP - ER GUARULHOS",
+                      "ano":  2025,
+                      "despesa":  1346598.54,
+                      "receita":  2344.0,
+                      "resultado_liquido":  -1344254.54,
+                      "indice_cobertura":  0.174
+                  },
+                  {
+                      "unidade":  "SP - ER GUARULHOS",
+                      "ano":  2026,
+                      "despesa":  1615231.94,
+                      "receita":  84487.99,
+                      "resultado_liquido":  -1530743.95,
+                      "indice_cobertura":  5.2307
+                  },
+                  {
+                      "unidade":  "SP - ER JUNDIAÃ",
+                      "ano":  2025,
+                      "despesa":  1396485.75,
+                      "receita":  44546.0,
+                      "resultado_liquido":  -1351939.75,
+                      "indice_cobertura":  3.1898
+                  },
+                  {
+                      "unidade":  "SP - ER JUNDIAÃ",
+                      "ano":  2026,
+                      "despesa":  1835412.49,
+                      "receita":  119737.71,
+                      "resultado_liquido":  -1715674.78,
+                      "indice_cobertura":  6.5237
+                  },
+                  {
+                      "unidade":  "SP - ER MARÃLIA",
+                      "ano":  2025,
+                      "despesa":  1239161.16,
+                      "receita":  7527.0,
+                      "resultado_liquido":  -1231634.16,
+                      "indice_cobertura":  0.6074
+                  },
+                  {
+                      "unidade":  "SP - ER MARÃLIA",
+                      "ano":  2026,
+                      "despesa":  1253769.23,
+                      "receita":  32377.0,
+                      "resultado_liquido":  -1221392.23,
+                      "indice_cobertura":  2.5823
+                  },
+                  {
+                      "unidade":  "SP - ER OSASCO",
+                      "ano":  2025,
+                      "despesa":  1830674.75,
+                      "receita":  141557.79,
+                      "resultado_liquido":  -1689116.96,
+                      "indice_cobertura":  7.7325
+                  },
+                  {
+                      "unidade":  "SP - ER OSASCO",
+                      "ano":  2026,
+                      "despesa":  2376120.17,
+                      "receita":  150836.26,
+                      "resultado_liquido":  -2225283.91,
+                      "indice_cobertura":  6.348
+                  },
+                  {
+                      "unidade":  "SP - ER OURINHOS",
+                      "ano":  2025,
+                      "despesa":  1122577.62,
+                      "receita":  38926.13,
+                      "resultado_liquido":  -1083651.49,
+                      "indice_cobertura":  3.4675
+                  },
+                  {
+                      "unidade":  "SP - ER OURINHOS",
+                      "ano":  2026,
+                      "despesa":  1121337.06,
+                      "receita":  8490.0,
+                      "resultado_liquido":  -1112847.06,
+                      "indice_cobertura":  0.7571
+                  },
+                  {
+                      "unidade":  "SP - ER PIRACICABA",
+                      "ano":  2025,
+                      "despesa":  1550196.72,
+                      "receita":  84609.13,
+                      "resultado_liquido":  -1465587.59,
+                      "indice_cobertura":  5.4579
+                  },
+                  {
+                      "unidade":  "SP - ER PIRACICABA",
+                      "ano":  2026,
+                      "despesa":  1768560.75,
+                      "receita":  129775.44,
+                      "resultado_liquido":  -1638785.31,
+                      "indice_cobertura":  7.3379
+                  },
+                  {
+                      "unidade":  "SP - ER PRESIDENTE PRUDENTE",
+                      "ano":  2025,
+                      "despesa":  1446557.03,
+                      "receita":  9900.0,
+                      "resultado_liquido":  -1436657.03,
+                      "indice_cobertura":  0.6843
+                  },
+                  {
+                      "unidade":  "SP - ER PRESIDENTE PRUDENTE",
+                      "ano":  2026,
+                      "despesa":  1586650.17,
+                      "receita":  25068.58,
+                      "resultado_liquido":  -1561581.59,
+                      "indice_cobertura":  1.5799
+                  },
+                  {
+                      "unidade":  "SP - ER RIBEIRÃO PRETO",
+                      "ano":  2025,
+                      "despesa":  1774419.6,
+                      "receita":  21420.22,
+                      "resultado_liquido":  -1752999.38,
+                      "indice_cobertura":  1.2071
+                  },
+                  {
+                      "unidade":  "SP - ER RIBEIRÃO PRETO",
+                      "ano":  2026,
+                      "despesa":  2157080.89,
+                      "receita":  212431.68,
+                      "resultado_liquido":  -1944649.21,
+                      "indice_cobertura":  9.8481
+                  },
+                  {
+                      "unidade":  "SP - ER SÃO CARLOS",
+                      "ano":  2025,
+                      "despesa":  1339569.44,
+                      "receita":  24372.9,
+                      "resultado_liquido":  -1315196.54,
+                      "indice_cobertura":  1.8194
+                  },
+                  {
+                      "unidade":  "SP - ER SÃO CARLOS",
+                      "ano":  2026,
+                      "despesa":  1554099.58,
+                      "receita":  48212.89,
+                      "resultado_liquido":  -1505886.69,
+                      "indice_cobertura":  3.1023
+                  },
+                  {
+                      "unidade":  "SP - ER SÃO JOÃO DA BOA VISTA",
+                      "ano":  2025,
+                      "despesa":  1208083.47,
+                      "receita":  33231.0,
+                      "resultado_liquido":  -1174852.47,
+                      "indice_cobertura":  2.7507
+                  },
+                  {
+                      "unidade":  "SP - ER SÃO JOÃO DA BOA VISTA",
+                      "ano":  2026,
+                      "despesa":  1359380.52,
+                      "receita":  66565.37,
+                      "resultado_liquido":  -1292815.15,
+                      "indice_cobertura":  4.8967
+                  },
+                  {
+                      "unidade":  "SP - ER SÃO JOSÃ DO RIO PRETO",
+                      "ano":  2025,
+                      "despesa":  1797855.33,
+                      "receita":  14331.0,
+                      "resultado_liquido":  -1783524.33,
+                      "indice_cobertura":  0.7971
+                  },
+                  {
+                      "unidade":  "SP - ER SÃO JOSÃ DO RIO PRETO",
+                      "ano":  2026,
+                      "despesa":  2057544.5,
+                      "receita":  89640.51,
+                      "resultado_liquido":  -1967903.99,
+                      "indice_cobertura":  4.3566
+                  },
+                  {
+                      "unidade":  "SP - ER SÃO JOSÃ DOS CAMPOS",
+                      "ano":  2025,
+                      "despesa":  1615428.38,
+                      "receita":  0.0,
+                      "resultado_liquido":  -1615428.38,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - ER SÃO JOSÃ DOS CAMPOS",
+                      "ano":  2026,
+                      "despesa":  1864119.35,
+                      "receita":  65277.6,
+                      "resultado_liquido":  -1798841.75,
+                      "indice_cobertura":  3.5017
+                  },
+                  {
+                      "unidade":  "SP - ER SOROCABA",
+                      "ano":  2025,
+                      "despesa":  2106831.64,
+                      "receita":  46618.13,
+                      "resultado_liquido":  -2060213.51,
+                      "indice_cobertura":  2.2127
+                  },
+                  {
+                      "unidade":  "SP - ER SOROCABA",
+                      "ano":  2026,
+                      "despesa":  2257693.87,
+                      "receita":  100824.45,
+                      "resultado_liquido":  -2156869.42,
+                      "indice_cobertura":  4.4658
+                  },
+                  {
+                      "unidade":  "SP - ER SUDOESTE PAULISTA",
+                      "ano":  2025,
+                      "despesa":  976835.28,
+                      "receita":  98169.18,
+                      "resultado_liquido":  -878666.1,
+                      "indice_cobertura":  10.0497
+                  },
+                  {
+                      "unidade":  "SP - ER SUDOESTE PAULISTA",
+                      "ano":  2026,
+                      "despesa":  1120392.79,
+                      "receita":  0.0,
+                      "resultado_liquido":  -1120392.79,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - ER VALE DO RIBEIRA",
+                      "ano":  2025,
+                      "despesa":  1144008.3,
+                      "receita":  3900.01,
+                      "resultado_liquido":  -1140108.29,
+                      "indice_cobertura":  0.3409
+                  },
+                  {
+                      "unidade":  "SP - ER VALE DO RIBEIRA",
+                      "ano":  2026,
+                      "despesa":  1251202.52,
+                      "receita":  12077.5,
+                      "resultado_liquido":  -1239125.02,
+                      "indice_cobertura":  0.9652
+                  },
+                  {
+                      "unidade":  "SP - ER VOTUPORANGA",
+                      "ano":  2025,
+                      "despesa":  1238954.12,
+                      "receita":  39676.0,
+                      "resultado_liquido":  -1199278.12,
+                      "indice_cobertura":  3.2023
+                  },
+                  {
+                      "unidade":  "SP - ER VOTUPORANGA",
+                      "ano":  2026,
+                      "despesa":  1223689.78,
+                      "receita":  9490.0,
+                      "resultado_liquido":  -1214199.78,
+                      "indice_cobertura":  0.7755
+                  },
+                  {
+                      "unidade":  "SP - Faculdade Sebrae",
+                      "ano":  2025,
+                      "despesa":  2624315.09,
+                      "receita":  616704.54,
+                      "resultado_liquido":  -2007610.55,
+                      "indice_cobertura":  23.4996
+                  },
+                  {
+                      "unidade":  "SP - Faculdade Sebrae",
+                      "ano":  2026,
+                      "despesa":  4239457.56,
+                      "receita":  1187831.51,
+                      "resultado_liquido":  -3051626.05,
+                      "indice_cobertura":  28.0184
+                  },
+                  {
+                      "unidade":  "SP - FinanÃ§as e Controladoria",
+                      "ano":  2025,
+                      "despesa":  2129897.58,
+                      "receita":  0.0,
+                      "resultado_liquido":  -2129897.58,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - FinanÃ§as e Controladoria",
+                      "ano":  2026,
+                      "despesa":  2243570.08,
+                      "receita":  0.0,
+                      "resultado_liquido":  -2243570.08,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - GestÃ£o de Pessoas",
+                      "ano":  2025,
+                      "despesa":  2485200.29,
+                      "receita":  0.0,
+                      "resultado_liquido":  -2485200.29,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - GestÃ£o de Pessoas",
+                      "ano":  2026,
+                      "despesa":  2884411.5,
+                      "receita":  0.0,
+                      "resultado_liquido":  -2884411.5,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - GestÃ£o de SoluÃ§Ãµes e TransformaÃ§Ã£o Digital",
+                      "ano":  2025,
+                      "despesa":  4895160.39,
+                      "receita":  0.0,
+                      "resultado_liquido":  -4895160.39,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - GestÃ£o de SoluÃ§Ãµes e TransformaÃ§Ã£o Digital",
+                      "ano":  2026,
+                      "despesa":  5094293.55,
+                      "receita":  0.0,
+                      "resultado_liquido":  -5094293.55,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - GestÃ£o EstratÃ©gica",
+                      "ano":  2025,
+                      "despesa":  3454266.45,
+                      "receita":  0.0,
+                      "resultado_liquido":  -3454266.45,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - GestÃ£o EstratÃ©gica",
+                      "ano":  2026,
+                      "despesa":  4124842.9,
+                      "receita":  0.0,
+                      "resultado_liquido":  -4124842.9,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - Infraestrutura da InformaÃ§Ã£o",
+                      "ano":  2025,
+                      "despesa":  5217948.84,
+                      "receita":  0.0,
+                      "resultado_liquido":  -5217948.84,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - Infraestrutura da InformaÃ§Ã£o",
+                      "ano":  2026,
+                      "despesa":  7566153.99,
+                      "receita":  0.0,
+                      "resultado_liquido":  -7566153.99,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - InovaÃ§Ã£o",
+                      "ano":  2025,
+                      "despesa":  5133666.39,
+                      "receita":  0.0,
+                      "resultado_liquido":  -5133666.39,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - InovaÃ§Ã£o",
+                      "ano":  2026,
+                      "despesa":  7053429.04,
+                      "receita":  456908.98,
+                      "resultado_liquido":  -6596520.06,
+                      "indice_cobertura":  6.4778
+                  },
+                  {
+                      "unidade":  "SP - JurÃ­dico e Secretaria Geral",
+                      "ano":  2025,
+                      "despesa":  1659585.25,
+                      "receita":  0.0,
+                      "resultado_liquido":  -1659585.25,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - JurÃ­dico e Secretaria Geral",
+                      "ano":  2026,
+                      "despesa":  1714391.08,
+                      "receita":  0.0,
+                      "resultado_liquido":  -1714391.08,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - Marketing e ComunicaÃ§Ã£o",
+                      "ano":  2025,
+                      "despesa":  4889426.58,
+                      "receita":  0.0,
+                      "resultado_liquido":  -4889426.58,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - Marketing e ComunicaÃ§Ã£o",
+                      "ano":  2026,
+                      "despesa":  8098621.08,
+                      "receita":  0.0,
+                      "resultado_liquido":  -8098621.08,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - Ouvidoria",
+                      "ano":  2025,
+                      "despesa":  469462.26,
+                      "receita":  0.0,
+                      "resultado_liquido":  -469462.26,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - Ouvidoria",
+                      "ano":  2026,
+                      "despesa":  505643.14,
+                      "receita":  0.0,
+                      "resultado_liquido":  -505643.14,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - PolÃ­ticas PÃºblicas e RelaÃ§Ãµes Institucionais",
+                      "ano":  2025,
+                      "despesa":  2261378.6,
+                      "receita":  0.0,
+                      "resultado_liquido":  -2261378.6,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - PolÃ­ticas PÃºblicas e RelaÃ§Ãµes Institucionais",
+                      "ano":  2026,
+                      "despesa":  5184508.95,
+                      "receita":  0.0,
+                      "resultado_liquido":  -5184508.95,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - PresidÃªncia do CDE (Unidade)",
+                      "ano":  2025,
+                      "despesa":  27463.03,
+                      "receita":  0.0,
+                      "resultado_liquido":  -27463.03,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - PresidÃªncia do CDE (Unidade)",
+                      "ano":  2026,
+                      "despesa":  29214.42,
+                      "receita":  0.0,
+                      "resultado_liquido":  -29214.42,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - Relacionamento com Cliente",
+                      "ano":  2025,
+                      "despesa":  2235249.32,
+                      "receita":  9879.9,
+                      "resultado_liquido":  -2225369.42,
+                      "indice_cobertura":  0.442
+                  },
+                  {
+                      "unidade":  "SP - Relacionamento com Cliente",
+                      "ano":  2026,
+                      "despesa":  2782898.43,
+                      "receita":  0.0,
+                      "resultado_liquido":  -2782898.43,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - Secretaria do CDE",
+                      "ano":  2025,
+                      "despesa":  1057291.14,
+                      "receita":  0.0,
+                      "resultado_liquido":  -1057291.14,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - Secretaria do CDE",
+                      "ano":  2026,
+                      "despesa":  1004258.34,
+                      "receita":  0.0,
+                      "resultado_liquido":  -1004258.34,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - SuperintendÃªncia (Unidade)",
+                      "ano":  2025,
+                      "despesa":  1127333.84,
+                      "receita":  0.0,
+                      "resultado_liquido":  -1127333.84,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - SuperintendÃªncia (Unidade)",
+                      "ano":  2026,
+                      "despesa":  1127358.99,
+                      "receita":  0.0,
+                      "resultado_liquido":  -1127358.99,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - Suprimentos",
+                      "ano":  2025,
+                      "despesa":  1200170.49,
+                      "receita":  0.0,
+                      "resultado_liquido":  -1200170.49,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - Suprimentos",
+                      "ano":  2026,
+                      "despesa":  1411738.45,
+                      "receita":  0.0,
+                      "resultado_liquido":  -1411738.45,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - Unidade Acesso a Mercado e ServiÃ§os Financeiros",
+                      "ano":  2025,
+                      "despesa":  1881759.54,
+                      "receita":  5360.12,
+                      "resultado_liquido":  -1876399.42,
+                      "indice_cobertura":  0.2848
+                  },
+                  {
+                      "unidade":  "SP - Unidade Acesso a Mercado e ServiÃ§os Financeiros",
+                      "ano":  2026,
+                      "despesa":  14240120.79,
+                      "receita":  4420.0,
+                      "resultado_liquido":  -14235700.79,
+                      "indice_cobertura":  0.031
+                  },
+                  {
+                      "unidade":  "SP - Unidade de Compliance e ProteÃ§Ã£o de Dados",
+                      "ano":  2025,
+                      "despesa":  550472.1,
+                      "receita":  0.0,
+                      "resultado_liquido":  -550472.1,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - Unidade de Compliance e ProteÃ§Ã£o de Dados",
+                      "ano":  2026,
+                      "despesa":  618984.71,
+                      "receita":  0.0,
+                      "resultado_liquido":  -618984.71,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - Unidade Projetos e Obras",
+                      "ano":  2025,
+                      "despesa":  5704330.2,
+                      "receita":  0.0,
+                      "resultado_liquido":  -5704330.2,
+                      "indice_cobertura":  0.0
+                  },
+                  {
+                      "unidade":  "SP - Unidade Projetos e Obras",
+                      "ano":  2026,
+                      "despesa":  5342229.08,
+                      "receita":  0.0,
+                      "resultado_liquido":  -5342229.08,
+                      "indice_cobertura":  0.0
+                  }
+              ],
+    "Count":  118
+}
