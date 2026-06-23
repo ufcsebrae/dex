@@ -11,14 +11,14 @@ steps:
     displayName: 'Instalar Node.js'
 
   - script: |
+      cd web
       npm install
       npm run build
     displayName: 'Instalar dependências e compilar projeto Vite'
 
-  # Exemplo de Deploy automatizado para o Azure Static Web Apps
-  - task: AzureStaticWebApp@0
+  - task: PublishBuildArtifacts@1
     inputs:
-      app_location: '/'             # Caminho onde está o package.json
-      output_location: 'dist'       # Pasta gerada pelo comando 'npm run build' do Vite
-      azure_static_web_apps_api_token: '$(deployment_token)' # Token gerado no portal do Azure
-    displayName: 'Publicar no Azure Static Web Apps'
+      PathtoPublish: 'web/dist'
+      ArtifactName: 'DEX-Visualizacao-Painel'
+      publishLocation: 'Container'
+    displayName: 'Publicar artefato com arquivos do Dashboard'
