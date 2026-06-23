@@ -109,7 +109,9 @@ async def salva_df(
     """
     Carrega o DataFrame processado no banco de dados de destino de forma fragmentada.
     
-    Aplica política de chunks dinâmicos e atualiza o progresso de forma thread-safe (PEP 3156).
+    Aplica política de chunks dinâmicos, converte decimais para float64 em memória 
+    para garantir velocidade extrema, força fisicamente o tipo DECIMAL(38, 8) no SQL Server,
+    mapeia anos/meses como INTEGER e atualiza o progresso de forma thread-safe.
     """
     if df is None or df.empty:
         log.warning("DataFrame vazio recebido na camada de carga. Abortando operação.")
@@ -124,13 +126,118 @@ async def salva_df(
     total_linhas: int = len(df)
     colunas_count: int = len(df.columns)
     
-    # Limita o tamanho do bloco para otimizar velocidade de rede sem estourar parâmetros
-    chunk_size: int = max(1000, min(10000, 100000 // colunas_count))
+    # Com a otimização de floats, podemos usar blocos maiores sem medo de estourar a rede!
+    chunk_size: int = max(5000, min(20000, 200000 // colunas_count))
     num_chunks: int = (total_linhas + chunk_size - 1) // chunk_size
     
-    log.info(f"Carga fragmentada para {schema_banco}.{nome_tabela_final}: {total_linhas} linhas em {num_chunks} blocos (tamanho do bloco: {chunk_size})")
+    log.info(f"Carga otimizada para {schema_banco}.{nome_tabela_final}: {total_linhas} linhas em {num_chunks} blocos (tamanho do bloco: {chunk_size})")
 
     loop: asyncio.AbstractEventLoop = asyncio.get_running_loop()
+
+    # --- MAPEAMENTO DINÂMICO E CONVERSÃO EM MEMÓRIA ---
+    from sqlalchemy.types import Numeric, Integer
+    import decimal
+
+    # Define as colunas que iniciam com 'vl_' mas que NÃO devem ser decimais (são inteiros)
+    EXCLUSOES_INTEIROS = {"vl_ano", "vl_mes"}
+
+    mapa_dtypes = {}
+    for col in df.columns:
+        # CORREÇÃO: Força o tipo físico como INTEGER no SQL Server para as colunas temporais
+        if col in EXCLUSOES_INTEIROS:
+            mapa_dtypes[col] = Integer()
+            continue
+            
+        # Se for uma coluna de valores monetários (prefixo 'vl_')
+        if col.startswith('vl_'):
+            non_nulls = df[col].dropna()
+            if not non_nulls.empty:
+                primeiro_val = non_nulls.iloc[0]
+                # Se for decimal.Decimal, convertemos em memória para float64 (evita o bug 10054 do TDS)
+                if isinstance(primeiro_val, decimal.Decimal):
+                    df[col] = pd.to_numeric(df[col], errors="coerce")
+                
+                # Forçamos o banco a criar a coluna de valores fisicamente como DECIMAL(38, 8)
+                mapa_dtypes[col] = Numeric(38, 8)
+
+    def _executa_carga_sync() -> None:
+        """Operação síncrona de I/O executada no thread-pool (PEP 20)."""
+        engine: Engine = create_engine(string_conexao, fast_executemany=True)
+        
+        try:
+            # Passo 1: Cria apenas a estrutura física da tabela vazia com os tipos corrigidos
+            df.head(0).to_sql(
+                name=nome_tabela_final,
+                con=engine,
+                schema=schema_banco,
+                if_exists="replace",
+                index=False,
+                dtype=mapa_dtypes
+            )
+            
+            # Passo 2: Abre uma transação única explícita na mesma conexão
+            with engine.begin() as conexao:
+                for i in range(num_chunks):
+                    lote_df = df.iloc[i * chunk_size : (i + 1) * chunk_size]
+                    
+                    lote_df.to_sql(
+                        name=nome_tabela_final,
+                        con=conexao,
+                        schema=schema_banco,
+                        if_exists="append",
+                        index=False
+                    )
+                    
+                    porcentagem_concluida = int(((i + 1) / num_chunks) * 100)
+                    if on_progress:
+                        loop.call_soon_threadsafe(on_progress, porcentagem_concluida)
+                        
+            log.info(f"Carga fragmentada concluída com sucesso na tabela {schema_banco}.{nome_tabela_final}.")
+        except Exception as e:
+            log.error(f"Falha de banco de dados durante a carga fracionada de {nome_tabela_final}: {e}", exc_info=True)
+            raise
+
+    await loop.run_in_executor(None, _executa_carga_sync)
+
+
+    def _executa_carga_sync() -> None:
+        """Operação síncrona de I/O executada no thread-pool (PEP 20)."""
+        engine: Engine = create_engine(string_conexao, fast_executemany=True)
+        
+        try:
+            # Passo 1: Cria apenas a estrutura física da tabela vazia com tipos explícitos
+            df.head(0).to_sql(
+                name=nome_tabela_final,
+                con=engine,
+                schema=schema_banco,
+                if_exists="replace",
+                index=False,
+                dtype=mapa_dtypes
+            )
+            
+            # Passo 2: Abre uma transação única explícita na mesma conexão
+            with engine.begin() as conexao:
+                for i in range(num_chunks):
+                    lote_df = df.iloc[i * chunk_size : (i + 1) * chunk_size]
+                    
+                    lote_df.to_sql(
+                        name=nome_tabela_final,
+                        con=conexao,
+                        schema=schema_banco,
+                        if_exists="append",
+                        index=False
+                    )
+                    
+                    porcentagem_concluida = int(((i + 1) / num_chunks) * 100)
+                    if on_progress:
+                        loop.call_soon_threadsafe(on_progress, porcentagem_concluida)
+                        
+            log.info(f"Carga fragmentada concluída com sucesso na tabela {schema_banco}.{nome_tabela_final}.")
+        except Exception as e:
+            log.error(f"Falha de banco de dados durante a carga fracionada de {nome_tabela_final}: {e}", exc_info=True)
+            raise
+
+    await loop.run_in_executor(None, _executa_carga_sync)
 
     def _executa_carga_sync() -> None:
         """Operação síncrona de I/O em chunks executada no thread-pool (PEP 20)."""
@@ -138,13 +245,14 @@ async def salva_df(
         engine: Engine = create_engine(string_conexao, fast_executemany=True)
         
         try:
-            # Passo 1: Cria apenas a estrutura física da tabela vazia de forma segura (DDS)
+            # Passo 1: Cria a estrutura física da tabela definindo explicitamente os tipos numéricos
             df.head(0).to_sql(
                 name=nome_tabela_final,
                 con=engine,
                 schema=schema_banco,
                 if_exists="replace",
-                index=False
+                index=False,
+                dtype=mapa_dtypes  # Define explicitamente tipos decimais com escala
             )
             
             # Passo 2: Abre uma transação única explícita na mesma conexão
@@ -175,6 +283,7 @@ async def salva_df(
             raise
 
     await loop.run_in_executor(None, _executa_carga_sync)
+
 
 
 async def salva_metricas(metricas: dict[str, Any], nome_processo: str) -> None:

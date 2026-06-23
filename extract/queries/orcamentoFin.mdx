@@ -1,0 +1,26 @@
+WITH
+    MEMBER Measures.ValorExecutado AS 
+        '([Measures].[Valor de Despesa Executado])'
+    MEMBER [Tempo].[Ano e Mês].[Intervalo Completo] AS
+        Aggregate(
+            {[Tempo].[Ano e Mês].[Número Ano e Mês].&[202201]:[Tempo].[Ano e Mês].[Número Ano e Mês].&[202612]}
+        )
+SELECT
+    NON EMPTY {Measures.ValorExecutado} ON COLUMNS,
+    NON EMPTY (
+        [PPA].[PPA com Fotografia].[Descrição de PPA com Fotografia],
+        [Sebrae].[Sebrae].[Descrição de Sebrae],
+        [Iniciativa].[Iniciativas].[Iniciativa],
+        [Ação].[Ação].[Nome de Ação],
+        [Unidade Organizacional de Ação].[Unidade Organizacional de Ação].[Nome de Unidade Organizacional de Ação],
+        [Natureza Orçamentária].[Código Estruturado 4 nível].[Código Estruturado 4 nível],
+        [Natureza Orçamentária].[Descrição de Natureza 4 nível].[Descrição de Natureza 4 nível],
+        [Tempo].[Ano].[Número Ano]
+
+    ) ON ROWS
+FROM 
+    [FINANCEIRO]
+WHERE 
+    (
+        [Tempo].[Ano e Mês].[Intervalo Completo]
+    )

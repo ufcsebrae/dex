@@ -119,15 +119,15 @@ DICIONARIO_RENOMEACAO: dict[str, str] = {
     "valorbrutoorig": "vl_bruto",
     "[natureza contábil].[código natureza contábil grupo 6].[código natureza contábil].[member_caption]": "cdg_cdgnvl6",
     "[natureza contábil].[descrição natureza contábil grupo 6].[natureza contábil].[member_caption]": "nm_descnvl6",
-    "[measures].[valorexecutado]":"vl_contabilExecutado",
-    "[fotografia].[fotografia].[fotografia].[member_caption]":"nm_ppafoto",
+    "[measures].[valorexecutado]": "vl_contabilExecutado",
+    "[fotografia].[fotografia].[fotografia].[member_caption]": "nm_ppafoto",
     "[measures].[vl_receita_executado]": "vl_receitaExecutado",
     "[ação].[ação].[ação].[member_caption]": "nm_acao",
-    "[natureza orçamentária].[código natureza orçamentária grupo 4].[código natureza orçamentária].[member_caption]":"nm_cdgNatureza",
+    "[natureza orçamentária].[código natureza orçamentária grupo 4].[código natureza orçamentária].[member_caption]": "nm_cdgNatureza",
     "[projetos processos].[nome projeto e processo].[projeto e processo].[member_caption]": "nm_iniciativa",
     "[unidade organizacional de ação].[unidade organizacional de ação].[unidade organizacional de ação].[member_caption]": "nm_UnidadeAcao",
     "[ação].[códgio rm].[código rm].[member_caption]": "cdg_RM",
-    "[natureza orçamentária].[descrição natureza orçamentária grupo 4].[natureza orçamentária].[member_caption]":"nm_descnvl4",
+    "[natureza orçamentária].[descrição natureza orçamentária grupo 4].[natureza orçamentária].[member_caption]": "nm_descnvl4",
     "[measures].[vl_despesa_executado]": "vl_despesaExecutado",
     "[unidade organizacional de projeto e processo].[unidade organizacional de projeto e processo].[unidade organizacional de projeto e processo].[member_caption]": "nm_unidadeIniciativa",
     "[tempo].[mês].[mês].[member_caption]": "nm_mes",
@@ -135,18 +135,59 @@ DICIONARIO_RENOMEACAO: dict[str, str] = {
 }
 
 
-def converte_decimais_para_float(df: pd.DataFrame) -> pd.DataFrame:
+def ajusta_precisao_decimais(df: pd.DataFrame, precisao: int = 8) -> pd.DataFrame:
     """
-    Detecta de forma eficiente colunas contendo objetos decimal.Decimal do Python
-    e as converte para float64, evitando erros de conversão do driver pyodbc (PEP 257).
+    Detecta de forma eficiente colunas contendo objetos decimal.Decimal ou valores numéricos
+    e as formata para o formato decimal.Decimal do Python com precisão fixa (ex: 8 casas decimais).
+    Isso evita imprecisões do tipo float64 e previne erros de estouro (overflow) no SQL Server.
+    
+    Adiciona tratamento de exclusão para colunas como 'vl_ano' e 'vl_mes', que são metadados 
+    temporais e devem ser gravados como inteiros (INT) no SQL Server.
     """
-    for col in df.select_dtypes(include=["object"]).columns:
-        # Analisa de forma otimizada se a coluna possui elementos decimais
+    import decimal
+    import numpy as np
+
+    # CORREÇÃO: Define as colunas que iniciam com 'vl_' mas que NÃO são valores monetários (são inteiros)
+    EXCLUSOES_INTEIROS = {"vl_ano", "vl_mes"}
+    
+    # Define o alvo de quantização (ex: '1.00000000' para 8 casas decimais)
+    quantize_target = decimal.Decimal('1.' + '0' * precisao)
+    
+    for col in df.columns:
+        # CORREÇÃO: Trata as exceções (vl_ano e vl_mes) forçando-as para Inteiro (INT)
+        if col in EXCLUSOES_INTEIROS:
+            df[col] = pd.to_numeric(df[col], errors="coerce").fillna(0).astype(int)
+            log.info(f"Conversão de tipo: Coluna temporal '{col}' ajustada para Inteiro (INT).")
+            continue
+
+        # Analisa se a coluna possui elementos válidos para conversão monetária
         non_nulls = df[col].dropna()
-        if not non_nulls.empty and isinstance(non_nulls.iloc[0], decimal.Decimal):
-            df[col] = pd.to_numeric(df[col], errors="coerce").fillna(0.0)
-            log.info(f"Conversão de precisão: Coluna de decimais '{col}' convertida para float64.")
+        if not non_nulls.empty:
+            primeiro_val = non_nulls.iloc[0]
+            
+            # Aplica a conversão para colunas de Decimais existentes ou colunas de valores (iniciadas com 'vl_')
+            if isinstance(primeiro_val, decimal.Decimal) or (col.startswith('vl_') and df[col].dtype in ['float64', 'object']):
+                
+                def para_decimal(val):
+                    if pd.isna(val) or val is None:
+                        return None
+                    try:
+                        # Se for float, convertemos para string formatada primeiro para evitar ruído binário
+                        if isinstance(val, (float, np.float64)):
+                            val_str = f"{val:.{precisao}f}"
+                            dec = decimal.Decimal(val_str)
+                        else:
+                            dec = decimal.Decimal(str(val))
+                        
+                        return dec.quantize(quantize_target)
+                    except (ValueError, TypeError, decimal.InvalidOperation):
+                        return None
+                
+                df[col] = df[col].apply(para_decimal)
+                log.info(f"Coluna '{col}' ajustada com sucesso para decimal.Decimal com precisão de {precisao} casas.")
+                
     return df
+
 
 
 async def padroniza_nomes_colunas(df: pd.DataFrame) -> pd.DataFrame:
@@ -306,6 +347,9 @@ async def transforma_df(df: pd.DataFrame) -> tuple[pd.DataFrame, dict[str, Any]]
         print(f"Soma Total da Carteira (a + b): R$ {(soma_a + soma_b):,.2f}".replace(",", "X").replace(".", ",").replace("X", "."))
         print("----------------------------------------------\n")
         
+        # Ajusta a precisão das colunas de Decimal para o SQL Server
+        df_transformado = ajusta_precisao_decimais(df_transformado, precisao=8)
+        
         return df_transformado, metricas_pre_carga
 
     # --- FLUXO PADRÃO: SQL e MDX relacionais ---
@@ -327,8 +371,8 @@ async def transforma_df(df: pd.DataFrame) -> tuple[pd.DataFrame, dict[str, Any]]
         df_padronizado["vl_valor"] = pd.to_numeric(df_padronizado["vl_valor"], errors="coerce").fillna(0.0)
         log.info("Conversão de 'vl_valor' concluída com sucesso.")
 
-    # Converte de forma preventiva colunas 'object' do tipo decimal.Decimal para float64
-    df_transformado = converte_decimais_para_float(df_padronizado)
+    # Ajusta a precisão das colunas contendo decimais para o formato DECIMAL(18,8) compatível com SQL Server
+    df_transformado = ajusta_precisao_decimais(df_padronizado, precisao=8)
 
     metricas_pre_carga = await extrai_metricas_node_js(df_transformado)
     print(f"\n[METRICAS PRE-CARGA NODE.JS] -> {metricas_pre_carga}\n")

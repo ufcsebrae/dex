@@ -332,11 +332,29 @@ def main() -> None:
     )
     args = parser.parse_args()
     
-    executar_carga: bool = not args.sem_carga
+    entidades_alvo = args.entidades or None
+    executar_carga = not args.sem_carga
     
+    # SE NENHUMA ENTIDADE FOI PASSADA VIA ARGUMENTO: Abre o Painel de Seleção Interativo (UI)
+    if not entidades_alvo:
+        from menu import exibir_menu_seletor
+        
+        # Busca todas as entidades de dados disponíveis no projeto
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        entidades_disponiveis = loop.run_until_complete(buscar_dados())
+        
+        # Abre a interface interativa
+        entidades_alvo, executar_carga = exibir_menu_seletor(entidades_disponiveis)
+        
+        if not entidades_alvo:
+            # O usuário escolheu sair ou cancelar
+            return
+
+    # Executa o pipeline concorrente com as bases selecionadas
     asyncio.run(
         executa_pipeline_concorrente(
-            entidades_alvo=args.entidades or None, 
+            entidades_alvo=entidades_alvo, 
             executar_carga=executar_carga,
             ignorar_dependencias=args.ignorar_dependencias
         )

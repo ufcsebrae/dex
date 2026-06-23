@@ -35,6 +35,7 @@ def carregar_mapa_queries(caminho_arquivo: Path) -> dict[str, str]:
         "inadim": "SPSVSQL39_HubDados",
         "plancc": "SPSVSQL39_HubDados",
         "orcado": "OLAP_SME",
+        "orcamentofin": "Olap_SME",
         "smeDespesas":"OLAP_SME",
         "orcado_receitas": "OLAP_SME",
         "orcado_receitas_cenario": "OLAP_SME",
