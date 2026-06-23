@@ -1,5 +1,5 @@
 import './index.css';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } from 'recharts';
 import { Activity, HelpCircle, BarChart3 } from 'lucide-react';
 
