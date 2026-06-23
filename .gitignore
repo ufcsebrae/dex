@@ -1,0 +1,41 @@
+# === Caches do Python (Bytecode) ===
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+*.pyc
+
+# === Credenciais e Configurações Sensíveis ===
+.env
+.env.backup
+.env.local
+
+# === Banco de Dados Local e Staging Areas (DEX) ===
+data/cache.db
+data/cache.db-journal
+data/raw/
+data/processed/
+
+# === Logs de Execução ===
+logs/
+*.log
+
+# === Configurações de IDEs (VS Code / PyCharm) ===
+.vscode/
+.idea/
+*.code-workspace
+.history/
+
+# === Ambientes Virtuais (Venv) ===
+.venv/
+venv/
+ENV/
+
+# === Logs de Execução ===
+logs/
+*.log
+
+# === Planilhas Excel ===
+*.xlsx
+DEX_Estudo_Orcamentario.xlsx
