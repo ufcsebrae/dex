@@ -1,28 +1,26 @@
 trigger:
-  - main
+  branches:
+    include:
+    - master # Mantém o gatilho na master, ou mude para main se a TI migrou a branch principal
 
 pool:
   vmImage: ubuntu-latest
 
-steps:
-  - task: NodeTool@0
-    inputs:
-      versionSpec: '20.x'
-    displayName: 'Instalar Node.js'
+# Conecta ao grupo de variáveis oficial da TI para herdar o token de deploy válido
+variables:
+- group: Azure-Static-Web-Apps-delightful-coast-0b4493810-variable-group
 
-  - script: |
-      cd web
-      npm install
-      npm run build
-      
-      # Cria uma pasta de distribuição contendo a subpasta /dex
-      mkdir -p dist-subpath/dex
-      cp -r dist/* dist-subpath/dex/
-    displayName: 'Instalar dependências, compilar e estruturar subpasta DEX'
+steps:
+  - task: Checkout@1
+    inputs:
+      repository: self
+      submodules: true
 
   - task: AzureStaticWebApp@0
     inputs:
-      app_location: '/web'
-      output_location: 'dist-subpath'
-      azure_static_web_apps_api_token: '$(deployment_token)'
-    displayName: 'Publicar no Azure Static Web Apps'
+      azure_static_web_apps_api_token: $(AZURE_STATIC_WEB_APPS_API_TOKEN_DELIGHTFUL_COAST_0B4493810)
+      app_location: "/docs"
+      api_location: ""
+      output_location: ""
+      skip_app_build: true
+    displayName: 'Publicar ufc.sebraesp.com.br (Pulso + DEX)'
