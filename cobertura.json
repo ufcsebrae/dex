@@ -1,0 +1,18 @@
+﻿[
+    {
+        "resultado_liquido":  50000,
+        "ano":  2025,
+        "unidade":  "UNIDADE SÃO PAULO",
+        "indice_cobertura":  120,
+        "despesa":  250000,
+        "receita":  300000
+    },
+    {
+        "resultado_liquido":  80000,
+        "ano":  2026,
+        "unidade":  "UNIDADE SÃO PAULO",
+        "indice_cobertura":  129.63,
+        "despesa":  270000,
+        "receita":  350000
+    }
+]

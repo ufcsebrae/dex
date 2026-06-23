@@ -1,0 +1,85 @@
+﻿{
+    "natureza":  [
+                     {
+                         "executado":  48000,
+                         "planejado":  50000,
+                         "Descricao_Natureza_Orcamentaria":  "Serviços de Terceiros",
+                         "nm_unidade":  "UNIDADE SÃO PAULO",
+                         "vl_ano":  2025
+                     },
+                     {
+                         "executado":  19000,
+                         "planejado":  20000,
+                         "Descricao_Natureza_Orcamentaria":  "Material de Consumo",
+                         "nm_unidade":  "UNIDADE SÃO PAULO",
+                         "vl_ano":  2025
+                     },
+                     {
+                         "executado":  58000,
+                         "planejado":  60000,
+                         "Descricao_Natureza_Orcamentaria":  "Serviços de Terceiros",
+                         "nm_unidade":  "UNIDADE SÃO PAULO",
+                         "vl_ano":  2026
+                     },
+                     {
+                         "executado":  23000,
+                         "planejado":  25000,
+                         "Descricao_Natureza_Orcamentaria":  "Material de Consumo",
+                         "nm_unidade":  "UNIDADE SÃO PAULO",
+                         "vl_ano":  2026
+                     }
+                 ],
+    "projeto":  [
+                    {
+                        "nm_iniciativa":  "Projeto Exemplo DEX",
+                        "executado":  95000,
+                        "planejado":  100000,
+                        "nm_unidade":  "UNIDADE SÃO PAULO",
+                        "vl_ano":  2025
+                    },
+                    {
+                        "nm_iniciativa":  "Projeto Exemplo DEX",
+                        "executado":  105000,
+                        "planejado":  110000,
+                        "nm_unidade":  "UNIDADE SÃO PAULO",
+                        "vl_ano":  2026
+                    }
+                ],
+    "mensal":  [
+                   {
+                       "executado":  115000,
+                       "planejado":  120000,
+                       "vl_mes":  1,
+                       "nm_unidade":  "UNIDADE SÃO PAULO",
+                       "vl_ano":  2025
+                   },
+                   {
+                       "executado":  128000,
+                       "planejado":  130000,
+                       "vl_mes":  2,
+                       "nm_unidade":  "UNIDADE SÃO PAULO",
+                       "vl_ano":  2025
+                   },
+                   {
+                       "executado":  142000,
+                       "planejado":  145000,
+                       "vl_mes":  3,
+                       "nm_unidade":  "UNIDADE SÃO PAULO",
+                       "vl_ano":  2025
+                   },
+                   {
+                       "executado":  135000,
+                       "planejado":  140000,
+                       "vl_mes":  1,
+                       "nm_unidade":  "UNIDADE SÃO PAULO",
+                       "vl_ano":  2026
+                   },
+                   {
+                       "executado":  148000,
+                       "planejado":  150000,
+                       "vl_mes":  2,
+                       "nm_unidade":  "UNIDADE SÃO PAULO",
+                       "vl_ano":  2026
+                   }
+               ]
+}
