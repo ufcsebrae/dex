@@ -64,7 +64,7 @@ export default function App() {
           setDados(data);
           const unidades = [...new Set(data.mensal.map((r: any) => r.nm_unidade))].sort();
           if (unidades.length > 0) {
-            setUnidadeSelecionada(unidades[0]);
+            setUnidadeSelecionada(unidades[0] as string);
           }
         }
         if (cobertura && !cobertura.error) {
@@ -155,8 +155,8 @@ export default function App() {
 
   // --- PÁGINA 3: DADOS DE AUTOSSUFICIÊNCIA DA UNIDADE SELECIONADA POR ANO ---
   const registrosUnidadeCobertura = dadosCobertura.filter(r => r.unidade === unidadeSelecionada);
-  const r2025 = registrosUnidadeCobertura.find(r => r.ano === 2025) || { despesa: 0, receita: 0, resultado_liquido: 0, indice_cobertura: 0 };
-  const r2026 = registrosUnidadeCobertura.find(r => r.ano === 2026) || { despesa: 0, receita: 0, resultado_liquido: 0, indice_cobertura: 0 };
+  const r2025 = registrosUnidadeCobertura.find(r => r.ano === 2025) || { unidade: '', ano: 2025, despesa: 0, receita: 0, resultado_liquido: 0, indice_cobertura: 0 };
+  const r2026 = registrosUnidadeCobertura.find(r => r.ano === 2026) || { unidade: '', ano: 2026, despesa: 0, receita: 0, resultado_liquido: 0, indice_cobertura: 0 };
 
   // Gráfico 1: Comparação YoY da Unidade Selecionada (Despesa vs Receita)
   const dadosGraficoFocadoBarras = [
@@ -185,7 +185,7 @@ export default function App() {
   ];
 
   // Agrupamento consolidado das Unidades para a Tabela de Ranking Geral comparando os anos
-  const mapaUnidadesRanking: { [unidade: string]: { "2025": number, "2026": number } } = {};
+  const mapaUnidadesRanking: { [unidade: string]: { [ano: string]: number } } = {};
   dadosCobertura.forEach(r => {
     const uni = r.unidade;
     const ano = r.ano.toString();
@@ -303,7 +303,7 @@ export default function App() {
                         <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
                         <XAxis dataKey="name" stroke="#64748b" fontSize={11} tickLine={false} />
                         <YAxis stroke="#64748b" fontSize={11} tickLine={false} tickFormatter={formatarEixoY} />
-                        <Tooltip contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', borderRadius: '8px' }} formatter={(v: number) => [formatadorMoeda.format(v)]} />
+                        <Tooltip contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', borderRadius: '8px' }} formatter={(v: any) => [formatadorMoeda.format(v)]} />
                         <Legend verticalAlign="top" height={36} />
                         <Line type="monotone" dataKey="Planejado" name="Planejado" stroke="#06b6d4" strokeWidth={3} dot={false} />
                         <Line type="monotone" dataKey="Executado" name="Executado" stroke="#10b981" strokeWidth={3} dot={false} />
@@ -319,7 +319,7 @@ export default function App() {
                         <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
                         <XAxis dataKey="name" stroke="#64748b" fontSize={11} tickLine={false} />
                         <YAxis stroke="#64748b" fontSize={11} tickLine={false} tickFormatter={formatarEixoY} />
-                        <Tooltip contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', borderRadius: '8px' }} formatter={(v: number) => [formatadorMoeda.format(v)]} />
+                        <Tooltip contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', borderRadius: '8px' }} formatter={(v: any) => [formatadorMoeda.format(v)]} />
                         <Legend verticalAlign="top" height={36} />
                         <Line type="monotone" dataKey="Planejado" name="Planejado" stroke="#06b6d4" strokeWidth={3} dot={false} />
                         <Line type="monotone" dataKey="Executado" name="Executado" stroke="#10b981" strokeWidth={3} dot={false} />
@@ -392,8 +392,8 @@ export default function App() {
                       <YAxis stroke="#64748b" fontSize={11} tickLine={false} tickFormatter={formatarEixoY} />
                       <Tooltip
                         contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', borderRadius: '8px' }}
-                        labelFormatter={(label, items) => `Natureza: ${items[0]?.payload?.fullName || label}`}
-                        formatter={(v: number) => [formatadorMoeda.format(v)]}
+                        labelFormatter={(label: any, items: any[]) => `Natureza: ${items[0]?.payload?.fullName || label}`}
+                        formatter={(v: any) => [formatadorMoeda.format(v)]}
                       />
                       <Legend verticalAlign="top" height={36} />
                       <Bar dataKey="Executado 2025" fill="#06b6d4" radius={[4, 4, 0, 0]} />
@@ -533,7 +533,7 @@ export default function App() {
                     <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
                     <XAxis dataKey="name" stroke="#64748b" fontSize={12} tickLine={false} />
                     <YAxis stroke="#64748b" fontSize={11} tickLine={false} tickFormatter={formatarEixoY} />
-                    <Tooltip contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', borderRadius: '8px' }} formatter={(v: number) => [formatadorMoeda.format(v)]} />
+                    <Tooltip contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', borderRadius: '8px' }} formatter={(v: any) => [formatadorMoeda.format(v)]} />
                     <Legend />
                     <Bar dataKey="Despesa" fill="#f43f5e" radius={[4, 4, 0, 0]} />
                     <Bar dataKey="Receita" fill="#10b981" radius={[4, 4, 0, 0]} />
@@ -551,7 +551,7 @@ export default function App() {
                     <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
                     <XAxis dataKey="name" stroke="#64748b" fontSize={12} tickLine={false} />
                     <YAxis stroke="#64748b" fontSize={11} tickLine={false} />
-                    <Tooltip contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', borderRadius: '8px' }} formatter={(v: number) => [`${v}%`, "Autossuficiência"]} />
+                    <Tooltip contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', borderRadius: '8px' }} formatter={(v: any) => [`${v}%`, "Autossuficiência"]} />
                     <Legend />
                     <Bar dataKey="Cobertura" name="Autossuficiência %" fill="#6366f1" radius={[4, 4, 0, 0]} />
                   </BarChart>
