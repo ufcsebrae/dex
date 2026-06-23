@@ -14,11 +14,15 @@ steps:
       cd web
       npm install
       npm run build
-    displayName: 'Instalar dependências e compilar projeto Vite'
+      
+      # Cria uma pasta de distribuição contendo a subpasta /dex
+      mkdir -p dist-subpath/dex
+      cp -r dist/* dist-subpath/dex/
+    displayName: 'Instalar dependências, compilar e estruturar subpasta DEX'
 
-  - task: PublishBuildArtifacts@1
+  - task: AzureStaticWebApp@0
     inputs:
-      PathtoPublish: 'web/dist'
-      ArtifactName: 'DEX-Visualizacao-Painel'
-      publishLocation: 'Container'
-    displayName: 'Publicar artefato com arquivos do Dashboard'
+      app_location: '/web'
+      output_location: 'dist-subpath'
+      azure_static_web_apps_api_token: '$(deployment_token)'
+    displayName: 'Publicar no Azure Static Web Apps'
